@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Впізнаване пекло — стаття про емоційну залежність</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #181210;
+    --paper: #f4efe5;
+    --rust: #9b3a24;
+    --ash: #6b5f56;
+    --pale: #e2d9c8;
+    --accent: #c4472a;
+    --warm: #f9f5ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 90% at 90% 60%, #2a1208 0%, transparent 55%),
+      radial-gradient(ellipse 50% 70% at 10% 90%, #200e06 0%, transparent 50%);
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--paper);
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    letter-spacing: -2px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-deck {
+    margin-top: 44px;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    color: #9a8878;
+    position: relative;
+    z-index: 2;
+    max-width: 480px;
+    line-height: 1.65;
+    border-left: 2px solid #3a2218;
+    padding-left: 20px;
+  }
+
+  .hero-rule {
+    position: absolute;
+    top: 64px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #2a1a10;
+    z-index: 2;
+  }
+
+  .author-bar {
+    background: #100c08;
+    padding: 18px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #2a1a10;
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: #a09080;
+    letter-spacing: 0.5px;
+  }
+
+  .author-name strong {
+    color: var(--paper);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .lang-toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .lang-btn {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid #3a2a1a;
+    color: #7a6a5a;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'Spectral', serif;
+  }
+
+  .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .lang-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(196,71,42,0.08); }
+
+  .article {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 110px 40px 60px;
+  }
+
+  .lead {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.8vw, 25px);
+    font-weight: 400;
+    font-style: italic;
+    color: #3a2a20;
+    line-height: 1.65;
+    margin-bottom: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--pale);
+  }
+
+  .chapter { margin-bottom: 90px; }
+
+  .chapter-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .chapter-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--pale);
+    max-width: 60px;
+  }
+
+  .chapter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 38px;
+  }
+
+  .chapter p { margin-bottom: 26px; color: #2c201a; }
+  .chapter p strong { font-weight: 500; color: var(--ink); }
+  .chapter p em { font-style: italic; color: var(--ash); }
+
+  .pull {
+    margin: 54px -30px;
+    padding: 44px 54px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(19px, 2.5vw, 24px);
+    font-style: italic;
+    line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pull::before {
+    content: '\201C';
+    font-size: 160px;
+    line-height: 1;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    color: var(--accent);
+    opacity: 0.15;
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+  }
+
+  .pull::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, #2a1008 0%, transparent 70%);
+  }
+
+  .pull span { position: relative; z-index: 1; display: block; }
+  .pull em { font-style: normal; color: var(--accent); }
+
+  .callout {
+    margin: 44px 0;
+    padding: 0 0 0 26px;
+    border-left: 3px solid var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 21px);
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1.45;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 80px 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--pale);
+  }
+
+  .divider span { font-size: 10px; letter-spacing: 4px; color: #b8a898; }
+
+  .finale {
+    background: var(--ink);
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .finale::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .finale::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2a1008 0%, transparent 65%);
+  }
+
+  .finale-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .finale-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .finale-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+
+  .finale p { color: #a09080; font-size: 18px; line-height: 1.9; margin-bottom: 26px; }
+  .finale p strong { color: #d0c0b0; font-weight: 400; }
+
+  .finale-strike {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1.3;
+    margin: 50px 0 60px;
+  }
+
+  .finale-strike em { color: var(--accent); font-style: normal; }
+
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .door {
+    background: #221410;
+    padding: 36px 28px;
+    transition: background 0.3s ease;
+    cursor: default;
+  }
+
+  .door:hover { background: #2e1a10; }
+
+  .door-number {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .door-icon { font-size: 28px; margin-bottom: 18px; display: block; }
+
+  .door h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .door p { font-size: 13px !important; line-height: 1.7 !important; color: #7a6a5a !important; margin-bottom: 0 !important; }
+
+  .door-price {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+
+  .doors-caption { margin-top: 40px; font-size: 14px; font-style: italic; color: #5a4a3a; text-align: center; }
+
+  @media (max-width: 680px) {
+    .hero { padding: 60px 28px; }
+    .hero-rule { left: 28px; right: 28px; top: 40px; }
+    .author-bar { padding: 16px 24px; }
+    .article { padding: 70px 24px 50px; }
+    .pull { margin: 44px -24px; padding: 34px 30px 34px 38px; }
+    .finale { padding: 60px 28px; }
+    .doors { grid-template-columns: 1fr; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.8s ease both 0.1s; }
+  .hero h1      { animation: fadeUp 1s ease both 0.3s; }
+  .hero-deck    { animation: fadeUp 1s ease both 0.55s; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-eyebrow">Про емоційну залежність</div>
+  <h1>Впізнаване <em>пекло</em></h1>
+  <p class="hero-deck">Чому ми знову і знову обираємо біль — і чому в цьому виборі немає ні кохання, ні майбутнього</p>
+</header>
+
+<div class="author-bar">
+  <div class="author-name">Психолог <strong>Олена Браславська</strong> — стаття доступна двома мовами</div>
+  <div class="lang-toggle">
+    <a href="uznavayemiy-ad.html" class="lang-btn">РУС</a>
+    <a href="vpiznayemyy-peklo.html" class="lang-btn active">УКР</a>
+  </div>
+</div>
+
+<main class="article">
+
+  <p class="lead">
+    Ти коли-небудь помічав, що знову опиняєшся в одній і тій самій історії? Різні люди, інші міста — сценарій той самий. Очікування. Тривога. Приниження, яке чомусь відчувається гостріше, ніж ніжність поруч. Це не доля. Це не «невезіння в стосунках». Це біохімічна в'язниця — і в неї немає замка зовні.
+  </p>
+
+  <div class="chapter">
+    <div class="chapter-label">Розділ 01</div>
+    <h2>Чому мозок обирає «впізнаване пекло» — і чому там немає майбутнього</h2>
+
+    <p>Твій мозок не шукає щастя. Це важливо повторити: <strong>він не шукає щастя.</strong> Він шукає передбачуваність. Знайоме. Те, в чому він вже вміє виживати — навіть якщо це виживання на руїнах власної гідності.</p>
+
+    <p>Але ось що робить цю пастку особливо жорстокою: <strong>знайоме і майбутнє — це протилежні напрямки.</strong> Коли мозок тягне тебе до «зрозумілого» — до болю, до тривоги, до приниження, яке ти вже вмієш переживати — він тягне тебе назад. Не до безпеки. До архіву. До того, що вже закінчилось і не має продовження.</p>
+
+    <div class="pull">
+      <span>Впізнаваність — це не дім. Це <em>музей твого старого болю</em>. Ти можеш заходити туди знову і знову, торкатися експонатів, пояснювати кожен із них — але тамніхто не живе. Там немає завтра.</span>
+    </div>
+
+    <p>З точки зору нейробіології це працює через мигдалеподібне тіло — давню частину мозку, заточену під одне: виживання. Вона сканує кожен новий досвід і ставить єдине запитання: <em>«Я вже знаю, як тут не померти?»</em> Якщо так — тіло розслаблюється. Навіть якщо «знайоме» — це приниження, холодність, постійне доведення своєї цінності.</p>
+
+    <p>А тепер найважливіше. Людина поруч із тобою — добра, стабільна, справжня — викликає у цієї частини мозку тривогу. Не тому що погана. Тому що <strong>незнайома</strong>. Немає готового протоколу виживання поруч із тим, хто просто любить без умов.</p>
+
+    <div class="callout">
+      У «знайомому» немає майбутнього з однієї простої причини: воно вже відбулось. Ти вже знаєш, чим закінчиться. Повертаючись туди — ти не будуєш. Ти повторюєш.
+    </div>
+
+    <p>Страх перед новим — нормальний. Це не сигнал небезпеки. Це сигнал того, що ти вперше йдеш уперед, а не по колу. Різниця між цими двома відчуттями — одна з найважливіших речей, яких варто навчитися розрізняти.</p>
+  </div>
+
+  <div class="divider"><span>◆</span></div>
+
+  <div class="chapter">
+    <div class="chapter-label">Розділ 02</div>
+    <h2>Чому слова «просто прийми рішення» викликають лють або параліч</h2>
+
+    <p>Коли тобі кажуть «просто йди», «обери себе», «ти ж розумна людина» — ти або злишся, або завмираєш. Іноді одночасно. Чому?</p>
+
+    <p>Тому що це пропозиція вийти з єдиної системи, в якій ти вмієш функціонувати. Це як запропонувати людині, яка все життя орієнтувалась по болю, прибрати біль — і продовжувати рухатись. Але куди? Як?</p>
+
+    <p>У залежності завжди є <strong>ілюзія контролю.</strong> Поки ти в цих стосунках і страждаєш — ти принаймні розумієш, <em>чому тобі погано.</em> Біль пояснимий. А пояснимий біль дає відчуття сенсу — і це страшніше, ніж здається.</p>
+
+    <div class="pull">
+      <span>Вийти — означає зіткнутись не зі «свободою і легкістю», як обіцяють. А з порожнечею. З тишею. З запитанням: <em>«А хто я без цього болю?»</em> Це страшніше, ніж залишитись.</span>
+    </div>
+
+    <p>Саме тому «прийняти рішення» — це не про силу волі. Це про те, що людині потрібна нова точка опори перш ніж вона відпустить стару. Вимагати від залежного «просто вирішити» — це як вимагати від людини у воді відпустити дошку раніше, ніж вона відчує дно під ногами.</p>
+
+    <p>Параліч — це не слабкість. Це мозок, який чесно каже: <em>«Я не знаю, як вижити там, куди ти мене кличеш.»</em> Це початок розмови, а не кінець.</p>
+  </div>
+
+  <div class="divider"><span>◆</span></div>
+
+  <div class="chapter">
+    <div class="chapter-label">Розділ 03</div>
+    <h2>Це не кохання. Давай називати речі своїми іменами</h2>
+
+    <p>Ось де починається найнебезпечніший самообман. Людина в залежності каже: <em>«Але я ж кохаю його. Це кохання — як я можу просто піти?»</em> І це слово — «кохання» — стає ключем, яким вона знову і знову відчиняє двері назад у біль.</p>
+
+    <p>Але з психологічної точки зору тут треба зупинитись і сказати жорстко: <strong>того, що ти називаєш коханням, там немає.</strong> Не тому що ти погана людина. А тому що в зоні виживання почуття не живуть.</p>
+
+    <p>Коли людина перебуває в хронічному стресі — а емоційна залежність це саме він — нервова система переходить у режим виживання. У цьому режимі мозок зайнятий одним: <em>як не втратити джерело, яке тимчасово знімає біль.</em> Це не закоханість. Це не захоплення. Це не близькість. Це — закриття базової потреби в безпеці будь-якою ціною.</p>
+
+    <div class="pull">
+      <span>Тобі <em>здається</em>, що ти кохаєш. Насправді — тобі завдали стільки болю, що мозок перейменував страждання на почуття. Тому що так легше вижити. Тому що «я кохаю» звучить гідніше, ніж «я не можу вибратись».</span>
+    </div>
+
+    <p>У справжній близькості — ти здатен захоплюватись. Помічати людину. Думати про неї з теплом, а не з тривогою. Бажати їй добра, а не боятися її втратити. У залежності нічого цього немає. Є лише страх, очікування і короткі спалахи полегшення, які мозок реєструє як «щастя».</p>
+
+    <p>І найважливіше: <strong>поки ти називаєш це коханням — ти не можеш вийти.</strong> Тому що «зрадити кохання» страшно. Але вийти із залежності — не зрада. Це повернення до себе. Це вперше за довгий час — обрати себе не тому що так треба, а тому що ти нарешті бачиш, що відбувалось насправді.</p>
+
+    <div class="callout">
+      Назви це своїм іменем: не кохання — залежність. Не відданість — страх. Не глибина почуттів — біохімічна петля. Коли слова стають на свої місця, клітка перестає виглядати як дім.
+    </div>
+  </div>
+
+  <div class="divider"><span>◆</span></div>
+
+  <div class="chapter">
+    <div class="chapter-label">Розділ 04</div>
+    <h2>Як вийти — без років терапії і хибних обіцянок</h2>
+
+    <p>Вихід із цієї конструкції не починається з рішення піти. І не починається з «полюби себе» — ця фраза дратує саме тому, що людина в залежності не розуміє, <em>як</em> це зробити, коли вся твоя біохімія налаштована на іншого.</p>
+
+    <p>Вихід починається з одного: <strong>побачити петлю.</strong></p>
+
+    <p>Не засудити себе за неї. Не присоромитись. Просто побачити — як спостерігач, а не як учасник. Тригер → імпульс → реакція → тимчасове полегшення → посилення залежності. Знову і знову. Коли ти бачиш схему — ти перестаєш бути всередині неї. З'являється зазор. Крихітний, але реальний.</p>
+
+    <p>Саме в цьому зазорі живе вибір.</p>
+
+    <p>Другий крок — дати тілу новий «впізнаваний» досвід. Не щастя. Не ейфорію. Просто нейтральний спокій — регулярно, передбачувано. Знову і знову. Поки він не стане таким само «своїм», як тривога. Нейронні зв'язки, що формувались роками — не рвуться за один день. Але вони переписуються. Це не метафора — це буквально те, як працює нейропластичність.</p>
+
+    <p>Третій крок — перестати вимагати від себе «рішення». Натомість — одна маленька дія. Не «піти назавжди». Просто не відправити це повідомлення зараз. Просто ці двадцять хвилин — інакше. Залежність не руйнується від одного великого рішення. Вона розмивається безліччю маленьких — кожне з яких говорить твоїй нервовій системі: <em>я можу не реагувати.</em></p>
+
+    <div class="callout">
+      Нове лякає не тому що небезпечне. Воно лякає тому що відкрите. Тому що там немає готового сценарію виживання — є лише можливість жити. Це різні речі. І навчитися їх розрізняти — і є справжній початок.
+    </div>
+  </div>
+
+</main>
+
+<footer class="finale">
+  <div class="finale-inner">
+
+    <div class="finale-eyebrow">Замість післямови</div>
+
+    <p>Ти дочитав до кінця. Це вже щось говорить про тебе — більшість зупиняються раніше, бо правда незручна.</p>
+
+    <p>Ти щойно побачив клітку. Її стіни, її механіку, її біохімію. Ти зрозумів, чому вона тримає — і чому «просто йди» ніколи не працювало. Це не слабкість. Це фізіологія. І це можна змінити.</p>
+
+    <p>Але розуміння — це лише перша тріщина. <strong>Тріщина — не вихід.</strong> Вихід — це те, що ти робиш із нею далі.</p>
+
+    <div class="finale-strike">
+      Ти можеш знову закрити цю сторінку і повернутись у петлю.<br>
+      Або зробити <em>одну маленьку дію</em> прямо зараз.
+    </div>
+
+    <!-- ПАСТКА САМОСТІЙНОСТІ -->
+    <div style="margin: 48px 0; padding: 36px 40px; border-left: 3px solid #3a2218; background: #1a0e08;">
+      <p style="font-size: 15px; color: #8a7a6a; font-style: italic; margin: 0 0 16px 0; letter-spacing: 1px; text-transform: uppercase;">Перш ніж іти розбиратись самостійно —</p>
+      <p style="font-size: 17px; color: #c4b09a; line-height: 1.9; margin: 0;">Багато хто пробує. У спокійному стані все здається зрозумілим. Але коли приходить тригер — петля спрацьовує швидше, ніж ти встигаєш згадати що читав. Саме тому потрібен інструмент який працює <strong style="color: #e2d9c8;">прямо в момент болю</strong> — не потім, коли вже відпустило. І саме тому ChatGPT не допоможе — він не знає твою петлю. Я — знаю механіку. Різниця відчутна.</p>
+    </div>
+
+    <p>Я зібрала три інструменти — для різних моментів. Почни з того, що відгукується прямо зараз:</p>
+
+    <div class="doors">
+
+      <div class="door">
+        <div class="door-number">Почни тут</div>
+        <span class="door-icon">📄</span>
+        <h3>Гайд «Карта моєї залежності»</h3>
+        <p>Робочий зошит. За 20 хвилин письмово розбираєш свою схему — і вперше бачиш її ззовні. Коли біль на папері — ти більше не всередині нього.</p>
+        <div style="margin: 20px 0 8px 0; font-size: 22px; font-weight: bold; color: #c4472a;">€12</div>
+        <div class="door-price" style="margin-bottom: 16px;">Одна сесія з психологом коштує €60–100. Це перший крок за €12.</div>
+        <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank" style="display: inline-block; padding: 12px 28px; background: #c4472a; color: #f4efe5; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none;">Написати і отримати →</a>
+      </div>
+
+      <div class="door">
+        <div class="door-number">Коли накриває</div>
+        <span class="door-icon">🎧</span>
+        <h3>Аудіо «Вихід із петлі»</h3>
+        <p>Слухаєш у момент гострого болю — коли хочеться написати, повернутись, пояснити себе. 20 хвилин. Не медитація. Розбір твоєї конкретної петлі прямо в моменті.</p>
+        <div style="margin: 20px 0 8px 0; font-size: 22px; font-weight: bold; color: #c4472a;">€19</div>
+        <div class="door-price" style="margin-bottom: 16px;">20 хвилин які зупиняють петлю прямо зараз.</div>
+        <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank" style="display: inline-block; padding: 12px 28px; background: #c4472a; color: #f4efe5; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none;">Написати і отримати →</a>
+      </div>
+
+      <div class="door">
+        <div class="door-number">Хочу зрозуміти глибше</div>
+        <span class="door-icon">🎬</span>
+        <h3>Урок «Перша тріщина»</h3>
+        <p>20-хвилинний відеоурок. Пояснюю механіку і веду через одну вправу яка створює новий нейронний шлях. Живий голос — для тих, кому потрібна людина поруч.</p>
+        <div style="margin: 20px 0 8px 0; font-size: 22px; font-weight: bold; color: #c4472a;">€25</div>
+        <div class="door-price" style="margin-bottom: 16px;">Вправа яка змінює нейронні зв'язки — назавжди.</div>
+        <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank" style="display: inline-block; padding: 12px 28px; background: #c4472a; color: #f4efe5; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none;">Написати і отримати →</a>
+      </div>
+
+    </div>
+
+    <!-- ТЕРМІНОВІСТЬ -->
+    <div style="margin: 48px 0 0 0; padding: 32px 40px; border: 1px solid #3a2218; text-align: center;">
+      <p style="font-size: 16px; color: #c4b09a; line-height: 1.9; margin: 0;">Ти зараз у точці де все зрозуміло — і є енергія щось змінити.<br>
+      <strong style="color: #e2d9c8;">Саме зараз.</strong> Не завтра — коли знову накриє і буде не до цього.<br>
+      <span style="color: #6b5f56; font-style: italic;">Напиши мені — і я відповім протягом кількох годин.</span></p>
+    </div>
+
+    <p class="doors-caption" style="margin-top: 20px;">Як отримати: напиши мені в Telegram або Instagram — я надішлю реквізити і файл одразу після оплати.</p>
+
+    <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #2a1a10;">
+      <p style="font-size: 14px; color: #5a4a3a; font-style: italic; margin-bottom: 8px;">Психолог <strong style="color: #a09080; font-style: normal;">Олена Браславська</strong></p>
+      <p style="font-size: 13px; color: #4a3a2a; line-height: 1.7;">
+        📌 Telegram: <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank" style="color: #c4472a;">t.me/sam_sobi_psycholo_g_ab</a><br>
+        📌 Instagram: <a href="https://instagram.com/braslavska.alona" target="_blank" style="color: #c4472a;">@braslavska.alona</a>
+      </p>
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <a href="vpiznayemyy-peklo.html" style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none;">Українською →</a>
+        <a href="uznavayemiy-ad.html" style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; padding: 10px 22px; border: 1px solid #3a2a1a; color: #a09080; text-decoration: none;">На русском →</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
