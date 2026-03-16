@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест — Алёна Браславская</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #F5F0E8;
+  --bg2:    #EDE7DA;
+  --card:   #FFFFFF;
+  --gold:   #B8973A;
+  --dark:   #1A1410;
+  --text:   #1E1A16;
+  --mid:    #3A3028;
+  --soft:   #6A5A4A;
+  --border: #CBBFA8;
+  --sel:    #FBF7F0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); font-family:'Jost',sans-serif; color:var(--text); }
+
+/* ── ШАПКА ── */
+.top {
+  background:var(--dark);
+  padding:56px 28px 52px;
+  text-align:center;
+  position:relative;
+}
+.top::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.top-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; font-weight:500; }
+.top-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,6vw,54px); font-weight:400; line-height:1.1;
+  color:#F5F0E8; margin-bottom:16px;
+}
+.top-title em { font-style:italic; color:var(--gold); }
+.top-sub { font-size:16px; color:rgba(245,240,232,.6); max-width:420px; margin:0 auto; line-height:1.7; }
+.top-sub strong { color:rgba(245,240,232,.9); font-weight:600; }
+
+/* ── ИНСТРУКЦИЯ ── */
+.instr { background:var(--bg2); padding:40px 28px; border-bottom:2px solid var(--border); }
+.instr-in { max-width:620px; margin:0 auto; }
+.instr-tag { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; }
+.instr-text { font-size:17px; color:var(--text); font-weight:400; line-height:1.85; margin-bottom:18px; }
+.instr-text strong { color:var(--dark); font-weight:600; }
+.instr-ex {
+  padding:16px 20px; background:var(--card);
+  border:1px solid var(--border); border-left:4px solid var(--gold);
+  font-size:15px; color:var(--soft); line-height:1.8;
+}
+.instr-ex span { color:var(--gold); font-weight:600; }
+
+/* ── ТЕСТ — ОДНО ПОЛОТНО ── */
+.test { background:var(--bg); padding:52px 28px 20px; }
+.test-in { max-width:620px; margin:0 auto; }
+
+.test-hd { text-align:center; margin-bottom:48px; }
+.t-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px; }
+.test-hd h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px; font-weight:400; color:var(--dark); line-height:1.2;
+}
+.test-hd h2 em { font-style:italic; color:var(--gold); }
+
+.qwrap {
+  margin-bottom:44px;
+  padding-bottom:44px;
+  border-bottom:1px solid var(--border);
+}
+.qwrap:last-child { border-bottom:none; margin-bottom:8px; }
+
+.qnum { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px; }
+.qtxt {
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px; font-weight:600; color:var(--dark); line-height:1.3; margin-bottom:10px;
+}
+.qhint { font-size:14px; color:var(--soft); font-style:italic; margin-bottom:24px; }
+
+.opts { display:flex; flex-direction:column; gap:11px; }
+.opt {
+  display:flex; gap:16px; align-items:flex-start;
+  padding:17px 22px;
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:6px; cursor:pointer;
+  font-size:16px; color:var(--mid);
+  font-weight:400; line-height:1.65;
+  transition:all .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.opt:hover { border-color:var(--gold); background:var(--sel); }
+.opt.sel { border-color:var(--gold); background:var(--sel); color:var(--dark); }
+.ol {
+  flex-shrink:0; width:30px; height:30px; border-radius:50%;
+  border:2px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:var(--soft);
+  margin-top:2px; transition:all .18s;
+}
+.opt.sel .ol { background:var(--gold); border-color:var(--gold); color:white; }
+
+/* ── БЛОК ПОДСЧЁТА ── */
+.count-section {
+  background:var(--bg2);
+  padding:48px 28px;
+  border-top:2px solid var(--border);
+  border-bottom:2px solid var(--border);
+}
+.count-in { max-width:620px; margin:0 auto; }
+
+.count-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px; font-weight:400; color:var(--dark);
+  margin-bottom:16px; line-height:1.2;
+}
+.count-title em { font-style:italic; color:var(--gold); }
+
+.count-text {
+  font-size:16px; color:var(--mid); line-height:1.8; margin-bottom:24px;
+}
+.count-text strong { color:var(--dark); font-weight:600; }
+
+/* Счётчики букв */
+.counters {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  margin-bottom:24px;
+}
+.counter-item {
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:6px;
+  padding:20px 16px;
+  text-align:center;
+  cursor:pointer;
+  transition:all .2s;
+  user-select:none;
+}
+.counter-item:hover { border-color:var(--gold); }
+.counter-item.active { border-color:var(--gold); background:var(--sel); }
+.ci-letter {
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px; font-weight:600; color:var(--gold);
+  line-height:1; margin-bottom:6px;
+}
+.ci-label { font-size:11px; color:var(--soft); font-weight:500; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+.ci-count {
+  font-size:28px; font-weight:600; color:var(--dark);
+  line-height:1;
+}
+.ci-btns { display:flex; gap:6px; margin-top:10px; justify-content:center; }
+.ci-btn {
+  width:32px; height:32px; border-radius:50%;
+  border:2px solid var(--border);
+  background:white; cursor:pointer;
+  font-size:18px; font-weight:600; color:var(--mid);
+  display:flex; align-items:center; justify-content:center;
+  transition:all .15s; line-height:1;
+}
+.ci-btn:hover { border-color:var(--gold); color:var(--gold); }
+
+.count-tip {
+  font-size:14px; color:var(--soft); font-style:italic;
+  text-align:center; margin-bottom:28px;
+}
+
+/* Результат подсчёта */
+.count-result {
+  display:none;
+  background:var(--dark); border-radius:6px;
+  padding:32px 28px; margin-bottom:0;
+  position:relative; overflow:hidden;
+  animation:rise .4s ease;
+}
+.count-result.show { display:block; }
+.count-result::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.cr-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); opacity:.5; margin-bottom:8px; }
+.cr-type { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px; }
+.cr-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px; font-weight:400; color:#F5F0E8; line-height:1.2; margin-bottom:16px;
+}
+.cr-title em { font-style:italic; color:var(--gold); }
+.cr-text {
+  font-size:15px; line-height:1.9; color:rgba(245,240,232,.72); margin-bottom:20px;
+}
+.cr-text strong { color:rgba(245,240,232,.96); font-weight:600; }
+.cr-ins { border-top:1px solid rgba(184,151,58,.2); padding-top:18px; }
+.cr-in {
+  display:flex; gap:12px; margin-bottom:13px;
+  font-size:14px; color:rgba(245,240,232,.55); line-height:1.7;
+}
+.cr-in::before { content:'✦'; color:var(--gold); flex-shrink:0; margin-top:3px; }
+
+@keyframes rise { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── ДВА ПУТИ ── */
+.paths-section {
+  background:var(--bg);
+  padding:52px 28px 68px;
+}
+.paths-in { max-width:620px; margin:0 auto; }
+
+.paths-hd { text-align:center; margin-bottom:32px; }
+.ph-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px; }
+.ph-q {
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px; font-weight:400; color:var(--dark); line-height:1.2;
+}
+.ph-sub { font-size:15px; color:var(--soft); margin-top:8px; }
+
+.paths { display:flex; flex-direction:column; gap:16px; }
+
+/* КНИГА */
+.path-book {
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:6px; padding:40px 36px;
+  position:relative; overflow:hidden; text-align:center;
+}
+.path-book::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.pb-ico { font-size:32px; margin-bottom:10px; }
+.pb-badge { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px; }
+.pb-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px; font-weight:600; color:var(--dark); line-height:1.2; margin-bottom:14px;
+}
+.pb-desc { font-size:16px; color:var(--mid); font-weight:400; line-height:1.75; margin-bottom:12px; max-width:460px; margin-left:auto; margin-right:auto; }
+.pb-hook {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; font-style:italic; color:var(--gold);
+  margin-bottom:28px; line-height:1.5;
+  max-width:400px; margin-left:auto; margin-right:auto;
+}
+.btn-book {
+  display:block; max-width:380px; margin:0 auto;
+  padding:19px 32px; background:var(--gold); color:white;
+  border-radius:4px; font-size:13px; letter-spacing:2px;
+  text-transform:uppercase; font-weight:600;
+  text-decoration:none; transition:opacity .2s;
+}
+.btn-book:hover { opacity:.85; }
+.pb-sub { margin-top:14px; font-size:13px; color:var(--soft); }
+.pb-sub a { color:var(--gold); font-weight:600; text-decoration:none; }
+
+/* РАЗБОР */
+.path-call {
+  background:var(--dark);
+  border-radius:6px; padding:40px 36px;
+  position:relative; overflow:hidden; text-align:center;
+}
+.path-call::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.pc-ico { font-size:32px; margin-bottom:10px; }
+.pc-badge { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px; }
+.pc-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px; font-weight:600; color:#F5F0E8; line-height:1.2; margin-bottom:14px;
+}
+.pc-desc { font-size:16px; color:rgba(245,240,232,.65); font-weight:400; line-height:1.75; margin-bottom:12px; max-width:460px; margin-left:auto; margin-right:auto; }
+.pc-hook {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; font-style:italic; color:var(--gold);
+  margin-bottom:24px; line-height:1.5;
+  max-width:400px; margin-left:auto; margin-right:auto;
+}
+.pc-pts {
+  display:flex; flex-direction:column; gap:10px;
+  margin-bottom:28px; text-align:left;
+  max-width:420px; margin-left:auto; margin-right:auto;
+}
+.pc-pt { display:flex; gap:10px; font-size:14px; color:rgba(245,240,232,.6); font-weight:400; line-height:1.65; }
+.pc-pt::before { content:'✦'; color:var(--gold); flex-shrink:0; margin-top:3px; }
+.btn-call {
+  display:block; max-width:380px; margin:0 auto;
+  padding:19px 32px; background:var(--gold); color:var(--dark);
+  border-radius:4px; font-size:13px; letter-spacing:2px;
+  text-transform:uppercase; font-weight:600;
+  text-decoration:none; transition:opacity .2s;
+}
+.btn-call:hover { opacity:.85; }
+.pc-sub { margin-top:14px; font-size:13px; color:rgba(245,240,232,.35); }
+
+@media(max-width:540px){
+  .top { padding:44px 20px; }
+  .instr,.test,.count-section,.paths-section { padding-left:20px; padding-right:20px; }
+  .path-book,.path-call { padding:32px 20px; }
+  .count-result { padding:24px 20px; }
+  .qtxt { font-size:22px; }
+  .pb-title,.pc-title { font-size:24px; }
+  .counters { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<div class="top">
+  <div class="top-tag">Алёна Браславская · психолог</div>
+  <h1 class="top-title">Узнай свою<br>главную <em>ошибку</em><br>в разговоре</h1>
+  <p class="top-sub">5 вопросов про реальные ситуации.<br><strong>Всё простыми словами — без психологических терминов.</strong></p>
+</div>
+
+<!-- ИНСТРУКЦИЯ -->
+<div class="instr">
+  <div class="instr-in">
+    <div class="instr-tag">Как проходить тест</div>
+    <p class="instr-text">
+      Читай каждый вопрос и выбирай ответ, который описывает тебя <strong>чаще всего</strong>. Не как хочешь себя вести — а как ведёшь на самом деле. Здесь нет правильных и неправильных ответов. Есть только честные.<br><br>
+      <strong>Как считать:</strong> после всех вопросов запиши сколько раз встретились буквы А, Б, В, Г — та которая встречается чаще всего и есть твой тип. Внизу есть удобный счётчик.<br><br>
+      <strong>Если несколько букв поровну</strong> — читай оба результата. Скорее всего узнаешь себя в каждом.
+    </p>
+    <div class="instr-ex">
+      Пример: В1→<span>А</span>, В2→<span>А</span>, В3→<span>Б</span>, В4→<span>А</span>, В5→<span>В</span> — больше всего <span>А</span> — твой тип <span>«Я лучше промолчу»</span>
+    </div>
+  </div>
+</div>
+
+<!-- ТЕСТ -->
+<div class="test">
+  <div class="test-in">
+
+    <div class="test-hd">
+      <div class="t-tag">Тест · 5 вопросов</div>
+      <h2>Что происходит<br>в твоих <em>разговорах?</em></h2>
+    </div>
+
+    <div class="qwrap">
+      <div class="qnum">Вопрос 01</div>
+      <div class="qtxt">Вспомни последний раз когда тебя критиковали. Что произошло внутри?</div>
+      <div class="qhint">Выбирай то, что ближе к правде — не идеальный вариант</div>
+      <div class="opts">
+        <div class="opt" data-v="a"><div class="ol">А</div>Я сжался(ась) и замолчал(а). Лучше не связываться — себе дороже.</div>
+        <div class="opt" data-v="b"><div class="ol">Б</div>Начал(а) объяснять, доказывать, оправдываться. Слов было много — а легче не стало.</div>
+        <div class="opt" data-v="c"><div class="ol">В</div>Внутри всё закипело. Хотелось ответить — и потом жалел(а) о словах.</div>
+        <div class="opt" data-v="d"><div class="ol">Г</div>Попробовал(а) услышать — есть ли в этом что-то важное для меня.</div>
+      </div>
+    </div>
+
+    <div class="qwrap">
+      <div class="qnum">Вопрос 02</div>
+      <div class="qtxt">Тебя просят о чём-то — а ты не хочешь. Как это обычно заканчивается?</div>
+      <div class="qhint">Думай о реальных ситуациях — с мамой, партнёром, другом, коллегой</div>
+      <div class="opts">
+        <div class="opt" data-v="a"><div class="ol">А</div>Соглашаюсь. А потом весь день злюсь на себя и на них.</div>
+        <div class="opt" data-v="b"><div class="ol">Б</div>Начинаю объяснять почему не могу — и в итоге всё равно соглашаюсь.</div>
+        <div class="opt" data-v="c"><div class="ol">В</div>Говорю нет — но потом не сплю и думаю: а вдруг я эгоист(ка)?</div>
+        <div class="opt" data-v="d"><div class="ol">Г</div>Говорю прямо: сейчас не готов(а). И не объясняю по три раза.</div>
+      </div>
+    </div>
+
+    <div class="qwrap">
+      <div class="qnum">Вопрос 03</div>
+      <div class="qtxt">Ты говоришь что-то важное — а тебя не слышат. Что делаешь?</div>
+      <div class="qhint">Именно этот момент — когда слова есть, а контакта нет</div>
+      <div class="opts">
+        <div class="opt" data-v="a"><div class="ol">А</div>Замолкаю. Думаю: ну и ладно, зачем вообще говорить.</div>
+        <div class="opt" data-v="b"><div class="ol">Б</div>Повторяю то же самое — только громче и с большим количеством слов.</div>
+        <div class="opt" data-v="c"><div class="ol">В</div>Внутри поднимается злость. Разговор превращается в ссору — хотя я этого не хотел(а).</div>
+        <div class="opt" data-v="d"><div class="ol">Г</div>Останавливаюсь и спрашиваю: что ты сейчас услышал(а)?</div>
+      </div>
+    </div>
+
+    <div class="qwrap">
+      <div class="qnum">Вопрос 04</div>
+      <div class="qtxt">После конфликта — что обычно остаётся?</div>
+      <div class="qhint">То первое ощущение — пока ещё не успел(а) себя успокоить</div>
+      <div class="opts">
+        <div class="opt" data-v="a"><div class="ol">А</div>Облегчение что всё закончилось. Но ничего не изменилось — и оба это знают.</div>
+        <div class="opt" data-v="b"><div class="ol">Б</div>Ощущение что говорил(а) много — а сказал(а) не то. Слова были, смысл потерялся.</div>
+        <div class="opt" data-v="c"><div class="ol">В</div>Злость на себя. Опять не так. Опять лишнее. Опять этот разговор будет сниться.</div>
+        <div class="opt" data-v="d"><div class="ol">Г</div>Обычно после разговора становится немного легче — даже если было сложно.</div>
+      </div>
+    </div>
+
+    <div class="qwrap">
+      <div class="qnum">Вопрос 05</div>
+      <div class="qtxt">Когда тебе нужно сказать что-то важное — как это начинается?</div>
+      <div class="qhint">Последний вопрос — самый честный</div>
+      <div class="opts">
+        <div class="opt" data-v="a"><div class="ol">А</div>Долго собираюсь с духом. Репетирую в голове. Часто так и не говорю.</div>
+        <div class="opt" data-v="b"><div class="ol">Б</div>Говорю сразу — а потом думаю: надо было по-другому.</div>
+        <div class="opt" data-v="c"><div class="ol">В</div>Намекаю. Жду что человек сам догадается. Он не догадывается. Я обижаюсь.</div>
+        <div class="opt" data-v="d"><div class="ol">Г</div>Выбираю момент — и говорю прямо о том что чувствую.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ПОДСЧЁТ -->
+<div class="count-section">
+  <div class="count-in">
+    <div class="count-title">Посчитай свои <em>буквы</em></div>
+    <p class="count-text">
+      Посмотри на свои ответы — и нажми <strong>+</strong> рядом с каждой буквой столько раз, сколько она встретилась. Та буква у которой цифра больше — твой тип.
+    </p>
+
+    <div class="counters">
+      <div class="counter-item" id="ci-a">
+        <div class="ci-letter">А</div>
+        <div class="ci-label">раз</div>
+        <div class="ci-count" id="cnt-a">0</div>
+        <div class="ci-btns">
+          <button class="ci-btn" onclick="dec('a')">−</button>
+          <button class="ci-btn" onclick="inc('a')">+</button>
+        </div>
+      </div>
+      <div class="counter-item" id="ci-b">
+        <div class="ci-letter">Б</div>
+        <div class="ci-label">раз</div>
+        <div class="ci-count" id="cnt-b">0</div>
+        <div class="ci-btns">
+          <button class="ci-btn" onclick="dec('b')">−</button>
+          <button class="ci-btn" onclick="inc('b')">+</button>
+        </div>
+      </div>
+      <div class="counter-item" id="ci-c">
+        <div class="ci-letter">В</div>
+        <div class="ci-label">раз</div>
+        <div class="ci-count" id="cnt-c">0</div>
+        <div class="ci-btns">
+          <button class="ci-btn" onclick="dec('c')">−</button>
+          <button class="ci-btn" onclick="inc('c')">+</button>
+        </div>
+      </div>
+      <div class="counter-item" id="ci-d">
+        <div class="ci-letter">Г</div>
+        <div class="ci-label">раз</div>
+        <div class="ci-count" id="cnt-d">0</div>
+        <div class="ci-btns">
+          <button class="ci-btn" onclick="dec('d')">−</button>
+          <button class="ci-btn" onclick="inc('d')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="count-tip">Нажимай + для каждой буквы из своих ответов</p>
+
+    <div class="count-result" id="countResult"></div>
+  </div>
+</div>
+
+<!-- ДВА ПУТИ -->
+<div class="paths-section">
+  <div class="paths-in">
+
+    <div class="paths-hd">
+      <div class="ph-tag">Что дальше</div>
+      <div class="ph-q">Ты узнал(а) свой тип.<br>Теперь выбери что получить.</div>
+      <div class="ph-sub">Можно взять оба — они друг друга дополняют 🤍</div>
+    </div>
+
+    <div class="paths">
+
+      <!-- КНИГА -->
+      <div class="path-book">
+        <div class="pb-ico">📖</div>
+        <div class="pb-badge">Вариант 1 · Начать самостоятельно</div>
+        <div class="pb-title">Забрать книгу-саммари бесплатно</div>
+        <div class="pb-desc">
+          «Как сказать "нет" без вины» — реальные истории, 5 конкретных техник, живые диалоги. Читаешь, узнаёшь себя, применяешь прямо сегодня.
+        </div>
+        <div class="pb-hook">Один инструмент из книги меняет разговор — уже в этот же вечер</div>
+        <a href="#" class="btn-book">📥 Получить книгу бесплатно</a>
+        <div class="pb-sub">Хочешь разобрать глубже — <a href="https://t.me/sam_sobi_psycholo_g_ab">купи полную версию →</a></div>
+      </div>
+
+      <!-- РАЗБОР -->
+      <div class="path-call">
+        <div class="pc-ico">🎙️</div>
+        <div class="pc-badge">Вариант 2 · Разобрать со мной лично</div>
+        <div class="pc-title">Бесплатный разбор — 20 минут</div>
+        <div class="pc-desc">
+          Я посмотрю на твой тип и твою конкретную ситуацию. Скажу честно — что именно поможет: курс, личная работа или пока достаточно книги.
+        </div>
+        <div class="pc-hook">20 минут разговора заменяют месяц кружения в голове</div>
+        <div class="pc-pts">
+          <div class="pc-pt">Разбираем твою реальную ситуацию — не абстракцию</div>
+          <div class="pc-pt">Уходишь с конкретным инструментом — не с советом «работай над собой»</div>
+          <div class="pc-pt">Разбор бесплатный · 3–5 мест в неделю</div>
+        </div>
+        <a href="https://t.me/sam_sobi_psycholo_g_ab" class="btn-call">Записаться в Telegram 🤍</a>
+        <div class="pc-sub">Отвечу в течение нескольких часов и назначим удобное время</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Клик по варианту — подсвечивает
+document.querySelectorAll('.opt').forEach(o => {
+  o.addEventListener('click', () => {
+    const wrap = o.closest('.qwrap');
+    wrap.querySelectorAll('.opt').forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+});
+
+// Счётчики
+const counts = {a:0, b:0, c:0, d:0};
+
+function inc(v) {
+  if (counts[v] < 5) {
+    counts[v]++;
+    document.getElementById('cnt-'+v).textContent = counts[v];
+    document.getElementById('ci-'+v).classList.add('active');
+    updateResult();
+  }
+}
+function dec(v) {
+  if (counts[v] > 0) {
+    counts[v]--;
+    document.getElementById('cnt-'+v).textContent = counts[v];
+    if (counts[v] === 0) document.getElementById('ci-'+v).classList.remove('active');
+    updateResult();
+  }
+}
+
+const R = {
+  a: {
+    type:'Тип А', title:'"Я лучше <em>промолчу</em>"',
+    text:'Ты научился(ась) быть тихим(ой). Это казалось безопасным — меньше говоришь, меньше конфликтов. Но внутри копится. Ты замечаешь как постепенно отдаляешься от людей — не потому что не хочешь близости, а потому что <strong>слишком больно снова пробовать и снова не быть услышанным(ой).</strong><br><br>Самое тяжёлое для тебя — начать говорить. Не потому что нечего сказать. А потому что ты уже не веришь что это что-то изменит.',
+    ins:['Твоя главная ошибка: молчание кажется защитой — но на самом деле это накопление.','Люди вокруг тебя не знают что происходит внутри — они просто видят дистанцию.','На курсе начнём именно с этого — с одного первого слова которое не застрянет.']
+  },
+  b: {
+    type:'Тип Б', title:'"Я объясняю — но меня <em>не понимают</em>"',
+    text:'Ты говоришь. Много. Подробно. Стараешься чтобы всё было понятно — и удивляешься почему снова не так. Дело не в словах. Дело в том что <strong>ты говоришь о ситуации — а не о себе.</strong> О том что произошло — а не о том что ты при этом чувствуешь и чего на самом деле хочешь.<br><br>Люди слышат объяснение. Но не слышат тебя.',
+    ins:['Твоя главная ошибка: чем больше слов — тем дальше суть.','Ты защищаешь себя логикой там где нужно просто сказать "мне больно" или "мне важно".','На курсе ты научишься говорить коротко — и попадать точно в суть.']
+  },
+  c: {
+    type:'Тип В', title:'"Я взрываюсь — и потом себя <em>ненавижу</em>"',
+    text:'Внутри у тебя очень много чувств. Ты чувствуешь глубоко — и это твоя сила. Но когда напряжение накапливается — оно вырывается не так как хотелось бы. Ты говоришь резче чем планировал(а). Видишь как человек закрывается. И потом долго разбираешь: зачем я так.<br><br><strong>Ты не агрессивный(ая) — ты просто не знаешь что делать с такой силой чувств.</strong>',
+    ins:['Твоя главная ошибка: ты реагируешь на эмоцию — а не на суть того что происходит.','Три секунды паузы могут изменить весь разговор — буквально.','На курсе ты найдёшь способ выражать это — так чтобы тебя слышали, а не пугались.']
+  },
+  d: {
+    type:'Тип Г', title:'"Я стараюсь — но что-то всё равно <em>не так</em>"',
+    text:'У тебя уже есть база. Ты умеешь останавливаться, слышать другого, говорить о себе. Но есть ситуации где что-то идёт не так — и ты не всегда понимаешь почему. <strong>Манипуляции, давление, близкие которые умеют попасть точно в больное место.</strong><br><br>Ты готов(а) к следующему уровню — к тонкой настройке.',
+    ins:['Твоя зона роста: ситуации с высоким давлением — где нужна точность и хладнокровие.','Ты уже умеешь говорить — теперь важно научиться удерживать себя когда давят.','На курсе ты получишь именно те инструменты которых не хватает для полной уверенности.']
+  }
+};
+
+function updateResult() {
+  const total = Object.values(counts).reduce((s,v)=>s+v, 0);
+  if (total === 0) {
+    document.getElementById('countResult').classList.remove('show');
+    return;
+  }
+  const top = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  const r = R[top];
+  document.getElementById('countResult').innerHTML =
+    `<div class="cr-label">Твой тип</div>
+     <div class="cr-type">${r.type}</div>
+     <div class="cr-title">${r.title}</div>
+     <div class="cr-text">${r.text}</div>
+     <div class="cr-ins">${r.ins.map(i=>`<div class="cr-in">${i}</div>`).join('')}</div>`;
+  document.getElementById('countResult').classList.add('show');
+}
+</script>
+</body>
+</html>
