@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Альона Браславська · Психолог</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #2D4A2D;
+  --green-light: #36492E;
+  --gold: #C9A96E;
+  --gold-light: #D4B87A;
+  --cream: #F5F0E8;
+  --cream-dark: #EDE7DA;
+  --dark: #1C2B1A;
+  --mid: #4A5E40;
+  --soft: #7A9070;
+  --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--green);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 28px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(201,169,110,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(201,169,110,0.05) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 8vw, 72px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 24px);
+  font-style: italic;
+  color: rgba(245,240,232,0.65);
+  margin-bottom: 40px;
+  max-width: 480px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-pain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.pain-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: rgba(245,240,232,0.75);
+  font-weight: 300;
+}
+
+.pain-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.hero-cta {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 18px 44px;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Jost', sans-serif;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+.scroll-text {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(201,169,110,0.5);
+  text-transform: uppercase;
+}
+
+/* ── ABOUT ── */
+.about {
+  background: var(--cream-dark);
+  padding: 80px 28px;
+  text-align: center;
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.about-text {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.85;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+
+.about-text strong { color: var(--dark); font-weight: 600; }
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.stat {
+  flex: 1;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.stat:not(:last-child) {
+  border-right: 1px solid rgba(201,169,110,0.3);
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+/* ── PRODUCTS ── */
+.products {
+  background: var(--cream);
+  padding: 80px 28px;
+}
+
+.products-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.products-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.product-card {
+  background: var(--white);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 8px;
+  padding: 28px 28px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--gold);
+}
+
+.product-card:hover {
+  border-color: rgba(201,169,110,0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(44,74,44,0.08);
+}
+
+.product-card.featured {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.product-card.featured::before { background: var(--gold); }
+
+.product-icon { font-size: 28px; margin-bottom: 12px; }
+
+.product-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(201,169,110,0.15);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 20px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product-card.featured .product-badge {
+  background: rgba(201,169,110,0.2);
+}
+
+.product-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.product-card.featured .product-title { color: var(--white); }
+
+.product-desc {
+  font-size: 14px;
+  color: var(--soft);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.product-card.featured .product-desc { color: rgba(245,240,232,0.65); }
+
+.product-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.feature-chip {
+  padding: 4px 10px;
+  background: rgba(44,74,44,0.06);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--mid);
+}
+
+.product-card.featured .feature-chip {
+  background: rgba(201,169,110,0.15);
+  color: rgba(245,240,232,0.75);
+}
+
+.product-price {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.price-free {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--soft);
+}
+
+.product-card.featured .price-free { color: rgba(245,240,232,0.5); }
+
+/* ── TEST CTA ── */
+.test-section {
+  background: var(--green);
+  padding: 80px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.test-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.test-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.test-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.test-title em { font-style: italic; color: var(--gold); }
+
+.test-sub {
+  font-size: 15px;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 36px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.test-steps {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto 40px;
+}
+
+.test-step {
+  flex: 1;
+  padding: 16px 8px;
+  text-align: center;
+}
+
+.test-step:not(:last-child) {
+  border-right: 1px solid rgba(201,169,110,0.2);
+}
+
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.step-text {
+  font-size: 12px;
+  color: rgba(245,240,232,0.55);
+  line-height: 1.4;
+}
+
+.btn-test {
+  display: inline-block;
+  padding: 18px 48px;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Jost', sans-serif;
+}
+
+.btn-test:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,169,110,0.25);
+}
+
+.test-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(245,240,232,0.35);
+  letter-spacing: 1px;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  background: var(--cream-dark);
+  padding: 80px 28px;
+  position: relative;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.testimonials-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.testimonial {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 28px;
+  text-align: left;
+  border: 1px solid rgba(201,169,110,0.15);
+}
+
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.testimonial-text::before { content: '"'; color: var(--gold); }
+.testimonial-text::after { content: '"'; color: var(--gold); }
+
+.testimonial-author {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+/* ── CONTACT ── */
+.contact {
+  background: var(--dark);
+  padding: 80px 28px;
+  text-align: center;
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.contact-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.contact-title em { font-style: italic; color: var(--gold); }
+
+.contact-sub {
+  font-size: 15px;
+  color: rgba(245,240,232,0.5);
+  margin-bottom: 36px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.contact-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  max-width: 320px;
+  margin: 0 auto 48px;
+}
+
+.btn-tg {
+  display: block;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-tg:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-ig {
+  display: block;
+  width: 100%;
+  padding: 16px 32px;
+  background: transparent;
+  color: rgba(245,240,232,0.5);
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-ig:hover {
+  color: var(--gold);
+  border-color: rgba(201,169,110,0.4);
+}
+
+.footer-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.4), transparent);
+  margin: 0 auto 24px;
+}
+
+.footer-text {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: rgba(245,240,232,0.2);
+  text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (min-width: 600px) {
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Альона Браславська · Психолог · КПТ-терапевт</div>
+  <h1 class="hero-title">
+    Говори —<br/>і тебе <em>почують</em>
+  </h1>
+  <p class="hero-sub">Мистецтво переговорів у повсякденному житті</p>
+  <div class="hero-pain">
+    <div class="pain-item"><span class="pain-dot"></span>Втомився(лась) говорити «так» коли хочеш «ні»</div>
+    <div class="pain-item"><span class="pain-dot"></span>Не знаєш як відмовити без провини і сварки</div>
+    <div class="pain-item"><span class="pain-dot"></span>Відчуваєш що тебе не чують навіть близькі</div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_voronka_ua.html" class="btn-primary">
+      Пройти безкоштовний тест →
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-text">далі</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="reveal">
+    <div class="section-tag">Про автора</div>
+    <h2 class="section-title">Я пишу цю книгу не лише як психолог. А як людина, яка <em>пройшла це зсередини.</em></h2>
+    <p class="about-text">
+      18 років з ОКР. Вигорання у власному бізнесі. Стосунки де я завжди погоджувалась — і завжди злилась на себе.
+      <br/><br/>
+      Коли я навчилась говорити «ні» — моє життя змінилось. <strong>Не стало жорсткішим. Стало чеснішим.</strong>
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">2400+</div>
+        <div class="stat-label">годин практики</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">13</div>
+        <div class="stat-label">років у роботі з людьми</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">КПТ</div>
+        <div class="stat-label">терапевт і ігропрактик</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-inner">
+    <div class="reveal">
+      <div class="section-tag">Продукти</div>
+      <h2 class="section-title">Обери свій <em>перший крок</em></h2>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card reveal">
+        <div class="product-icon">🧪</div>
+        <div class="product-badge">Безкоштовно · Старт</div>
+        <div class="product-title">Тест «Дізнайся свою головну помилку в розмові»</div>
+        <div class="product-desc">5 запитань про реальні ситуації. Дізнаєшся свій тип і отримуєш конкретні рекомендації.</div>
+        <div class="product-features">
+          <span class="feature-chip">5 хвилин</span>
+          <span class="feature-chip">4 типи результату</span>
+          <span class="feature-chip">Одразу онлайн</span>
+        </div>
+        <div class="product-price">
+          <span class="price-free">Безкоштовно</span>
+          <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_voronka_ua.html" class="btn-primary" style="padding:12px 24px;font-size:11px;">Пройти →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-icon">📖</div>
+        <div class="product-badge">Безкоштовно · Саммарі</div>
+        <div class="product-title">Книга-саммарі «Як сказати «ні» без провини»</div>
+        <div class="product-desc">Реальні історії, 5 конкретних технік, живі діалоги. Читаєш — впізнаєш себе — застосовуєш вже сьогодні.</div>
+        <div class="product-features">
+          <span class="feature-chip">20 хвилин читання</span>
+          <span class="feature-chip">PDF</span>
+          <span class="feature-chip">5 технік</span>
+        </div>
+        <div class="product-price">
+          <span class="price-free">Безкоштовно</span>
+          <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/sammari_ua.pdf" class="btn-primary" style="padding:12px 24px;font-size:11px;">Отримати →</a>
+        </div>
+      </div>
+
+      <div class="product-card featured reveal">
+        <div class="product-icon">📚</div>
+        <div class="product-badge">Повна версія</div>
+        <div class="product-title">Книга «Як сказати «НІ» без провини і без пояснень»</div>
+        <div class="product-desc">12 технік, 7 маніпуляцій, 40 діалогів. Для кожної ситуації з реального життя — батьки, партнер, діти, колеги.</div>
+        <div class="product-features">
+          <span class="feature-chip">12 технік</span>
+          <span class="feature-chip">7 маніпуляцій</span>
+          <span class="feature-chip">40 діалогів</span>
+          <span class="feature-chip">PDF + EPUB</span>
+        </div>
+        <div class="product-price">
+          <span class="price-tag">5€</span>
+          <a href="https://t.me/sam_sobi_psycholo_g_ab" class="btn-primary" style="padding:12px 24px;font-size:11px;">Придбати →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-icon">🎓</div>
+        <div class="product-badge">Онлайн-курс · 1 потік</div>
+        <div class="product-title">«Говори — і тебе почують»</div>
+        <div class="product-desc">6 зустрічей у Zoom щосереди. Розбираємо твої реальні ситуації — не теорію.</div>
+        <div class="product-features">
+          <span class="feature-chip">6 зустрічей</span>
+          <span class="feature-chip">Zoom</span>
+          <span class="feature-chip">По середах</span>
+          <span class="feature-chip">Запис залишається</span>
+        </div>
+        <div class="product-price">
+          <span class="price-free">Ціна — в директ</span>
+          <a href="https://t.me/sam_sobi_psycholo_g_ab" class="btn-primary" style="padding:12px 24px;font-size:11px;">Дізнатись →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEST CTA -->
+<section class="test-section">
+  <div class="reveal">
+    <div class="section-tag">З чого почати</div>
+    <h2 class="test-title">Не знаєш з чого почати?<br/>Почни з <em>тесту</em> — це безкоштовно.</h2>
+    <p class="test-sub">5 запитань про реальні ситуації. Дізнаєшся свій тип і отримаєш конкретні кроки.</p>
+    <div class="test-steps">
+      <div class="test-step">
+        <div class="step-num">5</div>
+        <div class="step-text">запитань</div>
+      </div>
+      <div class="test-step">
+        <div class="step-num">4</div>
+        <div class="step-text">типи результату</div>
+      </div>
+      <div class="test-step">
+        <div class="step-num">0₴</div>
+        <div class="step-text">безкоштовно</div>
+      </div>
+    </div>
+    <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_voronka_ua.html" class="btn-test">
+      Пройти тест →
+    </a>
+    <p class="test-note">Після тесту — обираєш що отримати: книгу або особистий розбір</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="reveal">
+      <div class="section-tag">Відгуки</div>
+      <h2 class="section-title">Що кажуть <em>після</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p class="testimonial-text">Нарешті розуміла чому завжди погоджуюсь і злюсь на себе. Після першої техніки — вже інакше говорю з мамою.</p>
+        <div class="testimonial-author">Олена, 34 роки</div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="testimonial-text">Думала що «ні» — це конфлікт. Виявляється «ні» — це повага. До себе і до людини навпроти.</p>
+        <div class="testimonial-author">Марія, 28 років</div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="testimonial-text">Книга лежить на столі. Відкриваю коли знову починаю виправдовуватись. Допомагає.</p>
+        <div class="testimonial-author">Андрій, 41 рік</div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="testimonial-text">Техніка «заїжджена платівка» змінила мої розмови з керівником. Просто повторюю своє — і все.</p>
+        <div class="testimonial-author">Катерина, 31 рік</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="reveal">
+    <div class="section-tag">Зв'язатись</div>
+    <h2 class="contact-title">Є запитання або<br/>хочеш <em>особистий розбір?</em></h2>
+    <p class="contact-sub">20 хвилин розмови замінюють місяць внутрішнього діалогу. Безкоштовно — 3–5 місць на тиждень.</p>
+    <div class="contact-btns">
+      <a href="https://t.me/sam_sobi_psycholo_g_ab" class="btn-tg">Написати в Telegram</a>
+      <a href="https://instagram.com/braslavska.alona" class="btn-ig">Instagram @braslavska.alona</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-text">Альона Браславська · Психолог · КПТ-терапевт · 2400+ годин практики</p>
+  </div>
+</section>
+
+<script>
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
