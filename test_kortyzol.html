@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест на стрес і сон · AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #eae5de;
+    font-family: 'Jost', sans-serif;
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #1a2a1a;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f5f0eb;
+  }
+  .header-logo span {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,235,0.4);
+    display: block;
+    margin-top: 1px;
+  }
+  .header-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6a9b7a;
+  }
+
+  /* HERO */
+  .hero {
+    background: #f5f0eb;
+    padding: 36px 24px 32px;
+    border-bottom: 1px solid #d8d0c5;
+  }
+  .hero-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6a9b7a;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a2a1a;
+    line-height: 1.05;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: #6a9b7a;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: #7a6e62;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .hero-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: #5a5048;
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    padding: 0 24px;
+    background: #f5f0eb;
+    padding-bottom: 24px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .progress-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #8a7e72;
+  }
+  .progress-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6a9b7a;
+  }
+  .progress-bar {
+    height: 2px;
+    background: #d8d0c5;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #6a9b7a;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* BLOCK LABEL */
+  .block-label {
+    margin: 0 24px 0;
+    padding: 10px 16px;
+    background: #1a2a1a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(168,200,176,0.5);
+    line-height: 1;
+  }
+  .block-info {}
+  .block-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5f0eb;
+    line-height: 1.2;
+  }
+  .block-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    font-weight: 300;
+    color: rgba(168,200,176,0.6);
+    margin-top: 2px;
+  }
+
+  /* QUESTIONS */
+  .questions-wrap {
+    padding: 0 24px;
+  }
+
+  .question-card {
+    background: #f5f0eb;
+    border-bottom: 1px solid #e0d8ce;
+    padding: 20px 0;
+    display: none;
+  }
+  .question-card.active { display: block; }
+
+  .q-number {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: #a89e92;
+    margin-bottom: 8px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1a2a1a;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    background: #eee8e0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .option:hover { background: #e8e0d5; border-color: #c8bfb0; }
+  .option.selected {
+    background: #1a2a1a;
+    border-color: #1a2a1a;
+  }
+  .option-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #c0b8ae;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option.selected .option-dot {
+    background: #6a9b7a;
+    border-color: #6a9b7a;
+  }
+  .option.selected .option-dot::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #f5f0eb;
+    border-radius: 50%;
+  }
+  .option-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: #3a3028;
+    line-height: 1.4;
+  }
+  .option.selected .option-text { color: #f5f0eb; font-weight: 400; }
+
+  /* NAV */
+  .nav-wrap {
+    padding: 20px 24px 0;
+    background: #f5f0eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-prev {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #a89e92;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0;
+    text-transform: uppercase;
+  }
+  .btn-prev:hover { color: #6a9b7a; }
+  .btn-next {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5f0eb;
+    background: #1a2a1a;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .btn-next:hover { background: #2a3e2a; }
+  .btn-next:disabled { background: #c0b8ae; cursor: default; }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  /* RESULT */
+  .result-wrap {
+    padding: 0 24px;
+    display: none;
+  }
+  .result-wrap.show { display: block; }
+
+  .result-hero {
+    background: #1a2a1a;
+    padding: 28px 24px;
+    margin: 0 -24px;
+    margin-bottom: 24px;
+  }
+  .result-hero-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6a9b7a;
+    margin-bottom: 10px;
+  }
+  .result-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: #f5f0eb;
+    line-height: 1.2;
+  }
+
+  .result-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .result-card {
+    background: #f5f0eb;
+    border: 1px solid #d8d0c5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .result-card-top {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid #e8e0d5;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .result-card-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a7e72;
+    margin-bottom: 4px;
+  }
+  .result-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a2a1a;
+    line-height: 1.2;
+  }
+  .result-score {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .result-score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .result-score-max {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: #a89e92;
+  }
+  .score-low { color: #6a9b7a; }
+  .score-mid { color: #c8943a; }
+  .score-high { color: #9b3a3a; }
+
+  .result-bar-wrap {
+    padding: 0 18px 6px;
+    padding-top: 10px;
+  }
+  .result-bar {
+    height: 3px;
+    background: #e8e0d5;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .result-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s ease;
+  }
+  .fill-low { background: #6a9b7a; }
+  .fill-mid { background: #c8943a; }
+  .fill-high { background: #9b3a3a; }
+
+  .result-card-body {
+    padding: 14px 18px 16px;
+  }
+  .result-interpretation {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #1a2a1a;
+    margin-bottom: 6px;
+  }
+  .result-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 11.5px;
+    font-weight: 300;
+    color: #5a5048;
+    line-height: 1.65;
+  }
+
+  /* SUMMARY */
+  .result-summary {
+    background: #eee8e0;
+    border-radius: 4px;
+    padding: 20px 18px;
+    margin-bottom: 20px;
+  }
+  .result-summary-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6a9b7a;
+    margin-bottom: 10px;
+  }
+  .result-summary-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: #1a2a1a;
+    line-height: 1.5;
+  }
+
+  .result-steps {
+    background: #1a2a1a;
+    border-radius: 4px;
+    padding: 20px 18px;
+    margin-bottom: 28px;
+  }
+  .result-steps-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6a9b7a;
+    margin-bottom: 14px;
+  }
+  .steps-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .steps-list li {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: #a8c8b0;
+    line-height: 1.55;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .steps-list li::before {
+    content: '→';
+    color: #6a9b7a;
+    flex-shrink: 0;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .steps-list li strong { color: #f5f0eb; font-weight: 500; }
+
+  .btn-restart {
+    width: 100%;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8a7e72;
+    background: none;
+    border: 1px solid #c8bfb0;
+    cursor: pointer;
+    padding: 14px;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-restart:hover { border-color: #6a9b7a; color: #6a9b7a; }
+
+  .footer-brand {
+    text-align: center;
+    padding: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: #a89e92;
+  }
+  .footer-brand strong { color: #6a9b7a; font-weight: 400; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">
+    AB
+    <span>Psychology · Альона Браславська</span>
+  </div>
+  <div class="header-tag">Діагностика</div>
+</div>
+
+<!-- QUIZ SECTION -->
+<div id="quiz-section">
+
+  <div class="hero">
+    <div class="hero-label">Два тести · 19 питань</div>
+    <h1>Стрес і сон:<br><em>де ти зараз?</em></h1>
+    <div class="hero-sub">Чесна відповідь про стан твого тіла і нервової системи</div>
+    <div class="hero-desc">Ці тести покажуть не просто «є стрес чи немає» — а наскільки глибоко і в якій точці ти зараз. Результат допоможе зрозуміти з чого починати.</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div style="height:16px"></div>
+    <div class="progress-info">
+      <div class="progress-label">Прогрес</div>
+      <div class="progress-count"><span id="q-current">0</span> / 19</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- BLOCK 1 LABEL -->
+  <div id="block1-label" class="block-label" style="margin-bottom:0">
+    <div class="block-num">01</div>
+    <div class="block-info">
+      <div class="block-title">Рівень стресу — PSS-10</div>
+      <div class="block-desc">10 питань · як ти себе відчуваєш останній місяць</div>
+    </div>
+  </div>
+
+  <div class="questions-wrap" id="questions-wrap">
+
+    <!-- PSS-10 questions (q0-q9) -->
+    <!-- Відповіді: 0=ніколи, 1=майже ніколи, 2=іноді, 3=досить часто, 4=дуже часто -->
+    <!-- Питання 4,5,7,8 — зворотні (reverse): 0→4, 1→3, 2→2, 3→1, 4→0 -->
+
+    <div class="question-card active" data-index="0" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 1 з 10</div>
+      <div class="q-text">Як часто за останній місяць тебе засмучувало щось несподіване?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="1" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 2 з 10</div>
+      <div class="q-text">Як часто ти відчувала, що не можеш контролювати важливі речі у своєму житті?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="2" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 3 з 10</div>
+      <div class="q-text">Як часто ти відчувала нервозність і стрес?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="3" data-block="1" data-reverse="true">
+      <div class="q-number">Блок 1 · Питання 4 з 10</div>
+      <div class="q-text">Як часто ти успішно справлялась з повсякденними труднощами?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="4" data-block="1" data-reverse="true">
+      <div class="q-number">Блок 1 · Питання 5 з 10</div>
+      <div class="q-text">Як часто ти відчувала, що ефективно справляєшся зі змінами у своєму житті?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="5" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 6 з 10</div>
+      <div class="q-text">Як часто ти відчувала роздратування через речі, які були поза твоїм контролем?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="6" data-block="1" data-reverse="true">
+      <div class="q-number">Блок 1 · Питання 7 з 10</div>
+      <div class="q-text">Як часто ти відчувала, що можеш впоратись зі своїми особистими проблемами?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="7" data-block="1" data-reverse="true">
+      <div class="q-number">Блок 1 · Питання 8 з 10</div>
+      <div class="q-text">Як часто ти відчувала, що справи йдуть так, як ти хочеш?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="8" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 9 з 10</div>
+      <div class="q-text">Як часто ти злилась через речі, які виходили з-під контролю?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="9" data-block="1" data-reverse="false">
+      <div class="q-number">Блок 1 · Питання 10 з 10</div>
+      <div class="q-text">Як часто ти відчувала, що труднощів накопичилось так багато, що не можеш з ними впоратись?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Ніколи</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Іноді</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Досить часто</span></div>
+        <div class="option" data-value="4"><div class="option-dot"></div><span class="option-text">Дуже часто</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2 LABEL inserted by JS -->
+
+    <!-- PSQI simplified questions (q10-q18) -->
+    <div class="question-card" data-index="10" data-block="2">
+      <div class="q-number">Блок 2 · Питання 1 з 9</div>
+      <div class="q-text">Скільки часу тобі зазвичай потрібно, щоб заснути?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">До 15 хвилин</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">16–30 хвилин</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">31–60 хвилин</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Більше години</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="11" data-block="2">
+      <div class="q-number">Блок 2 · Питання 2 з 9</div>
+      <div class="q-text">Скільки годин ти реально спиш (не враховуючи час у ліжку)?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Більше 7 годин</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">6–7 годин</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">5–6 годин</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Менше 5 годин</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="12" data-block="2">
+      <div class="q-number">Блок 2 · Питання 3 з 9</div>
+      <div class="q-text">Як часто тобі важко заснути через те, що не можеш вимкнути думки?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Жодного разу за місяць</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Рідше ніж раз на тиждень</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">1–2 рази на тиждень</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">3 і більше разів на тиждень</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="13" data-block="2">
+      <div class="q-number">Блок 2 · Питання 4 з 9</div>
+      <div class="q-text">Як часто ти прокидаєшся вночі або дуже рано і не можеш знову заснути?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Жодного разу за місяць</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Рідше ніж раз на тиждень</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">1–2 рази на тиждень</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">3 і більше разів на тиждень</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="14" data-block="2">
+      <div class="q-number">Блок 2 · Питання 5 з 9</div>
+      <div class="q-text">Як часто ти відчуваєш себе відпочилою після пробудження?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Майже завжди</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Частіше так</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Частіше ні</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Майже ніколи</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="15" data-block="2">
+      <div class="q-number">Блок 2 · Питання 6 з 9</div>
+      <div class="q-text">Як часто ти відчуваєш сонливість вдень, яка заважає жити і працювати?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Жодного разу за місяць</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Рідше ніж раз на тиждень</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">1–2 рази на тиждень</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">3 і більше разів на тиждень</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="16" data-block="2">
+      <div class="q-number">Блок 2 · Питання 7 з 9</div>
+      <div class="q-text">Як ти загалом оцінюєш якість свого сну за останній місяць?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Дуже добра</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Досить добра</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Досить погана</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Дуже погана</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="17" data-block="2">
+      <div class="q-number">Блок 2 · Питання 8 з 9</div>
+      <div class="q-text">Як часто ти вживаєш ліки або алкоголь, щоб заснути?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Жодного разу</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Рідше ніж раз на тиждень</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">1–2 рази на тиждень</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">3 і більше разів на тиждень</span></div>
+      </div>
+    </div>
+
+    <div class="question-card" data-index="18" data-block="2">
+      <div class="q-number">Блок 2 · Питання 9 з 9</div>
+      <div class="q-text">Наскільки сон заважає тобі бути енергійною і зосередженою вдень?</div>
+      <div class="options">
+        <div class="option" data-value="0"><div class="option-dot"></div><span class="option-text">Зовсім не заважає</span></div>
+        <div class="option" data-value="1"><div class="option-dot"></div><span class="option-text">Трохи заважає</span></div>
+        <div class="option" data-value="2"><div class="option-dot"></div><span class="option-text">Помірно заважає</span></div>
+        <div class="option" data-value="3"><div class="option-dot"></div><span class="option-text">Дуже заважає</span></div>
+      </div>
+    </div>
+
+  </div><!-- /questions-wrap -->
+
+  <div class="nav-wrap" id="nav-wrap">
+    <button class="btn-prev" id="btn-prev" onclick="prevQ()">← Назад</button>
+    <button class="btn-next" id="btn-next" onclick="nextQ()" disabled>Далі →</button>
+  </div>
+
+</div><!-- /quiz-section -->
+
+<!-- RESULT SECTION -->
+<div id="result-section" class="hidden">
+  <div class="result-wrap show">
+
+    <div class="result-hero">
+      <div class="result-hero-label">Твій результат</div>
+      <div class="result-hero-title" id="result-main-title">Ось де ти зараз</div>
+    </div>
+
+    <div class="result-cards">
+
+      <!-- PSS Card -->
+      <div class="result-card">
+        <div class="result-card-top">
+          <div>
+            <div class="result-card-name">Блок 1 · PSS-10</div>
+            <div class="result-card-title" id="pss-title">Рівень стресу</div>
+          </div>
+          <div class="result-score">
+            <div class="result-score-num" id="pss-score">—</div>
+            <div class="result-score-max">з 40 балів</div>
+          </div>
+        </div>
+        <div class="result-bar-wrap">
+          <div class="result-bar">
+            <div class="result-bar-fill" id="pss-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="result-card-body">
+          <div class="result-interpretation" id="pss-interpretation"></div>
+          <div class="result-text" id="pss-text"></div>
+        </div>
+      </div>
+
+      <!-- PSQI Card -->
+      <div class="result-card">
+        <div class="result-card-top">
+          <div>
+            <div class="result-card-name">Блок 2 · PSQI</div>
+            <div class="result-card-title" id="psqi-title">Якість сну</div>
+          </div>
+          <div class="result-score">
+            <div class="result-score-num" id="psqi-score">—</div>
+            <div class="result-score-max">з 27 балів</div>
+          </div>
+        </div>
+        <div class="result-bar-wrap">
+          <div class="result-bar">
+            <div class="result-bar-fill" id="psqi-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="result-card-body">
+          <div class="result-interpretation" id="psqi-interpretation"></div>
+          <div class="result-text" id="psqi-text"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="result-summary">
+      <div class="result-summary-label">Загальна картина</div>
+      <div class="result-summary-text" id="summary-text"></div>
+    </div>
+
+    <div class="result-steps">
+      <div class="result-steps-label">З чого починати</div>
+      <ul class="steps-list" id="steps-list"></ul>
+    </div>
+
+    <button class="btn-restart" onclick="restart()">Пройти тест ще раз</button>
+
+  </div>
+</div>
+
+<div class="footer-brand">
+  AB Psychology · <strong>@braslavska.alona</strong> · t.me/sam_sobi_psycholo_g_ab
+</div>
+
+<script>
+  const answers = new Array(19).fill(null);
+  let current = 0;
+
+  const cards = document.querySelectorAll('.question-card');
+  const progressFill = document.getElementById('progress-fill');
+  const qCurrent = document.getElementById('q-current');
+  const btnNext = document.getElementById('btn-next');
+  const btnPrev = document.getElementById('btn-prev');
+  const block1Label = document.getElementById('block1-label');
+
+  // Insert block2 label before q10
+  const block2Label = document.createElement('div');
+  block2Label.className = 'block-label';
+  block2Label.id = 'block2-label';
+  block2Label.style.display = 'none';
+  block2Label.innerHTML = '<div class="block-num">02</div><div class="block-info"><div class="block-title">Якість сну — PSQI</div><div class="block-desc">9 питань · як твоє тіло відновлюється уві сні</div></div>';
+  cards[10].parentNode.insertBefore(block2Label, cards[10]);
+
+  function updateUI() {
+    cards.forEach((c, i) => c.classList.toggle('active', i === current));
+
+    // block labels
+    block1Label.style.display = current < 10 ? 'flex' : 'none';
+    block2Label.style.display = current >= 10 ? 'flex' : 'none';
+
+    const answered = answers.filter(a => a !== null).length;
+    progressFill.style.width = (answered / 19 * 100) + '%';
+    qCurrent.textContent = answered;
+
+    btnNext.disabled = answers[current] === null;
+    btnPrev.style.visibility = current === 0 ? 'hidden' : 'visible';
+
+    const isLast = current === 18;
+    btnNext.textContent = isLast ? 'Переглянути результат →' : 'Далі →';
+  }
+
+  // Option click
+  document.querySelectorAll('.question-card').forEach((card, qi) => {
+    card.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        answers[qi] = parseInt(opt.dataset.value);
+        btnNext.disabled = false;
+        updateUI();
+      });
+    });
+  });
+
+  function nextQ() {
+    if (answers[current] === null) return;
+    if (current === 18) { showResult(); return; }
+    current++;
+    updateUI();
+    window.scrollTo({top: document.getElementById('questions-wrap').offsetTop - 60, behavior: 'smooth'});
+  }
+
+  function prevQ() {
+    if (current === 0) return;
+    current--;
+    updateUI();
+  }
+
+  function calcPSS() {
+    // questions 3,4,6,7 are reverse scored (index 3,4,6,7)
+    const reverseIdx = [3,4,6,7];
+    let total = 0;
+    for (let i = 0; i < 10; i++) {
+      let val = answers[i];
+      if (reverseIdx.includes(i)) val = 4 - val;
+      total += val;
+    }
+    return total;
+  }
+
+  function calcPSQI() {
+    let total = 0;
+    for (let i = 10; i < 19; i++) total += answers[i];
+    return total;
+  }
+
+  function showResult() {
+    document.getElementById('quiz-section').classList.add('hidden');
+    document.getElementById('result-section').classList.remove('hidden');
+
+    const pss = calcPSS();
+    const psqi = calcPSQI();
+
+    // PSS result
+    document.getElementById('pss-score').textContent = pss;
+    const pssBar = document.getElementById('pss-bar');
+    pssBar.style.width = (pss / 40 * 100) + '%';
+
+    let pssLevel, pssTitle, pssInterp, pssText, pssClass, pssBarClass;
+    if (pss <= 13) {
+      pssLevel = 'low'; pssClass = 'score-low'; pssBarClass = 'fill-low';
+      pssTitle = 'Низький рівень стресу';
+      pssInterp = '✓ Твоя нервова система зараз у відносній рівновазі';
+      pssText = 'Ти непогано справляєшся з навантаженням. Важливо зберегти цей ресурс і не допустити накопичення стресу.';
+    } else if (pss <= 26) {
+      pssLevel = 'mid'; pssClass = 'score-mid'; pssBarClass = 'fill-mid';
+      pssTitle = 'Помірний рівень стресу';
+      pssInterp = '⚠ Нервова система напружена, ресурс поступово виснажується';
+      pssText = 'Ти функціонуєш, але на межі. Організм вже витрачає більше, ніж відновлює. Саме тут починаються зупинки у схудненні, зриви, хронічна втома без причини.';
+    } else {
+      pssLevel = 'high'; pssClass = 'score-high'; pssBarClass = 'fill-high';
+      pssTitle = 'Високий рівень стресу';
+      pssInterp = '✗ Нервова система в режимі виживання';
+      pssText = 'Кортизол хронічно підвищений. Тіло фізіологічно блокує схуднення, накопичує воду і жир як «захист». Будь-яка дієта або тренування в цьому стані буде менш ефективною.';
+    }
+    document.getElementById('pss-score').className = 'result-score-num ' + pssClass;
+    document.getElementById('pss-title').textContent = pssTitle;
+    document.getElementById('pss-interpretation').textContent = pssInterp;
+    document.getElementById('pss-text').textContent = pssText;
+    pssBar.className = 'result-bar-fill ' + pssBarClass;
+
+    // PSQI result
+    document.getElementById('psqi-score').textContent = psqi;
+    const psqiBar = document.getElementById('psqi-bar');
+    psqiBar.style.width = (psqi / 27 * 100) + '%';
+
+    let psqiTitle, psqiInterp, psqiText, psqiClass, psqiBarClass;
+    if (psqi <= 7) {
+      psqiClass = 'score-low'; psqiBarClass = 'fill-low';
+      psqiTitle = 'Сон задовільний';
+      psqiInterp = '✓ Тіло має можливість відновлюватись';
+      psqiText = 'Твій сон відносно функціональний. Але навіть невелике покращення якості сну дасть помітний ефект на рівень енергії і настрій.';
+    } else if (psqi <= 16) {
+      psqiClass = 'score-mid'; psqiBarClass = 'fill-mid';
+      psqiTitle = 'Сон порушений';
+      psqiInterp = '⚠ Тіло не встигає повністю відновлюватись';
+      psqiText = 'Ти, можливо, проводиш у ліжку достатньо часу — але якість сну не дозволяє тілу і мозку справді відновитися. Це пряма причина втоми, тяги до солодкого і емоційної нестабільності.';
+    } else {
+      psqiClass = 'score-high'; psqiBarClass = 'fill-high';
+      psqiTitle = 'Сон серйозно порушений';
+      psqiInterp = '✗ Відновлення практично не відбувається';
+      psqiText = 'Хронічне недосипання або поганий сон — це сигнал SOS від нервової системи. Кортизол від поганого сну сам по собі блокує метаболізм і підсилює тривогу.';
+    }
+    document.getElementById('psqi-score').className = 'result-score-num ' + psqiClass;
+    document.getElementById('psqi-title').textContent = psqiTitle;
+    document.getElementById('psqi-interpretation').textContent = psqiInterp;
+    document.getElementById('psqi-text').textContent = psqiText;
+    psqiBar.className = 'result-bar-fill ' + psqiBarClass;
+
+    // Summary
+    let summary, steps;
+    if (pss <= 13 && psqi <= 7) {
+      summary = 'Твоя система зараз у відносній рівновазі. Це хороша база — головне не дозволити стресу накопичитись і підтримувати те, що вже є.';
+      steps = [
+        '<strong>Підтримуй режим сну</strong> — це твій головний актив',
+        '<strong>Додай профілактику</strong>: короткі практики заземлення щодня',
+        '<strong>Слідкуй за рівнем стресу</strong> — повтори тест через місяць'
+      ];
+    } else if (pss >= 27 || psqi >= 17) {
+      summary = 'Твоя нервова система зараз в режимі виживання. Це пояснює все — вагу, втому, тривогу, зриви. Не воля і не мотивація. Фізіологія.';
+      steps = [
+        '<strong>Перший крок — сон до 23:00</strong>: це не про красу, це про кортизол',
+        '<strong>Регулярне харчування</strong> без голодування — 3 рази на день у стабільний час',
+        '<strong>Зменши інформаційний шум</strong> — мозок не відрізняє новини від реальної загрози',
+        '<strong>Зверни увагу на роботу з тривогою</strong> — поки стрес не знизиться, тіло не відпустить'
+      ];
+    } else {
+      summary = 'Є напруга і є ресурс. Твоя система ще справляється, але вже на межі. Маленькі зміни зараз дадуть великий результат — бо ти ще не в точці виснаження.';
+      steps = [
+        '<strong>Сон — перший пріоритет</strong>: лягати до 23:00 хоча б 5 днів на тиждень',
+        '<strong>Не пропускай їжу</strong> — голодування підвищує кортизол',
+        '<strong>Щоденна мікропауза</strong>: 10 хвилин без екрану і завдань',
+        '<strong>Повтори тест через 3–4 тижні</strong> — відстеж динаміку'
+      ];
+    }
+
+    document.getElementById('result-main-title').textContent = pss >= 27 ? 'Тіло в режимі виживання' : pss >= 14 ? 'Є напруга — є і ресурс' : 'Ти в доброму балансі';
+    document.getElementById('summary-text').textContent = summary;
+
+    const stepsList = document.getElementById('steps-list');
+    stepsList.innerHTML = steps.map(s => '<li>' + s + '</li>').join('');
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function restart() {
+    answers.fill(null);
+    current = 0;
+    cards.forEach(c => {
+      c.classList.remove('active');
+      c.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    });
+    cards[0].classList.add('active');
+    document.getElementById('quiz-section').classList.remove('hidden');
+    document.getElementById('result-section').classList.add('hidden');
+    updateUI();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  updateUI();
+</script>
+</body>
+</html>
