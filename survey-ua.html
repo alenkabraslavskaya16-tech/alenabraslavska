@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опитування — Альона Браславська</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0eb;
+    --green: #6a9b7a;
+    --green-dark: #4f7a5e;
+    --text: #2c2c2c;
+    --muted: #8a8078;
+    --border: #ddd5c8;
+    --white: #fdfaf7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  .hero {
+    background: var(--green);
+    color: var(--white);
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .hero-intro {
+    max-width: 560px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.9;
+  }
+
+  .gift-badge {
+    display: inline-block;
+    margin-top: 24px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 40px;
+    padding: 10px 22px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .block {
+    margin-top: 48px;
+  }
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .block-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .question {
+    margin-bottom: 24px;
+  }
+
+  .question label {
+    display: block;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .q-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--green);
+    margin-right: 6px;
+  }
+
+  textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  textarea:focus {
+    border-color: var(--green);
+  }
+
+  textarea::placeholder {
+    color: #bbb0a4;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0 0;
+  }
+
+  .btn-section {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .btn-collect {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-collect:hover { background: var(--green-dark); }
+  .btn-collect:active { transform: scale(0.98); }
+
+  .btn-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .result-box {
+    display: none;
+    margin-top: 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .result-box.visible { display: block; }
+
+  .result-header {
+    background: var(--green);
+    color: white;
+    padding: 14px 20px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .result-text {
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-wrap;
+    max-height: 400px;
+    overflow-y: auto;
+    user-select: all;
+  }
+
+  .btn-copy {
+    background: white;
+    color: var(--green);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .copy-success {
+    display: none;
+    margin-top: 12px;
+    text-align: center;
+    color: var(--green);
+    font-size: 14px;
+  }
+
+  .thanks {
+    margin-top: 48px;
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .thanks p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .thanks .sig {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--green);
+    font-style: normal;
+    font-family: 'Jost', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-name">Альона Браславська · AB Psychology</div>
+  <h1>Ти мені потрібен.<br>По-справжньому.</h1>
+  <p class="hero-intro">
+    Я проводжу дослідження — і мені важливі живі, чесні відповіді від людей, яких я знаю особисто.<br><br>
+    Саме ти — не психолог, а людина із життя — можеш дати те, чого не дасть жодна наукова стаття. Твій реальний досвід, твої слова про те, як воно буває насправді — це і є те, з чого народжується справжня психологія. Та, яка допомагає.<br><br>
+    Можливо, саме твої відповіді колись підтримають когось у скрутну хвилину або допоможуть прийняти важливе рішення. Це не перебільшення — це те, як працює живе знання 🤍<br><br>
+    Немає правильних чи неправильних відповідей. Якщо якесь питання не хочеться — просто пропусти.
+  </p>
+  <div class="gift-badge">🎁 Дещо цінне — одразу після твоїх відповідей</div>
+</div>
+
+<div class="container">
+
+  <!-- Блок 1 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">1</div>
+      <div class="block-title">Про тебе</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">1.</span> Як виглядає твій звичайний день — з ранку до вечора?</label>
+      <textarea data-q="1. Звичайний день" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">2.</span> Чим займаєшся? Робота, сім'я, діти, проєкти — що забирає найбільше часу й енергії?</label>
+      <textarea data-q="2. Чим займаєшся" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">3.</span> Як партнер і діти впливають на твоє життя?</label>
+      <textarea data-q="3. Партнер і діти" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">4.</span> Як би ти описав(ла) свій стан останніми місяцями — одним словом або образом?</label>
+      <textarea data-q="4. Стан останніми місяцями" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Блок 2 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">2</div>
+      <div class="block-title">Як ти прийшов(ла) до роботи з психологом</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">5.</span> Згадай той момент, коли зрозумів(ла), що треба щось змінювати. Що тоді відбувалось у житті?</label>
+      <textarea data-q="5. Момент коли вирішив(ла) змінюватись" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">6.</span> Що пробував(ла) до того як звернувся(лась) до мене?</label>
+      <textarea data-q="6. Що пробував(ла) раніше" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">7.</span> Чому те, що було раніше, не спрацювало?</label>
+      <textarea data-q="7. Чому не спрацювало" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">8.</span> Що стало тією краплею — чому саме тоді і чому психолог?</label>
+      <textarea data-q="8. Та сама крапля" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Блок 3 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">3</div>
+      <div class="block-title">Про нашу роботу</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">9.</span> Що змінилось відтоді як ми почали працювати?</label>
+      <textarea data-q="9. Що змінилось" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">10.</span> Як би ти пояснив(ла) ці зміни близькій людині — простими словами, без психологічних термінів?</label>
+      <textarea data-q="10. Пояснити зміни простими словами" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">11.</span> Що давалось найважче в нашій роботі?</label>
+      <textarea data-q="11. Що давалось важко" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">12.</span> Чого не вистачало між сесіями?</label>
+      <textarea data-q="12. Чого не вистачало між сесіями" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Блок 4 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">4</div>
+      <div class="block-title">Трохи глибше</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">13.</span> Що ти думаєш про свою ситуацію — але нікому не говориш вголос?</label>
+      <textarea data-q="13. Що думаєш але не кажеш" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">14.</span> Чого боїшся найбільше прямо зараз?</label>
+      <textarea data-q="14. Чого боїшся" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">15.</span> Що кажеш людям коли питають як справи — і що насправді відбувається всередині?</label>
+      <textarea data-q="15. Зовні vs всередині" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">16.</span> Що робиш коли стає зовсім важко — куди йдеш, що вмикаєш, кому телефонуєш?</label>
+      <textarea data-q="16. Коли важко" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Блок 5 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">5</div>
+      <div class="block-title">Про продукт</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">17.</span> Якби між нашими зустрічами був доступ до коротких матеріалів — технік, розборів, голосових від мене — ти б користувався(лась)?</label>
+      <textarea data-q="17. Чи користувався(лась) б матеріалами" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">18.</span> Які теми для тебе найціннішi й найболючіші?</label>
+      <textarea data-q="18. Цінні теми" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">19.</span> Що має бути в такому продукті, щоб ти точно за нього заплатив(ла)?</label>
+      <textarea data-q="19. Що має бути в продукті" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">20.</span> Яка ціна за місячний доступ була б для тебе комфортною?</label>
+      <textarea data-q="20. Комфортна ціна" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Блок 6 -->
+  <div class="block">
+    <div class="block-header">
+      <div class="block-num">6</div>
+      <div class="block-title">Про ринок</div>
+    </div>
+    <div class="question">
+      <label><span class="q-num">21.</span> Купував(ла) психологічні продукти онлайн — курси, марафони, гайди? Що сподобалось, що ні?</label>
+      <textarea data-q="21. Досвід купівлі продуктів" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">22.</span> Чого не вистачає в тому, що є на ринку?</label>
+      <textarea data-q="22. Чого не вистачає на ринку" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">23.</span> Що точно відштовхує в психологічних продуктах?</label>
+      <textarea data-q="23. Що відштовхує" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">24.</span> Як приймаєш рішення про покупку — що має статись щоб натиснути "беру"?</label>
+      <textarea data-q="24. Як приймаєш рішення" placeholder="Розкажи..."></textarea>
+    </div>
+    <div class="question">
+      <label><span class="q-num">25.</span> Що точно зупиняє від покупки?</label>
+      <textarea data-q="25. Що зупиняє" placeholder="Розкажи..."></textarea>
+    </div>
+  </div>
+
+  <!-- Кнопка -->
+  <div class="btn-section">
+    <button class="btn-collect" onclick="collectAnswers()">Зібрати мої відповіді</button>
+    <p class="btn-hint">Натисни — отримаєш готовий текст для відправки в Telegram</p>
+
+    <div class="result-box" id="resultBox">
+      <div class="result-header">
+        <span>Твої відповіді готові — скопіюй і надішли Альоні</span>
+        <button class="btn-copy" onclick="copyText()">Скопіювати</button>
+      </div>
+      <div class="result-text" id="resultText"></div>
+    </div>
+    <div class="copy-success" id="copySuccess">✓ Скопійовано! Тепер встав у Telegram</div>
+  </div>
+
+  <div class="thanks">
+    <p>Дякую тобі щиро — за час, за чесність, за довіру.<br>Ти навіть не уявляєш, наскільки це важливо.<br>Твої слова — це живе знання, з якого народжується справжня допомога.</p>
+    <div class="sig">🌿 Альона</div>
+  </div>
+
+</div>
+
+<script>
+function collectAnswers() {
+  const textareas = document.querySelectorAll('textarea');
+  let result = '📋 Відповіді на опитування Альони Браславської\n';
+  result += '─'.repeat(40) + '\n\n';
+
+  let hasAny = false;
+  textareas.forEach(ta => {
+    const val = ta.value.trim();
+    if (val) {
+      hasAny = true;
+      result += `${ta.dataset.q}:\n${val}\n\n`;
+    }
+  });
+
+  if (!hasAny) {
+    alert('Заповни хоча б кілька питань 🙏');
+    return;
+  }
+
+  result += '─'.repeat(40);
+
+  const box = document.getElementById('resultBox');
+  const textEl = document.getElementById('resultText');
+  textEl.textContent = result;
+  box.classList.add('visible');
+  box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copyText() {
+  const text = document.getElementById('resultText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const s = document.getElementById('copySuccess');
+    s.style.display = 'block';
+    setTimeout(() => s.style.display = 'none', 3000);
+  });
+}
+</script>
+
+</body>
+</html>
