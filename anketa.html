@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A; --burgundy-light: #A63D4A;
+  --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --cream: #FAF7F2; --cream-border: #E4DAD0;
+  --gold: #C9A84C; --gold-light: #E8D5A3; --gold-pale: #FBF6EC;
+  --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', sans-serif; background: var(--cream);
+  color: var(--text-dark); min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 48px 20px 80px;
+}
+.wrap { width: 100%; max-width: 620px; }
+
+/* HEADER */
+.header { text-align: center; margin-bottom: 48px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; display: inline-block; margin-bottom: 32px; }
+.header-logo span { color: var(--burgundy); }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.title em { font-style: italic; color: var(--burgundy); }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+
+/* PROGRESS */
+.progress-wrap { margin-bottom: 36px; }
+.progress-bar-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; background: var(--burgundy); border-radius: 100px; transition: width 0.4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; }
+
+/* STEPS */
+.step { display: none; }
+.step.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* CARD */
+.card { background: var(--white); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
+.q-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.6; margin-bottom: 10px; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(18px, 3vw, 22px); font-weight: 400; line-height: 1.4; color: var(--text-dark); margin-bottom: 16px; }
+
+/* WHY BLOCK */
+.q-why {
+  background: var(--gold-pale); border-left: 2px solid var(--gold);
+  border-radius: 0 12px 12px 0; padding: 12px 16px; margin-bottom: 20px;
+}
+.q-why-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.q-why-text { font-size: 13px; color: var(--text-mid); line-height: 1.7; font-style: italic; }
+
+/* INPUTS */
+input[type="text"], textarea {
+  width: 100%; padding: 14px 16px; border: 1.5px solid var(--cream-border);
+  border-radius: 14px; background: var(--cream); font-family: 'Manrope', sans-serif;
+  font-size: 15px; color: var(--text-dark); line-height: 1.6; resize: none;
+  transition: border-color 0.2s; outline: none;
+}
+input[type="text"]:focus, textarea:focus { border-color: var(--burgundy-mid); background: var(--white); }
+input[type="text"]::placeholder, textarea::placeholder { color: var(--text-light); }
+
+/* BUTTONS */
+.btn-row { display: flex; gap: 12px; }
+.btn-next { flex: 1; background: var(--burgundy); color: var(--gold-light); border: none; padding: 15px 32px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+.btn-next:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-next:disabled { background: var(--cream-border); color: var(--text-light); cursor: not-allowed; transform: none; }
+.btn-back { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); padding: 15px 24px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-back:hover { border-color: var(--text-mid); }
+
+/* RESULT */
+.result { display: none; text-align: center; }
+.result.active { display: block; animation: fadeIn 0.4s ease; }
+.result-icon { font-size: 48px; margin-bottom: 20px; }
+.result-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; line-height: 1.3; }
+.result-title em { font-style: italic; color: var(--burgundy); }
+.result-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 28px; }
+.result-card { background: var(--burgundy-pale); border-radius: 20px; padding: 28px; border: 1px solid var(--burgundy-mid); margin-bottom: 28px; text-align: left; }
+.result-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.7; margin-bottom: 16px; }
+.result-answers { display: flex; flex-direction: column; gap: 16px; }
+.result-answer-q { font-size: 11px; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+.result-answer-a { font-size: 14px; color: var(--text-dark); line-height: 1.65; }
+.btn-send { display: block; width: 100%; background: var(--burgundy); color: var(--gold-light); border: none; padding: 16px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; text-decoration: none; text-align: center; margin-bottom: 12px; }
+.btn-send:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-send-note { font-size: 12px; color: var(--text-light); }
+
+/* FOOTER */
+.page-footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-light); }
+.page-footer a { color: var(--burgundy); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <a href="https://t.me/Psikholog_Braslavskaya" class="header-logo">AB <span>Psychology</span></a>
+    <div class="eyebrow">Анкета знайомства</div>
+    <h1 class="title">Знайди себе<br><em>в моїй анкеті</em></h1>
+    <p class="subtitle">Як в тій дитячій анкеті де шукаєш спільне з іншою людиною. Заповни — і я відповім особисто.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-text" id="progress-text">Питання 1 з 5</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step active" id="step-1">
+    <div class="card">
+      <div class="q-num">Питання 1 / 5</div>
+      <div class="q-text">Як тебе звати — і звідки ти?</div>
+      <div class="q-why">
+        <div class="q-why-label">Навіщо я це питаю</div>
+        <div class="q-why-text">Щоб знала як до тебе звертатись — і розуміла твій контекст. Київ і маленьке місто — це різний ритм життя і різні виклики.</div>
+      </div>
+      <input type="text" id="q1" placeholder="Ім'я, місто..." oninput="checkStep(1)">
+    </div>
+    <div class="btn-row">
+      <button class="btn-next" id="btn-1" onclick="nextStep(1)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" id="step-2">
+    <div class="card">
+      <div class="q-num">Питання 2 / 5</div>
+      <div class="q-text">Що в твоєму житті зараз йде добре — навіть якщо здається що нічого?</div>
+      <div class="q-why">
+        <div class="q-why-label">Навіщо я це питаю</div>
+        <div class="q-why-text">Це не про позитивне мислення. Це щоб ти сам/сама побачив/побачила з чого будувати — бо ресурс завжди є, просто ми його не помічаємо.</div>
+      </div>
+      <textarea id="q2" rows="4" placeholder="Якщо добре подумати..." oninput="checkStep(2)"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(2)">← Назад</button>
+      <button class="btn-next" id="btn-2" onclick="nextStep(2)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" id="step-3">
+    <div class="card">
+      <div class="q-num">Питання 3 / 5</div>
+      <div class="q-text">Є щось що ти довго терпиш — але ніяк не вирішуєш?</div>
+      <div class="q-why">
+        <div class="q-why-label">Навіщо я це питаю</div>
+        <div class="q-why-text">Мені важливо зрозуміти де саме застряг/застрягла — бо часто те що болить найбільше і є точкою входу.</div>
+      </div>
+      <textarea id="q3" rows="4" placeholder="Вже давно знаю що треба..." oninput="checkStep(3)"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(3)">← Назад</button>
+      <button class="btn-next" id="btn-3" onclick="nextStep(3)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" id="step-4">
+    <div class="card">
+      <div class="q-num">Питання 4 / 5</div>
+      <div class="q-text">Якби наступний рік міг виглядати інакше — що б змінилось першим?</div>
+      <div class="q-why">
+        <div class="q-why-label">Навіщо я це питаю</div>
+        <div class="q-why-text">Не план і не ціль. Просто відчуття — куди тягне. Це багато про що говорить.</div>
+      </div>
+      <textarea id="q4" rows="4" placeholder="Першим би змінилось..." oninput="checkStep(4)"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(4)">← Назад</button>
+      <button class="btn-next" id="btn-4" onclick="nextStep(4)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" id="step-5">
+    <div class="card">
+      <div class="q-num">Питання 5 / 5</div>
+      <div class="q-text">Як ти зазвичай шукаєш підтримку — до кого або до чого звертаєшся?</div>
+      <div class="q-why">
+        <div class="q-why-label">Навіщо я це питаю</div>
+        <div class="q-why-text">Це допомагає мені зрозуміти як ти влаштований/влаштована — і який формат роботи підійде саме тобі.</div>
+      </div>
+      <textarea id="q5" rows="4" placeholder="Зазвичай я..." oninput="checkStep(5)"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(5)">← Назад</button>
+      <button class="btn-next" id="btn-5" onclick="showResult()" disabled>Переглянути →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="result">
+    <div class="result-icon">🌿</div>
+    <h2 class="result-title">Дякую —<br><em>я тебе почула</em></h2>
+    <p class="result-text">Ось що ти написав/написала. Перевір і надсилай — я відповім особисто.</p>
+    <div class="result-card">
+      <div class="result-card-label">Твої відповіді</div>
+      <div class="result-answers" id="result-answers"></div>
+    </div>
+    <a href="#" class="btn-send" id="send-btn">Надіслати Альоні в Telegram →</a>
+    <div class="btn-send-note">Відкриється Telegram з готовим повідомленням</div>
+  </div>
+
+  <div class="page-footer">
+    <a href="https://t.me/Psikholog_Braslavskaya">AB Psychology · Альона Браславська</a>
+  </div>
+
+</div>
+<script>
+const questions = [
+  'Як тебе звати і звідки ти',
+  'Що зараз йде добре',
+  'Що довго терпиш але не вирішуєш',
+  'Що б змінилось першим у наступному році',
+  'Як зазвичай шукаєш підтримку'
+];
+
+function checkStep(num) {
+  const el = document.getElementById('q' + num);
+  const btn = document.getElementById('btn-' + num);
+  btn.disabled = el.value.trim().length < 2;
+}
+
+function updateProgress(step) {
+  const pct = Math.min(((step - 1) / 5) * 100, 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  if (step <= 5) {
+    document.getElementById('progress-text').textContent = 'Питання ' + step + ' з 5';
+  } else {
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-fill').style.background = '#C9A84C';
+    document.getElementById('progress-text').textContent = 'Готово ✓';
+  }
+}
+
+function nextStep(current) {
+  document.getElementById('step-' + current).classList.remove('active');
+  document.getElementById('step-' + (current + 1)).classList.add('active');
+  updateProgress(current + 1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevStep(current) {
+  document.getElementById('step-' + current).classList.remove('active');
+  document.getElementById('step-' + (current - 1)).classList.add('active');
+  updateProgress(current - 1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult() {
+  document.getElementById('step-5').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+  updateProgress(6);
+
+  const answers = [1,2,3,4,5].map(i => document.getElementById('q'+i).value.trim());
+
+  const container = document.getElementById('result-answers');
+  container.innerHTML = answers.map((a, i) => `
+    <div>
+      <div class="result-answer-q">${questions[i]}</div>
+      <div class="result-answer-a">${a}</div>
+    </div>`).join('');
+
+  const msg = `Привіт, Альона! Я заповнив/заповнила анкету 🌿
+
+1. Як мене звати і звідки я:
+${answers[0]}
+
+2. Що зараз йде добре:
+${answers[1]}
+
+3. Що довго терплю але не вирішую:
+${answers[2]}
+
+4. Що б змінилось першим у наступному році:
+${answers[3]}
+
+5. Як зазвичай шукаю підтримку:
+${answers[4]}`;
+
+  document.getElementById('send-btn').href =
+    `https://t.me/Psikholog_Braslavskaya?text=${encodeURIComponent(msg)}`;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
