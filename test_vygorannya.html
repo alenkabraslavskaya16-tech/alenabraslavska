@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рівень вигорання — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A; --burgundy-light: #A63D4A;
+  --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --cream: #FAF7F2; --cream-border: #E4DAD0;
+  --gold: #C9A84C; --gold-light: #E8D5A3; --gold-pale: #FBF6EC;
+  --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 20px 80px; }
+.wrap { width: 100%; max-width: 620px; }
+.header { text-align: center; margin-bottom: 48px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; display: inline-block; margin-bottom: 32px; }
+.header-logo span { color: var(--burgundy); }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.title em { font-style: italic; color: var(--burgundy); }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+.progress-wrap { margin-bottom: 36px; }
+.progress-bar-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; background: var(--burgundy); border-radius: 100px; transition: width 0.4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; }
+.step { display: none; }
+.step.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.card { background: var(--white); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
+.q-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.6; margin-bottom: 10px; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(17px, 3vw, 21px); font-weight: 400; line-height: 1.4; color: var(--text-dark); margin-bottom: 24px; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option { padding: 14px 18px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.6; transition: all 0.2s; background: var(--cream); display: flex; justify-content: space-between; align-items: center; }
+.option:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); color: var(--text-dark); }
+.option.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
+.option-score { font-size: 11px; color: var(--text-light); font-weight: 600; flex-shrink: 0; margin-left: 12px; }
+.btn-row { display: flex; gap: 12px; }
+.btn-next { flex: 1; background: var(--burgundy); color: var(--gold-light); border: none; padding: 15px 32px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+.btn-next:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-next:disabled { background: var(--cream-border); color: var(--text-light); cursor: not-allowed; transform: none; }
+.btn-back { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); padding: 15px 24px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-back:hover { border-color: var(--text-mid); }
+.result { display: none; }
+.result.active { display: block; animation: fadeIn 0.4s ease; }
+.score-visual { background: var(--white); border-radius: 20px; padding: 28px; border: 1px solid var(--cream-border); margin-bottom: 20px; text-align: center; }
+.score-num { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 400; color: var(--burgundy); line-height: 1; margin-bottom: 8px; }
+.score-max { font-size: 13px; color: var(--text-light); }
+.score-bar-bg { height: 8px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin: 16px 0 8px; }
+.score-bar-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
+.score-label { font-size: 13px; font-weight: 600; }
+.result-card { background: var(--burgundy-pale); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--burgundy-mid); margin-bottom: 24px; }
+.result-type { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.7; margin-bottom: 12px; }
+.result-title { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 400; line-height: 1.3; margin-bottom: 16px; }
+.result-title em { font-style: italic; color: var(--burgundy); }
+.result-text { font-size: 15px; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
+.result-insights { display: flex; flex-direction: column; gap: 10px; }
+.insight { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+.insight::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.result-cta { background: var(--white); border-radius: 20px; padding: 24px; border: 1px solid var(--cream-border); margin-top: 20px; text-align: center; }
+.result-cta-text { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+.btn-tg { display: block; background: var(--burgundy); color: var(--gold-light); padding: 14px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; text-align: center; transition: all 0.2s; margin-bottom: 10px; }
+.btn-tg:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-retry { display: block; text-align: center; font-size: 13px; color: var(--text-light); cursor: pointer; text-decoration: underline; }
+.page-footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-light); }
+.page-footer a { color: var(--burgundy); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <a href="https://t.me/Psikholog_Braslavskaya" class="header-logo">AB <span>Psychology</span></a>
+    <div class="eyebrow">Тест</div>
+    <h1 class="title">Рівень вигорання<br><em>прямо зараз</em></h1>
+    <p class="subtitle">5 питань — чесна діагностика за 3 хвилини. Обери відповідь яка найточніше описує останні 2 тижні.</p>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Питання 1 з 5</div>
+  </div>
+
+  <div class="step active" id="step-1">
+    <div class="card">
+      <div class="q-num">Питання 1 / 5</div>
+      <div class="q-text">Як ти почуваєшся зранку перед робочим днем?</div>
+      <div class="options" id="opts-1">
+        <div class="option" onclick="select(1,1)">З енергією — готовий/а до дня</div>
+        <div class="option" onclick="select(1,2)">Нормально — як зазвичай</div>
+        <div class="option" onclick="select(1,3)">Втомлено — навіть після сну</div>
+        <div class="option" onclick="select(1,4)">З важкістю — не хочеться вставати взагалі</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-next" id="btn-1" onclick="nextStep(1)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-2">
+    <div class="card">
+      <div class="q-num">Питання 2 / 5</div>
+      <div class="q-text">Як часто ти відчуваєш що те що робиш — не має сенсу?</div>
+      <div class="options" id="opts-2">
+        <div class="option" onclick="select(2,1)">Рідко — зазвичай розумію навіщо</div>
+        <div class="option" onclick="select(2,2)">Іноді — але минає</div>
+        <div class="option" onclick="select(2,3)">Часто — важко знайти мотивацію</div>
+        <div class="option" onclick="select(2,4)">Майже завжди — все здається безглуздим</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(2)">← Назад</button>
+      <button class="btn-next" id="btn-2" onclick="nextStep(2)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-3">
+    <div class="card">
+      <div class="q-num">Питання 3 / 5</div>
+      <div class="q-text">Як ти реагуєш на людей навколо — колег, близьких?</div>
+      <div class="options" id="opts-3">
+        <div class="option" onclick="select(3,1)">З інтересом — люди мене не втомлюють</div>
+        <div class="option" onclick="select(3,2)">По-різному — залежить від ситуації</div>
+        <div class="option" onclick="select(3,3)">З роздратуванням — хочеться щоб не чіпали</div>
+        <div class="option" onclick="select(3,4)">З байдужістю — мені все одно</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(3)">← Назад</button>
+      <button class="btn-next" id="btn-3" onclick="nextStep(3)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-4">
+    <div class="card">
+      <div class="q-num">Питання 4 / 5</div>
+      <div class="q-text">Що з твоїм відновленням — чи допомагає відпочинок?</div>
+      <div class="options" id="opts-4">
+        <div class="option" onclick="select(4,1)">Так — після вихідних почуваюсь добре</div>
+        <div class="option" onclick="select(4,2)">Частково — трохи краще але не повністю</div>
+        <div class="option" onclick="select(4,3)">Слабо — відпочиваю але не відновлююсь</div>
+        <div class="option" onclick="select(4,4)">Ні — відпочинок не допомагає</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(4)">← Назад</button>
+      <button class="btn-next" id="btn-4" onclick="nextStep(4)" disabled>Далі →</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-5">
+    <div class="card">
+      <div class="q-num">Питання 5 / 5</div>
+      <div class="q-text">Як давно ти відчуваєш себе «собою» — живим/ою і в ресурсі?</div>
+      <div class="options" id="opts-5">
+        <div class="option" onclick="select(5,1)">Зараз — загалом почуваюсь добре</div>
+        <div class="option" onclick="select(5,2)">Кілька тижнів тому — зараз складніше</div>
+        <div class="option" onclick="select(5,3)">Кілька місяців тому — важко пригадати</div>
+        <div class="option" onclick="select(5,4)">Не пам'ятаю коли — вже давно не так</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(5)">← Назад</button>
+      <button class="btn-next" id="btn-5" onclick="showResult()" disabled>Дізнатись результат →</button>
+    </div>
+  </div>
+
+  <div class="result" id="result"></div>
+  <div class="page-footer"><a href="https://t.me/Psikholog_Braslavskaya">AB Psychology · Альона Браславська</a></div>
+</div>
+
+<script>
+const answers = {};
+const levels = {
+  low: {
+    label: 'Низький рівень',
+    title: 'Ти в <em>ресурсі</em>',
+    color: '#7A9E7E',
+    text: 'Зараз у тебе є енергія і відчуття сенсу. Це добрий момент щоб подбати про профілактику — бо вигорання легше попередити ніж лікувати.',
+    insights: ['Зверни увагу на що витрачаєш найбільше енергії', 'Регулярний відпочинок — не розкіш а необхідність', 'Продовжуй те що тебе наповнює']
+  },
+  mid: {
+    label: 'Середній рівень',
+    title: 'Є ознаки <em>втоми</em>',
+    color: '#C9A84C',
+    text: 'Ти ще тримаєшся але ресурс виснажується. Це не вигорання — але сигнал що щось потребує уваги. Краще зреагувати зараз ніж чекати поки стане гірше.',
+    insights: ['Визнач що забирає найбільше сил і подивись чи можна це зменшити', 'Маленький відпочинок щодня важливіший за тижневу відпустку раз на рік', 'Поговори з кимось кому довіряєш — або зі мною']
+  },
+  high: {
+    label: 'Високий рівень',
+    title: 'Серйозне <em>вигорання</em>',
+    color: '#A63D4A',
+    text: 'Твій організм і психіка сигналізують що так більше не можна. Це не слабкість — це закономірний результат тривалого перевантаження. Тут важлива реальна допомога, а не просто відпустка.',
+    insights: ['Не чекай що само мине — вигорання не проходить без змін', 'Зміни потрібні не тільки в режимі але і в тому як ти ставишся до себе', 'Це добре піддається роботі — але потрібен супровід']
+  }
+};
+
+function select(step, val) {
+  answers[step] = val;
+  document.querySelectorAll(`#opts-${step} .option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('btn-' + step).disabled = false;
+}
+
+function updateProgress(step) {
+  document.getElementById('progress-fill').style.width = (Math.min((step-1)/5,1)*100)+'%';
+  document.getElementById('progress-text').textContent = step<=5 ? `Питання ${step} з 5` : 'Результат ✓';
+  if(step>5){ document.getElementById('progress-fill').style.background='#C9A84C'; document.getElementById('progress-fill').style.width='100%'; }
+}
+
+function nextStep(c) { document.getElementById('step-'+c).classList.remove('active'); document.getElementById('step-'+(c+1)).classList.add('active'); updateProgress(c+1); window.scrollTo({top:0,behavior:'smooth'}); }
+function prevStep(c) { document.getElementById('step-'+c).classList.remove('active'); document.getElementById('step-'+(c-1)).classList.add('active'); updateProgress(c-1); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function showResult() {
+  const total = Object.values(answers).reduce((s,v)=>s+v,0);
+  const max = 20;
+  const pct = Math.round((total/max)*100);
+  let level, t;
+  if(total <= 8) { level = levels.low; }
+  else if(total <= 14) { level = levels.mid; }
+  else { level = levels.high; }
+  t = level;
+
+  document.getElementById('step-5').classList.remove('active');
+  const r = document.getElementById('result');
+  r.classList.add('active');
+  r.innerHTML = `
+    <div class="score-visual">
+      <div class="score-num">${total}</div>
+      <div class="score-max">з 20 балів</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" id="score-fill" style="width:0%; background:${t.color}"></div>
+      </div>
+      <div class="score-label" style="color:${t.color}">${t.label}</div>
+    </div>
+    <div class="result-card">
+      <div class="result-type">${t.label}</div>
+      <div class="result-title">${t.title}</div>
+      <div class="result-text">${t.text}</div>
+      <div class="result-insights">${t.insights.map(i=>`<div class="insight">${i}</div>`).join('')}</div>
+    </div>
+    <div class="result-cta">
+      <div class="result-cta-text">Хочеш розібратись що за цим стоїть і що можна зробити? Напиши мені.</div>
+      <a href="https://t.me/Psikholog_Braslavskaya" class="btn-tg">Написати Альоні →</a>
+      <span class="btn-retry" onclick="location.reload()">Пройти ще раз</span>
+    </div>`;
+
+  setTimeout(() => {
+    document.getElementById('score-fill').style.width = pct+'%';
+  }, 100);
+
+  updateProgress(6);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
