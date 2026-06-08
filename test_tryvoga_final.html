@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест на тривогу — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #7B1C2A;
+    --burgundy-light: #9B3040;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --dark: #2C1A1D;
+    --muted: #8B6E72;
+    --light-line: #E8D9DC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--burgundy);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  .header-tag {
+    font-family: 'Manrope', sans-serif;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--burgundy);
+    padding: 48px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 42px);
+    color: var(--cream);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+    color: rgba(250,247,242,0.7);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* Main */
+  .main {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+
+  /* Instruction */
+  .instruction {
+    background: white;
+    border: 1px solid var(--light-line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .instruction p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .instruction p:last-child { margin-bottom: 0; }
+  .scale-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .scale-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--dark);
+  }
+  .scale-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--burgundy);
+    flex-shrink: 0;
+  }
+
+  /* Questions */
+  .questions { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+
+  .question-card {
+    background: white;
+    border: 1px solid var(--light-line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .question-card.answered { border-color: var(--gold); }
+
+  .q-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .q-text {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  @media(max-width: 480px) {
+    .options { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .option input { display: none; }
+  .option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px;
+    border: 1px solid var(--light-line);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .option label:hover {
+    border-color: var(--burgundy);
+    background: var(--cream);
+  }
+  .option input:checked + label {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+    color: white;
+  }
+  .option-num {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--burgundy);
+    line-height: 1;
+  }
+  .option input:checked + label .option-num { color: var(--gold-light); }
+  .option-text {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.3;
+    font-weight: 400;
+  }
+  .option input:checked + label .option-text { color: rgba(255,255,255,0.8); }
+
+  /* Button */
+  .btn-wrap { text-align: center; }
+  .btn {
+    background: var(--burgundy);
+    color: var(--cream);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 50px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 24px; }
+  .progress-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .progress-bar {
+    height: 3px;
+    background: var(--light-line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  /* Result */
+  .result { display: none; }
+  .result-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--light-line);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .result-top {
+    background: var(--burgundy);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .result-score-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .result-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    color: white;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .result-score-max {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  .result-body { padding: 28px; }
+  .result-level {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--burgundy);
+    margin-bottom: 12px;
+  }
+  .result-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .result-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding: 16px;
+    background: var(--cream);
+    border-radius: 8px;
+    font-style: italic;
+  }
+
+  .cta-card {
+    background: var(--cream-dark);
+    border: 1px solid var(--light-line);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--burgundy);
+    margin-bottom: 8px;
+  }
+  .cta-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .cta-link {
+    display: inline-block;
+    background: var(--burgundy);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .cta-link:hover { background: var(--burgundy-light); }
+
+  .retry-btn {
+    background: none;
+    border: 1px solid var(--light-line);
+    color: var(--muted);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.15s;
+  }
+  .retry-btn:hover { border-color: var(--burgundy); color: var(--burgundy); }
+
+  /* Footer */
+  .footer {
+    background: var(--burgundy);
+    padding: 24px;
+    text-align: center;
+  }
+  .footer-text {
+    font-size: 12px;
+    color: rgba(250,247,242,0.5);
+    letter-spacing: 0.05em;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-logo">AB Psychology</span>
+  <span class="header-tag">Живий кабінет</span>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Тест · GAD-7</div>
+  <h1 class="hero-title">Який рівень тривоги<br>ти відчуваєш зараз?</h1>
+  <p class="hero-subtitle">Це не діагноз. Це можливість побачити себе чесніше — і зрозуміти з чим саме варто працювати.</p>
+</div>
+
+<div class="main">
+
+  <div id="test-section">
+    <div class="instruction">
+      <p>За останні два тижні — як часто тебе турбувало наступне? Обери відповідь для кожного питання.</p>
+      <div class="scale-row">
+        <div class="scale-item"><div class="scale-num">0</div><span>Жодного разу</span></div>
+        <div class="scale-item"><div class="scale-num">1</div><span>Кілька днів</span></div>
+        <div class="scale-item"><div class="scale-num">2</div><span>Більше половини днів</span></div>
+        <div class="scale-item"><div class="scale-num">3</div><span>Майже щодня</span></div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label" id="progress-label">0 з 7 питань</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="questions" id="questions"></div>
+
+    <div class="btn-wrap">
+      <button class="btn" id="submit-btn" disabled onclick="showResult()">Дізнатися результат</button>
+    </div>
+  </div>
+
+  <div class="result" id="result-section">
+    <div class="result-card">
+      <div class="result-top">
+        <div class="result-score-label">Твій результат</div>
+        <div class="result-score" id="score-num">0</div>
+        <div class="result-score-max">з 21 балу</div>
+      </div>
+      <div class="result-body">
+        <div class="result-level" id="result-level"></div>
+        <div class="result-desc" id="result-desc"></div>
+        <div class="result-note">Який би результат ти не отримав — це не вирок і не діагноз. Це просто орієнтир. Те що ти відчуваєш — важливіше за будь-яку цифру.</div>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <div class="cta-title">Хочеш розібратися глибше?</div>
+      <div class="cta-text">Напиши анонімно — без імені, без контактів. Я читаю все і відповідаю щоп'ятниці голосом.</div>
+      <a class="cta-link" href="https://forms.gle/ni5apUb3L9xKtgwY8" target="_blank">Написати анонімно</a>
+    </div>
+
+    <button class="retry-btn" onclick="resetTest()">Пройти ще раз</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">AB Psychology</div>
+  <div class="footer-text">@Psikholog_Braslavskaya · @sam_sobi_psycholo_g_ab</div>
+</div>
+
+<script>
+const questions = [
+  'Відчуття нервозності, тривоги або внутрішньої напруги',
+  'Нездатність зупинити або контролювати хвилювання',
+  'Надмірне хвилювання через різні речі',
+  'Труднощі з розслабленням',
+  'Настільки сильне занепокоєння, що важко всидіти на місці',
+  'Роздратованість або дратівливість',
+  'Відчуття що може статися щось жахливе'
+];
+
+const options = [
+  { val: 0, text: 'Жодного разу' },
+  { val: 1, text: 'Кілька днів' },
+  { val: 2, text: 'Більше половини днів' },
+  { val: 3, text: 'Майже щодня' }
+];
+
+const results = [
+  { max: 4,  level: 'Мінімальна тривога', desc: 'Зараз твій рівень тривоги в межах норми. Але якщо щось відчуваєш — довіряй собі, а не цифрам. Іноді тіло знає більше ніж показує тест.' },
+  { max: 9,  level: 'Помірна тривога', desc: 'Тривога присутня і впливає на твій день. Ти, мабуть, вже помічаєш що щось відбирає енергію — але поки що справляєшся. Варто звернути увагу і почати працювати з цим зараз, поки не накопичилося більше.' },
+  { max: 14, level: 'Виражена тривога', desc: 'Тривога суттєво впливає на твоє життя. Швидше за все вона вже давно є — просто ти звик її тримати. Ця робота — саме для тебе. І добре що ти тут.' },
+  { max: 21, level: 'Висока тривога', desc: 'Тобі зараз непросто. Те що ти відчуваєш — реальне і важке. Я рада що ти зробив цей крок і не залишаєшся з цим наодинці. Будь ласка, не відкладай — напиши мені.' }
+];
+
+const answers = new Array(questions.length).fill(null);
+
+function buildQuestions() {
+  const container = document.getElementById('questions');
+  questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `card-${qi}`;
+    card.innerHTML = `
+      <div class="q-num">Питання ${qi + 1}</div>
+      <div class="q-text">${q}</div>
+      <div class="options">
+        ${options.map(o => `
+          <div class="option">
+            <input type="radio" name="q${qi}" id="q${qi}_${o.val}" value="${o.val}" onchange="selectAnswer(${qi}, ${o.val})">
+            <label for="q${qi}_${o.val}">
+              <span class="option-num">${o.val}</span>
+              <span class="option-text">${o.text}</span>
+            </label>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function selectAnswer(qi, val) {
+  answers[qi] = val;
+  document.getElementById(`card-${qi}`).classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a !== null).length;
+  const pct = (answered / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${answered} з ${questions.length} питань`;
+  document.getElementById('submit-btn').disabled = answered < questions.length;
+}
+
+function showResult() {
+  const total = answers.reduce((s, a) => s + a, 0);
+  const res = results.find(r => total <= r.max);
+  document.getElementById('score-num').textContent = total;
+  document.getElementById('result-level').textContent = res.level;
+  document.getElementById('result-desc').textContent = res.desc;
+  document.getElementById('test-section').style.display = 'none';
+  const resultEl = document.getElementById('result-section');
+  resultEl.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetTest() {
+  answers.fill(null);
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.querySelectorAll('.question-card').forEach(c => c.classList.remove('answered'));
+  updateProgress();
+  document.getElementById('test-section').style.display = 'block';
+  document.getElementById('result-section').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildQuestions();
+</script>
+</body>
+</html>
