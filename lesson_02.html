@@ -3,357 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Урок 2 — Я + ШІ: про себе глибше</title>
+<title>Урок 02 — Я + ШІ: про себе глибше</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bordo: #6B1520;
-    --bordo-light: #8B2535;
-    --cream: #F5EFE6;
-    --cream-dark: #EDE4D8;
-    --warm-white: #FDFAF6;
-    --text: #2A2220;
-    --muted: #8A7A74;
-    --line: #DDD4C8;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--cream); color: var(--text); font-family: 'Manrope', sans-serif; font-weight: 400; line-height: 1.8; font-size: 17px; }
-
-  .course-header { background: var(--bordo); color: var(--cream); padding: 56px 48px 48px; position: relative; overflow: hidden; }
-  .course-header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.04); }
-  .course-label { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.6); margin-bottom: 20px; }
-  .course-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 46px); font-weight: 400; line-height: 1.18; margin-bottom: 20px; position: relative; z-index: 1; }
-  .lesson-number { font-size: 13px; color: rgba(245,239,230,0.4); font-weight: 300; letter-spacing: 0.08em; }
-
-  .container { max-width: 740px; margin: 0 auto; padding: 60px 48px 88px; }
-
-  .lesson-intro { margin-bottom: 56px; }
-  .lesson-intro .lead { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--bordo); line-height: 1.65; margin-bottom: 24px; }
-  .lesson-intro p { margin-bottom: 18px; }
-
-  .divider { display: flex; align-items: center; gap: 16px; margin: 44px 0; }
-  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-  .divider-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bordo); opacity: 0.4; }
-
-  .section-title { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 600; color: var(--bordo); margin-bottom: 22px; }
-  p { margin-bottom: 18px; }
-  .highlight { font-weight: 600; color: var(--bordo); }
-
-  /* COMPARISON BLOCK */
-  .compare-block { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 36px 0; }
-  .compare-card { border-radius: 10px; padding: 24px 28px; }
-  .compare-card.bad { background: var(--cream-dark); border-left: 3px solid var(--muted); }
-  .compare-card.good { background: var(--bordo); border-left: 3px solid #C9A84C; }
-  .compare-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
-  .compare-card.bad .compare-label { color: var(--muted); }
-  .compare-card.good .compare-label { color: #C9A84C; }
-  .compare-question { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; line-height: 1.5; }
-  .compare-card.bad .compare-question { color: var(--text); }
-  .compare-card.good .compare-question { color: var(--cream); }
-  .compare-result { font-size: 13px; margin-top: 12px; line-height: 1.6; }
-  .compare-card.bad .compare-result { color: var(--muted); }
-  .compare-card.good .compare-result { color: rgba(245,239,230,0.7); }
-
-  /* THREE TYPES */
-  .types-block { margin: 36px 0; display: flex; flex-direction: column; gap: 12px; }
-  .type-row { display: flex; gap: 16px; align-items: flex-start; padding: 20px 24px; border-radius: 10px; background: var(--warm-white); border: 1px solid var(--line); }
-  .type-icon { font-size: 20px; flex-shrink: 0; width: 32px; text-align: center; margin-top: 2px; }
-  .type-body strong { font-size: 15px; font-weight: 600; color: var(--bordo); display: block; margin-bottom: 4px; }
-  .type-body p { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0; }
-
-  /* INFOGRAPHIC */
-  .infographic-wrap { margin: 48px 0; background: var(--warm-white); border-radius: 12px; padding: 8px; border: 1px solid var(--line); }
-
-  /* PRACTICE */
-  .practice-section { background: var(--warm-white); border-radius: 16px; padding: 44px; margin-top: 56px; border-top: 3px solid var(--bordo); }
-  .practice-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .practice-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--bordo); margin-bottom: 36px; }
-
-  .prompt-card { background: var(--cream); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
-  .prompt-number { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .prompt-name { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--bordo); margin-bottom: 16px; }
-  .prompt-text { background: var(--warm-white); border-radius: 8px; padding: 16px 20px; font-style: italic; font-size: 15.5px; color: var(--text); border-left: 3px solid var(--bordo); margin-bottom: 16px; line-height: 1.7; }
-  .prompt-insight { font-size: 14px; color: var(--muted); line-height: 1.7; }
-  .prompt-insight strong { color: var(--text); font-weight: 600; }
-
-  .final-question { background: var(--bordo); color: var(--cream); border-radius: 12px; padding: 40px 44px; margin-top: 36px; }
-  .fq-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.5); margin-bottom: 14px; }
-  .fq-question { font-family: 'Playfair Display', serif; font-size: 30px; font-style: italic; margin-bottom: 22px; line-height: 1.25; }
-  .final-question p { font-size: 15px; color: rgba(245,239,230,0.82); line-height: 1.75; margin-bottom: 14px; }
-  .final-question p:last-child { margin-bottom: 0; }
-
-  .cta-blocks { margin-top: 44px; display: flex; flex-direction: column; gap: 16px; }
-  .cta-card { display: flex; gap: 18px; align-items: flex-start; padding: 24px 28px; border-radius: 10px; }
-  .cta-site { background: var(--cream-dark); border: 1px solid var(--line); }
-  .cta-ai { background: var(--bordo); }
-  .cta-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-  .cta-body { display: flex; flex-direction: column; gap: 6px; }
-  .cta-site .cta-body strong { color: var(--text); font-size: 15px; font-weight: 600; }
-  .cta-site .cta-body p { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0; }
-  .cta-ai .cta-body strong { color: var(--cream); font-size: 15px; font-weight: 600; display: block; }
-  .cta-ai .cta-body p { font-size: 14px; color: rgba(245,239,230,0.75); line-height: 1.65; margin: 0; }
-  .cta-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--bordo); text-decoration: none; letter-spacing: 0.04em; }
-  .cta-link:hover { opacity: 0.75; }
-  .cta-link-dark { color: #C9A84C; }
-
-  .lesson-nav { display: flex; justify-content: space-between; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
-  .nav-btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s; }
-  .nav-prev { background: var(--cream-dark); color: var(--text); border: 1px solid var(--line); }
-  .nav-next { background: var(--bordo); color: var(--cream); }
-  .nav-next:hover { background: var(--bordo-light); }
-  .nav-prev:hover { background: var(--line); }
-
-  @media (max-width: 600px) {
-    .course-header { padding: 40px 28px 36px; }
-    .container { padding: 40px 24px 64px; }
-    .compare-block { grid-template-columns: 1fr; }
-    .practice-section { padding: 28px 24px; }
-    .prompt-card { padding: 22px 20px; }
-    .final-question { padding: 28px 24px; }
-  }
+  :root { --bordo:#6B1520; --bordo-light:#8B2535; --cream:#F5EFE6; --cream-dark:#EDE4D8; --warm-white:#FDFAF6; --text:#2A2220; --muted:#8A7A74; --line:#DDD4C8; --gold:#C9A84C; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--text); font-family:'Manrope',sans-serif; font-size:17px; line-height:1.8; }
+  .header { background:var(--bordo); color:var(--cream); padding:56px 48px 48px; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,0.04); }
+  .label { font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,239,230,0.6); margin-bottom:20px; }
+  .title { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,44px); font-weight:400; line-height:1.18; margin-bottom:16px; }
+  .num { font-size:13px; color:rgba(245,239,230,0.4); font-weight:300; letter-spacing:0.08em; }
+  .container { max-width:640px; margin:0 auto; padding:64px 48px 80px; }
+  .desc { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:var(--bordo); line-height:1.7; margin-bottom:52px; }
+  .lock-block { background:var(--bordo); border-radius:14px; padding:48px 44px; text-align:center; margin-bottom:48px; }
+  .lock-icon { font-size:32px; margin-bottom:16px; }
+  .lock-title { font-family:'Playfair Display',serif; font-size:24px; color:var(--cream); margin-bottom:10px; }
+  .lock-desc { font-size:14px; color:rgba(245,239,230,0.7); line-height:1.7; margin-bottom:24px; max-width:380px; margin-left:auto; margin-right:auto; }
+  .lock-price { font-family:'Playfair Display',serif; font-size:40px; color:var(--gold); margin-bottom:4px; }
+  .lock-period { font-size:12px; color:rgba(245,239,230,0.4); margin-bottom:24px; }
+  .lock-btn { display:inline-block; background:var(--gold); color:#1a0a0a; padding:15px 44px; border-radius:8px; font-size:15px; font-weight:700; text-decoration:none; }
+  .lock-btn:hover { opacity:0.88; }
+  .lock-note { font-size:11px; color:rgba(245,239,230,0.3); margin-top:12px; }
+  .divider { height:1px; background:var(--line); margin:48px 0; }
+  .nav { display:flex; justify-content:space-between; }
+  .nav a { font-size:13px; color:var(--muted); text-decoration:none; padding:10px 20px; border:1px solid var(--line); border-radius:8px; background:var(--warm-white); }
+  .nav a:hover { color:var(--bordo); border-color:var(--bordo); }
+  @media(max-width:600px) { .header{padding:40px 24px 36px;} .container{padding:40px 24px 64px;} .lock-block{padding:32px 24px;} }
 </style>
 </head>
 <body>
-
-<header class="course-header">
-  <div class="course-label">Я + ШІ: про себе глибше</div>
-  <h1 class="course-title">Урок 2.<br>Мистецтво правильного питання</h1>
-  <div class="lesson-number">Урок 2 із 6</div>
+<header class="header">
+  <div class="label">Я + ШІ: про себе глибше</div>
+  <h1 class="title">Урок 02.<br>Мистецтво правильного питання</h1>
+  <div class="num">Урок 2 із 6</div>
 </header>
-
 <main class="container">
-
-  <div class="lesson-intro">
-    <p class="lead">Є питання, які закривають. І є питання, які відкривають.</p>
-    <p>"Чому я такий/а?" — закриває. Воно веде в захист, у пояснення, у самозвинувачення.</p>
-    <p>"Що відбувається зі мною зараз?" — відкриває. Воно запрошує подивитись, а не виправдатись.</p>
-    <p>Різниця між ними — не в словах. У намірі. І в тому, скільки простору ти даєш собі для чесної відповіді.</p>
+  <p class="desc">Про різницю між питаннями, що закривають і питаннями, що відкривають.</p>
+  <div class="lock-block">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">Доступно після придбання курсу</div>
+    <div class="lock-desc">Текст уроку, практика, промпти і інфографіка — відкриваються після оплати.</div>
+    <div class="lock-price">1 500 грн</div>
+    <div class="lock-period">6 уроків · доступ назавжди</div>
+    <a href="https://t.me/Psikholog_Braslavskaya" class="lock-btn" target="_blank">Придбати курс →</a>
+    <div class="lock-note">Напиши мені в Telegram — отримаєш доступ одразу</div>
   </div>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Чому питання важливіше за відповідь</h2>
-
-  <p>Ми звикли шукати відповіді. Гуглити. Питати поради. Чекати, що хтось скаже як правильно.</p>
-  <p>Але правильна відповідь на неправильне питання не допомагає. Вона просто заспокоює — на якийсь час.</p>
-
-  <p>Уяви: ти вводиш у пошук <span class="highlight">"чому я нещасна/нещасний"</span>. Гугл видає тисячі сторінок — статті про причини, травми, дитинство, нейрохімію. Ти читаєш. Копаєш. Знаходиш себе в кожному другому абзаці.</p>
-  <p>І залишаєшся на місці. Тому що це питання веде вглиб ями — не до виходу з неї. Як страус, який ховає голову в пісок: нічого не видно, але відчуття зайнятості є.</p>
-
-  <div class="compare-block">
-    <div class="compare-card bad">
-      <div class="compare-label">Питання, що закриває</div>
-      <div class="compare-question">"Чому я нещасна/нещасний?"</div>
-      <div class="compare-result">→ Пошук причин. Аналіз минулого. Відчуття тупика.</div>
-    </div>
-    <div class="compare-card good">
-      <div class="compare-label">Питання, що відкриває</div>
-      <div class="compare-question">"Як мені стати щасливим/щасливою?"</div>
-      <div class="compare-result">→ Напрямок. Дія. Простір для змін.</div>
-    </div>
+  <div class="divider"></div>
+  <div class="nav">
+    <a href="course_index.html">← До програми курсу</a>
+    <a href="lesson_03.html">Наступний →</a>
   </div>
-
-  <p>Одна зміна у формулюванні — і голова починає працювати зовсім інакше. <span class="highlight">Питання задає напрямок мислення. Куди питання — туди й думка.</span></p>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Три типи питань</h2>
-
-  <div class="types-block">
-    <div class="type-row">
-      <div class="type-icon">⬇️</div>
-      <div class="type-body">
-        <strong>Питання назад — у пошук причин</strong>
-        <p>"Чому так сталось?" "Хто винен?" "Чому завжди зі мною?" — ведуть у минуле і не дають виходу.</p>
-      </div>
-    </div>
-    <div class="type-row">
-      <div class="type-icon">🔄</div>
-      <div class="type-body">
-        <strong>Питання по колу — нескінченний аналіз</strong>
-        <p>"А якби я тоді інакше?" "А може це означає що я..." — крутяться на місці без результату.</p>
-      </div>
-    </div>
-    <div class="type-row">
-      <div class="type-icon">➡️</div>
-      <div class="type-body">
-        <strong>Питання вперед — до дії і розуміння</strong>
-        <p>"Що я можу зробити з цим зараз?" "Чого я насправді хочу в цій ситуації?" — відкривають простір.</p>
-      </div>
-    </div>
-  </div>
-
-  <p>Ніхто не навчив нас питати правильно. Ми копіюємо питання з оточення — і разом з ними копіюємо їхній тупик.</p>
-
-  <!-- INFOGRAPHIC -->
-  <div class="infographic-wrap">
-    <svg width="100%" viewBox="0 0 680 760" role="img">
-      <title>Три типи питань — інфографіка</title>
-      <desc>Колаж-схема з трьома типами питань навколо центральної ідеї уроку</desc>
-      <defs>
-        <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-
-      <rect x="0" y="0" width="680" height="760" fill="#FDFAF6"/>
-
-      <!-- Tape strips -->
-      <rect x="215" y="98" width="82" height="11" rx="2" fill="#C9A84C" opacity="0.32" transform="rotate(-2 215 98)"/>
-      <rect x="375" y="95" width="70" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(3 375 95)"/>
-      <rect x="42" y="310" width="76" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(-1 42 310)"/>
-      <rect x="540" y="305" width="76" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(2 540 305)"/>
-      <rect x="265" y="638" width="72" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(-1.5 265 638)"/>
-
-      <!-- CENTER -->
-      <rect x="210" y="280" width="260" height="180" rx="4" fill="#6B1520"/>
-      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.8" x="340" y="308" text-anchor="middle" letter-spacing="3">УРОК 2</text>
-      <text font-family="Georgia,serif" font-size="22" font-weight="700" fill="#FAF7F2" x="340" y="342" text-anchor="middle">МИСТЕЦТВО</text>
-      <text font-family="Georgia,serif" font-size="22" font-weight="700" fill="#FAF7F2" x="340" y="368" text-anchor="middle">ПРАВИЛЬНОГО</text>
-      <text font-family="Georgia,serif" font-size="22" font-weight="700" fill="#FAF7F2" x="340" y="394" text-anchor="middle">ПИТАННЯ</text>
-      <line x1="255" y1="408" x2="425" y2="408" stroke="#C9A84C" stroke-width="1" opacity="0.45"/>
-      <text font-family="Georgia,serif" font-size="12" font-style="italic" fill="#FAF7F2" opacity="0.65" x="340" y="434" text-anchor="middle">куди питання — туди й думка</text>
-
-      <!-- Arrows -->
-      <line x1="255" y1="310" x2="175" y2="215" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="425" y1="310" x2="510" y2="215" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="215" y1="380" x2="148" y2="390" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="465" y1="380" x2="534" y2="390" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="340" y1="460" x2="340" y2="630" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="285" y1="458" x2="165" y2="545" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-      <line x1="395" y1="458" x2="518" y2="545" stroke="#6B1520" stroke-width="1.2" opacity="0.4" marker-end="url(#arr3)"/>
-
-      <!-- Note 1 top-left: закриває -->
-      <rect x="28" y="90" width="205" height="118" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 28 90)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="130" y="116" text-anchor="middle" transform="rotate(-2 130 116)">питання, що закриває</text>
-      <line x1="48" y1="126" x2="218" y2="126" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 130 126)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" font-style="italic" fill="#6B1520" x="44" y="144" transform="rotate(-2 44 144)">"Чому я нещасна?"</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="44" y="162" transform="rotate(-2 44 162)">Веде в пошук причин</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="44" y="178" transform="rotate(-2 44 178)">і залишає на місці</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#8A7A74" x="44" y="196" transform="rotate(-2 44 196)">→ тупик</text>
-
-      <!-- Note 2 top-right: відкриває -->
-      <rect x="448" y="88" width="205" height="118" rx="3" fill="#6B1520" transform="rotate(2 448 88)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#C9A84C" x="550" y="114" text-anchor="middle" transform="rotate(2 550 114)">питання, що відкриває</text>
-      <line x1="465" y1="124" x2="635" y2="124" stroke="#C9A84C" stroke-width="0.5" opacity="0.35" transform="rotate(2 550 124)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" font-style="italic" fill="#FAF7F2" x="460" y="142" transform="rotate(2 460 142)">"Як мені стати щасливим?"</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="460" y="160" transform="rotate(2 460 160)">Дає напрямок</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="460" y="178" transform="rotate(2 460 178)">і простір для дії</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#C9A84C" x="460" y="196" transform="rotate(2 460 196)">→ рух</text>
-
-      <!-- Note 3 left: по колу -->
-      <rect x="18" y="342" width="188" height="100" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-1.5 18 342)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="112" y="366" text-anchor="middle" transform="rotate(-1.5 112 366)">по колу</text>
-      <line x1="34" y1="376" x2="196" y2="376" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-1.5 112 376)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="30" y="394" transform="rotate(-1.5 30 394)">"А якби я тоді..."</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="30" y="410" transform="rotate(-1.5 30 410)">"А може це значить..."</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#8A7A74" x="30" y="428" transform="rotate(-1.5 30 428)">нескінченний аналіз</text>
-
-      <!-- Note 4 right: вперед -->
-      <rect x="474" y="340" width="188" height="100" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(1.5 474 340)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="568" y="364" text-anchor="middle" transform="rotate(1.5 568 364)">вперед</text>
-      <line x1="488" y1="374" x2="652" y2="374" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(1.5 568 374)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="482" y="392" transform="rotate(1.5 482 392)">"Що я можу зробити?"</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="482" y="408" transform="rotate(1.5 482 408)">"Чого я насправді хочу?"</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="482" y="426" transform="rotate(1.5 482 426)">→ до дії</text>
-
-      <!-- Note 5 bottom-left: ШІ -->
-      <rect x="28" y="518" width="196" height="110" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 28 518)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="126" y="544" text-anchor="middle" transform="rotate(-2 126 544)">ШІ як індикатор</text>
-      <line x1="40" y1="554" x2="214" y2="554" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 126 554)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="572" transform="rotate(-2 40 572)">Якщо відповідь</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="588" transform="rotate(-2 40 588)">не влаштовує —</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="604" transform="rotate(-2 40 604)">питання було не те</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#8A7A74" x="40" y="620" transform="rotate(-2 40 620)">переформулюй</text>
-
-      <!-- Note 6 bottom-right: опір -->
-      <rect x="454" y="516" width="196" height="110" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(2 454 516)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="552" y="542" text-anchor="middle" transform="rotate(2 552 542)">справжнє питання</text>
-      <line x1="462" y1="552" x2="638" y2="552" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(2 552 552)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="570" transform="rotate(2 462 570)">Те, що викликає</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="586" transform="rotate(2 462 586)">найбільший відгук</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="602" transform="rotate(2 462 602)">або найбільший</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="462" y="618" transform="rotate(2 462 618)">опір — твоє</text>
-
-      <!-- Note 7 bottom-center -->
-      <rect x="238" y="638" width="204" height="88" rx="3" fill="#6B1520" transform="rotate(-1 238 638)"/>
-      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.85" x="340" y="662" text-anchor="middle" transform="rotate(-1 340 662)" letter-spacing="2">ГОЛОВНЕ ПИТАННЯ</text>
-      <text font-family="Georgia,serif" font-size="18" font-style="italic" fill="#FAF7F2" x="340" y="692" text-anchor="middle" transform="rotate(-1 340 692)">Що змінилось?</text>
-      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.6" x="340" y="712" text-anchor="middle" transform="rotate(-1 340 712)">після кожної практики</text>
-
-      <circle cx="340" cy="274" r="3" fill="#6B1520" opacity="0.28"/>
-      <circle cx="340" cy="468" r="3" fill="#6B1520" opacity="0.28"/>
-    </svg>
-  </div>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Де тут ШІ</h2>
-  <p>ШІ відповідає на те, що ти питаєш. Точно. Буквально.</p>
-  <p>Це його обмеження — і водночас його цінність для самопізнання. Тому що коли ти бачиш відповідь, яка тебе не влаштовує — це сигнал: питання було не те.</p>
-  <p>Спробуй переформулювати. Задай те саме по-іншому. І подивись — що змінилось у відповіді, і що змінилось у тобі.</p>
-  <p>Саме цьому навчений мій AI-асистент — не просто відповідати, а повертати питання назад у формі, яка відкриває більше.</p>
-
-  <!-- PRACTICE -->
-  <div class="practice-section">
-    <div class="practice-label">Практика</div>
-    <div class="practice-title">Урок 2. Своє питання</div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 01</div>
-      <div class="prompt-name">Знайди своє справжнє питання</div>
-      <div class="prompt-text">"Я зараз думаю про [ситуація або тема]. Допоможи мені знайти справжнє питання — те, яке я насправді хочу прояснити, але можливо формулюю не точно."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> ШІ запропонує кілька варіантів питань. Яке з них викликає найбільший відгук — або найбільший опір? Саме воно — твоє.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 02</div>
-      <div class="prompt-name">Перевір своє питання</div>
-      <div class="prompt-text">Візьми будь-яке питання, яке зараз крутиться в голові. Спочатку задай як є. Потім:<br><br>"Переформулюй моє питання '[питання]' так, щоб воно вело до дії або розуміння, а не до пояснень і звинувачень."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> наскільки різними стали відповіді? Яка версія питання відчувається важчою — але чеснішою? Різний промпт — різне дзеркало, різний ти.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 03</div>
-      <div class="prompt-name">Питання, якого уникаєш</div>
-      <div class="prompt-text">"Є питання, яке я уникаю собі ставити. Допоможи мені його знайти — через те, що я зараз відчуваю або про що думаю найчастіше."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> це найскладніший промпт уроку. Відповідь може здивувати або викликати опір. Не поспішай. Посиди з нею. Де дискомфорт — там матеріал.</div>
-    </div>
-
-    <div class="final-question">
-      <div class="fq-label">Після практики — зупинись</div>
-      <div class="fq-question">Що змінилось?</div>
-      <p>У першому уроці ми дивились як ти думаєш. У цьому — як ти питаєш.</p>
-      <p>Питання — це не просто слова. Це фокус твоєї уваги. Туди, куди ти питаєш — туди йде енергія.</p>
-      <p>Після цієї практики закрий очі. І запитай себе: яке питання я ставлю собі найчастіше? Воно відкриває — чи закриває?</p>
-      <p>Запиши. Це важливіше за будь-яку відповідь.</p>
-    </div>
-  </div>
-
-  <div class="cta-blocks">
-    <div class="cta-card cta-site">
-      <div class="cta-icon">🌿</div>
-      <div class="cta-body">
-        <strong>Всі продукти AB Psychology</strong>
-        <p>Групова терапія, міні-курси, емоційний журнал, діагностичні сесії та індивідуальна робота — все в одному місці.</p>
-        <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/" class="cta-link" target="_blank">Перейти на сайт →</a>
-      </div>
-    </div>
-    <div class="cta-card cta-ai">
-      <div class="cta-icon">🤖</div>
-      <div class="cta-body">
-        <strong>AI-асистент AB Psychology</strong>
-        <p>Хочеш проходити практики з асистентом, якого я навчила обходити опір і ставити точні питання? Він доступний у закритому каналі "Живий кабінет".</p>
-        <a href="https://t.me/AB_Psychology_bot" class="cta-link cta-link-dark" target="_blank">Підписатись на канал →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="lesson-nav">
-    <a href="lesson_01.html" class="nav-btn nav-prev">← Урок 1</a>
-    <a href="lesson_03.html" class="nav-btn nav-next">Урок 3 →</a>
-  </div>
-
 </main>
 </body>
 </html>

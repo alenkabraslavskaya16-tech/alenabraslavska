@@ -3,333 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Урок 4 — Я + ШІ: про себе глибше</title>
+<title>Урок 04 — Я + ШІ: про себе глибше</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bordo: #6B1520;
-    --bordo-light: #8B2535;
-    --cream: #F5EFE6;
-    --cream-dark: #EDE4D8;
-    --warm-white: #FDFAF6;
-    --text: #2A2220;
-    --muted: #8A7A74;
-    --line: #DDD4C8;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--cream); color: var(--text); font-family: 'Manrope', sans-serif; font-weight: 400; line-height: 1.8; font-size: 17px; }
-
-  .course-header { background: var(--bordo); color: var(--cream); padding: 56px 48px 48px; position: relative; overflow: hidden; }
-  .course-header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.04); }
-  .course-label { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.6); margin-bottom: 20px; }
-  .course-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 46px); font-weight: 400; line-height: 1.18; margin-bottom: 20px; position: relative; z-index: 1; }
-  .lesson-number { font-size: 13px; color: rgba(245,239,230,0.4); font-weight: 300; letter-spacing: 0.08em; }
-
-  .container { max-width: 740px; margin: 0 auto; padding: 60px 48px 88px; }
-
-  .lesson-intro { margin-bottom: 56px; }
-  .lesson-intro .lead { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--bordo); line-height: 1.65; margin-bottom: 24px; }
-  .lesson-intro p { margin-bottom: 18px; }
-
-  .divider { display: flex; align-items: center; gap: 16px; margin: 44px 0; }
-  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-  .divider-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bordo); opacity: 0.4; }
-
-  .section-title { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 600; color: var(--bordo); margin-bottom: 22px; }
-  p { margin-bottom: 18px; }
-  .highlight { font-weight: 600; color: var(--bordo); }
-
-  .definition { background: var(--bordo); color: var(--cream); border-radius: 12px; padding: 32px 36px; margin: 36px 0; }
-  .definition p { font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; line-height: 1.6; color: var(--cream); margin: 0; }
-  .definition p span { color: #C9A84C; }
-
-  /* FOUR ANGLES */
-  .angles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 36px 0; }
-  .angle-card { padding: 20px 22px; border-radius: 10px; background: var(--warm-white); border: 1px solid var(--line); }
-  .angle-card:nth-child(1) { border-top: 2px solid #6B1520; }
-  .angle-card:nth-child(2) { border-top: 2px solid #C9A84C; }
-  .angle-card:nth-child(3) { border-top: 2px solid #8A7A74; }
-  .angle-card:nth-child(4) { border-top: 2px solid #EDE4D8; border-top-color: var(--bordo); opacity: 0.85; }
-  .angle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .angle-title { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--bordo); margin-bottom: 6px; }
-  .angle-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-  .infographic-wrap { margin: 48px 0; background: var(--warm-white); border-radius: 12px; padding: 8px; border: 1px solid var(--line); }
-
-  .practice-section { background: var(--warm-white); border-radius: 16px; padding: 44px; margin-top: 56px; border-top: 3px solid var(--bordo); }
-  .practice-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .practice-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--bordo); margin-bottom: 36px; }
-  .prompt-card { background: var(--cream); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
-  .prompt-number { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .prompt-name { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--bordo); margin-bottom: 16px; }
-  .prompt-text { background: var(--warm-white); border-radius: 8px; padding: 16px 20px; font-style: italic; font-size: 15.5px; color: var(--text); border-left: 3px solid var(--bordo); margin-bottom: 16px; line-height: 1.7; }
-  .prompt-insight { font-size: 14px; color: var(--muted); line-height: 1.7; }
-  .prompt-insight strong { color: var(--text); font-weight: 600; }
-
-  .final-question { background: var(--bordo); color: var(--cream); border-radius: 12px; padding: 40px 44px; margin-top: 36px; }
-  .fq-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.5); margin-bottom: 14px; }
-  .fq-question { font-family: 'Playfair Display', serif; font-size: 30px; font-style: italic; margin-bottom: 22px; line-height: 1.25; }
-  .final-question p { font-size: 15px; color: rgba(245,239,230,0.82); line-height: 1.75; margin-bottom: 14px; }
-  .final-question p:last-child { margin-bottom: 0; }
-
-  .cta-blocks { margin-top: 44px; display: flex; flex-direction: column; gap: 16px; }
-  .cta-card { display: flex; gap: 18px; align-items: flex-start; padding: 24px 28px; border-radius: 10px; }
-  .cta-site { background: var(--cream-dark); border: 1px solid var(--line); }
-  .cta-ai { background: var(--bordo); }
-  .cta-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-  .cta-body { display: flex; flex-direction: column; gap: 6px; }
-  .cta-site .cta-body strong { color: var(--text); font-size: 15px; font-weight: 600; }
-  .cta-site .cta-body p { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0; }
-  .cta-ai .cta-body strong { color: var(--cream); font-size: 15px; font-weight: 600; display: block; }
-  .cta-ai .cta-body p { font-size: 14px; color: rgba(245,239,230,0.75); line-height: 1.65; margin: 0; }
-  .cta-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--bordo); text-decoration: none; }
-  .cta-link:hover { opacity: 0.75; }
-  .cta-link-dark { color: #C9A84C; }
-
-  .lesson-nav { display: flex; justify-content: space-between; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
-  .nav-btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s; }
-  .nav-prev { background: var(--cream-dark); color: var(--text); border: 1px solid var(--line); }
-  .nav-next { background: var(--bordo); color: var(--cream); }
-  .nav-next:hover { background: var(--bordo-light); }
-  .nav-prev:hover { background: var(--line); }
-
-  @media (max-width: 600px) {
-    .course-header { padding: 40px 28px 36px; }
-    .container { padding: 40px 24px 64px; }
-    .angles-grid { grid-template-columns: 1fr; }
-    .practice-section { padding: 28px 24px; }
-    .prompt-card { padding: 22px 20px; }
-    .final-question { padding: 28px 24px; }
-  }
+  :root { --bordo:#6B1520; --bordo-light:#8B2535; --cream:#F5EFE6; --cream-dark:#EDE4D8; --warm-white:#FDFAF6; --text:#2A2220; --muted:#8A7A74; --line:#DDD4C8; --gold:#C9A84C; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--text); font-family:'Manrope',sans-serif; font-size:17px; line-height:1.8; }
+  .header { background:var(--bordo); color:var(--cream); padding:56px 48px 48px; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,0.04); }
+  .label { font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,239,230,0.6); margin-bottom:20px; }
+  .title { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,44px); font-weight:400; line-height:1.18; margin-bottom:16px; }
+  .num { font-size:13px; color:rgba(245,239,230,0.4); font-weight:300; letter-spacing:0.08em; }
+  .container { max-width:640px; margin:0 auto; padding:64px 48px 80px; }
+  .desc { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:var(--bordo); line-height:1.7; margin-bottom:52px; }
+  .lock-block { background:var(--bordo); border-radius:14px; padding:48px 44px; text-align:center; margin-bottom:48px; }
+  .lock-icon { font-size:32px; margin-bottom:16px; }
+  .lock-title { font-family:'Playfair Display',serif; font-size:24px; color:var(--cream); margin-bottom:10px; }
+  .lock-desc { font-size:14px; color:rgba(245,239,230,0.7); line-height:1.7; margin-bottom:24px; max-width:380px; margin-left:auto; margin-right:auto; }
+  .lock-price { font-family:'Playfair Display',serif; font-size:40px; color:var(--gold); margin-bottom:4px; }
+  .lock-period { font-size:12px; color:rgba(245,239,230,0.4); margin-bottom:24px; }
+  .lock-btn { display:inline-block; background:var(--gold); color:#1a0a0a; padding:15px 44px; border-radius:8px; font-size:15px; font-weight:700; text-decoration:none; }
+  .lock-btn:hover { opacity:0.88; }
+  .lock-note { font-size:11px; color:rgba(245,239,230,0.3); margin-top:12px; }
+  .divider { height:1px; background:var(--line); margin:48px 0; }
+  .nav { display:flex; justify-content:space-between; }
+  .nav a { font-size:13px; color:var(--muted); text-decoration:none; padding:10px 20px; border:1px solid var(--line); border-radius:8px; background:var(--warm-white); }
+  .nav a:hover { color:var(--bordo); border-color:var(--bordo); }
+  @media(max-width:600px) { .header{padding:40px 24px 36px;} .container{padding:40px 24px 64px;} .lock-block{padding:32px 24px;} }
 </style>
 </head>
 <body>
-
-<header class="course-header">
-  <div class="course-label">Я + ШІ: про себе глибше</div>
-  <h1 class="course-title">Урок 4.<br>Візуальний досвід і широта</h1>
-  <div class="lesson-number">Урок 4 із 6</div>
+<header class="header">
+  <div class="label">Я + ШІ: про себе глибше</div>
+  <h1 class="title">Урок 04.<br>Візуальний досвід і широта</h1>
+  <div class="num">Урок 4 із 6</div>
 </header>
-
 <main class="container">
-
-  <div class="lesson-intro">
-    <p class="lead">Є люди, з якими цікаво говорити про що завгодно.</p>
-    <p>Вони бачать зв'язки там, де інші — просто факти. Помічають нюанси. Дивляться на одну річ з десяти сторін.</p>
-    <p>Це не про інтелект. <span class="highlight">Це про візуальний досвід і широту погляду.</span></p>
-    <p>Візуальний досвід — це досвід зустрічі з різним. З різними ідеями, людьми, підходами, культурами, думками. Чим більше ти бачив/бачила — тим ширша твоя внутрішня карта світу. І тим точніше ти орієнтуєшся в собі.</p>
+  <p class="desc">Про те, як розширювати внутрішню карту через зустріч з несхожим.</p>
+  <div class="lock-block">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">Доступно після придбання курсу</div>
+    <div class="lock-desc">Текст уроку, практика, промпти і інфографіка — відкриваються після оплати.</div>
+    <div class="lock-price">1 500 грн</div>
+    <div class="lock-period">6 уроків · доступ назавжди</div>
+    <a href="https://t.me/Psikholog_Braslavskaya" class="lock-btn" target="_blank">Придбати курс →</a>
+    <div class="lock-note">Напиши мені в Telegram — отримаєш доступ одразу</div>
   </div>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Чому ширина погляду важлива для самопізнання</h2>
-
-  <p>Ми пізнаємо себе через контраст. Через зіткнення з тим, що не схоже на нас.</p>
-  <p>Якщо ти все життя читаєш одне й те саме, спілкуєшся з однаковими людьми, дивишся однакові фільми — твоя картина себе буде вузькою. Не тому що ти погана людина. А тому що немає дзеркала, яке показує інший кут.</p>
-
-  <div class="definition">
-    <p>Візуальний досвід — це не про кількість інформації. Це про <span>якість зустрічі з різним.</span> Можна переглянути тисячу фільмів і нічого не помітити. А можна прочитати одну книгу — і побачити себе інакше.</p>
+  <div class="divider"></div>
+  <div class="nav">
+    <a href="course_index.html">← До програми курсу</a>
+    <a href="lesson_05.html">Наступний →</a>
   </div>
-
-  <p>Різниця — в тому, чи ти зупиняєшся. Чи ти запитуєш себе: що це говорить про мене?</p>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Чотири кути на одну тему</h2>
-  <p>Одна й та сама ситуація — і чотири абсолютно різних погляди. Ось де починається візуальний досвід.</p>
-
-  <div class="angles-grid">
-    <div class="angle-card">
-      <div class="angle-label">Кут 1</div>
-      <div class="angle-title">Психолог</div>
-      <div class="angle-desc">Що це говорить про внутрішній стан, патерни поведінки, минулий досвід?</div>
-    </div>
-    <div class="angle-card">
-      <div class="angle-label">Кут 2</div>
-      <div class="angle-title">Філософ</div>
-      <div class="angle-desc">Які цінності і переконання стоять за цією ситуацією? Що є істиною тут?</div>
-    </div>
-    <div class="angle-card">
-      <div class="angle-label">Кут 3</div>
-      <div class="angle-title">Інша культура</div>
-      <div class="angle-desc">Як на це дивляться люди з іншим культурним кодом? Що для них очевидно — а для нас ні?</div>
-    </div>
-    <div class="angle-card">
-      <div class="angle-label">Кут 4</div>
-      <div class="angle-title">Протилежні переконання</div>
-      <div class="angle-desc">Як аргументує свою позицію людина, яка думає інакше? Що вона бачить, чого не бачу я?</div>
-    </div>
-  </div>
-
-  <!-- INFOGRAPHIC -->
-  <div class="infographic-wrap">
-    <svg width="100%" viewBox="0 0 680 760" role="img">
-      <title>Візуальний досвід і широта — інфографіка до Уроку 4</title>
-      <desc>Колаж-схема з ключовими ідеями про візуальний досвід і розширення внутрішньої карти</desc>
-      <defs>
-        <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-
-      <rect x="0" y="0" width="680" height="760" fill="#FDFAF6"/>
-
-      <!-- Tape -->
-      <rect x="216" y="97" width="82" height="11" rx="2" fill="#C9A84C" opacity="0.32" transform="rotate(-2 216 97)"/>
-      <rect x="374" y="94" width="70" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(2.5 374 94)"/>
-      <rect x="36" y="307" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(-1.5 36 307)"/>
-      <rect x="542" y="304" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(2 542 304)"/>
-      <rect x="58" y="534" width="74" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(-2 58 534)"/>
-      <rect x="514" y="531" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(1.5 514 531)"/>
-      <rect x="260" y="639" width="76" height="11" rx="2" fill="#C9A84C" opacity="0.28" transform="rotate(-1 260 639)"/>
-
-      <!-- CENTER -->
-      <rect x="206" y="276" width="268" height="188" rx="4" fill="#6B1520"/>
-      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.8" x="340" y="304" text-anchor="middle" letter-spacing="3">УРОК 4</text>
-      <text font-family="Georgia,serif" font-size="22" font-weight="700" fill="#FAF7F2" x="340" y="338" text-anchor="middle">ВІЗУАЛЬНИЙ ДОСВІД</text>
-      <line x1="252" y1="352" x2="428" y2="352" stroke="#C9A84C" stroke-width="1" opacity="0.4"/>
-      <text font-family="Georgia,serif" font-size="17" font-weight="400" fill="#FAF7F2" x="340" y="378" text-anchor="middle">і широта</text>
-      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.55" x="340" y="408" text-anchor="middle">пізнаємо себе через контраст</text>
-      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.45" x="340" y="428" text-anchor="middle">через зустріч з несхожим</text>
-      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.35" x="340" y="448" text-anchor="middle">через інший кут</text>
-
-      <!-- Arrows -->
-      <line x1="252" y1="306" x2="172" y2="213" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="428" y1="306" x2="512" y2="213" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="213" y1="373" x2="143" y2="386" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="467" y1="373" x2="539" y2="386" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="263" y1="460" x2="173" y2="544" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="417" y1="460" x2="510" y2="544" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-      <line x1="340" y1="464" x2="340" y2="632" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr5)"/>
-
-      <!-- Note 1 top-left -->
-      <rect x="23" y="88" width="206" height="114" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 23 88)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="126" y="114" text-anchor="middle" transform="rotate(-2 126 114)">внутрішня карта</text>
-      <line x1="38" y1="124" x2="218" y2="124" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 126 124)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="36" y="142" transform="rotate(-2 36 142)">Чим ширша карта —</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="36" y="158" transform="rotate(-2 36 158)">тим точніше ти</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="36" y="174" transform="rotate(-2 36 174)">орієнтуєшся в собі</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#8A7A74" x="36" y="190" transform="rotate(-2 36 190)">і в житті</text>
-
-      <!-- Note 2 top-right -->
-      <rect x="452" y="86" width="206" height="114" rx="3" fill="#6B1520" transform="rotate(2 452 86)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#C9A84C" x="555" y="112" text-anchor="middle" transform="rotate(2 555 112)">якість зустрічі</text>
-      <line x1="464" y1="122" x2="640" y2="122" stroke="#C9A84C" stroke-width="0.5" opacity="0.3" transform="rotate(2 555 122)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="462" y="140" transform="rotate(2 462 140)">Не кількість —</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="462" y="156" transform="rotate(2 462 156)">а зупинка і питання:</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#C9A84C" x="462" y="172" transform="rotate(2 462 172)">"що це говорить</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#C9A84C" x="462" y="188" transform="rotate(2 462 188)">про мене?"</text>
-
-      <!-- Note 3 left -->
-      <rect x="14" y="344" width="190" height="102" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-1.5 14 344)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="109" y="369" text-anchor="middle" transform="rotate(-1.5 109 369)">контраст</text>
-      <line x1="28" y1="379" x2="196" y2="379" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-1.5 109 379)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="26" y="396" transform="rotate(-1.5 26 396)">Ми пізнаємо себе</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="26" y="412" transform="rotate(-1.5 26 412)">через зіткнення</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="26" y="428" transform="rotate(-1.5 26 428)">з несхожим</text>
-
-      <!-- Note 4 right -->
-      <rect x="478" y="342" width="190" height="102" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(1.5 478 342)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="573" y="367" text-anchor="middle" transform="rotate(1.5 573 367)">сліпі зони</text>
-      <line x1="490" y1="377" x2="658" y2="377" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(1.5 573 377)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="486" y="394" transform="rotate(1.5 486 394)">Де хочеться</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="486" y="410" transform="rotate(1.5 486 410)">сказати "ні" до</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="486" y="426" transform="rotate(1.5 486 426)">кінця — там межа</text>
-
-      <!-- Note 5 bottom-left -->
-      <rect x="28" y="517" width="198" height="108" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 28 517)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="127" y="543" text-anchor="middle" transform="rotate(-2 127 543)">чотири кути</text>
-      <line x1="42" y1="553" x2="218" y2="553" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 127 553)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="571" transform="rotate(-2 40 571)">психолог · філософ</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="587" transform="rotate(-2 40 587)">інша культура</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="40" y="603" transform="rotate(-2 40 603)">протилежні</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#8A7A74" x="40" y="619" transform="rotate(-2 40 619)">переконання</text>
-
-      <!-- Note 6 bottom-right -->
-      <rect x="454" y="515" width="198" height="108" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(2 454 515)"/>
-      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="553" y="541" text-anchor="middle" transform="rotate(2 553 541)">відкритість vs захист</text>
-      <line x1="462" y1="551" x2="638" y2="551" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(2 553 551)"/>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="569" transform="rotate(2 462 569)">Відкритість — де</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="585" transform="rotate(2 462 585)">готовий/а рости</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="462" y="601" transform="rotate(2 462 601)">Захист — де</text>
-      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="462" y="617" transform="rotate(2 462 617)">найцікавіше</text>
-
-      <!-- Note 7 bottom-center -->
-      <rect x="236" y="637" width="208" height="90" rx="3" fill="#6B1520" transform="rotate(-1 236 637)"/>
-      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.85" x="340" y="661" text-anchor="middle" transform="rotate(-1 340 661)" letter-spacing="2">ГОЛОВНЕ ПИТАННЯ</text>
-      <text font-family="Georgia,serif" font-size="18" font-style="italic" fill="#FAF7F2" x="340" y="691" text-anchor="middle" transform="rotate(-1 340 691)">Що змінилось?</text>
-      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.6" x="340" y="711" text-anchor="middle" transform="rotate(-1 340 711)">після кожної практики</text>
-
-      <circle cx="340" cy="270" r="3" fill="#6B1520" opacity="0.28"/>
-      <circle cx="340" cy="470" r="3" fill="#6B1520" opacity="0.28"/>
-    </svg>
-  </div>
-
-  <div class="divider"><div class="divider-dot"></div></div>
-
-  <h2 class="section-title">Як ШІ розширює карту</h2>
-  <p>ШІ зберігає в собі величезний зріз людського досвіду — філософії, психології, мистецтва, науки, культур. Він може показати тему з кута, про який ти ніколи не думав/думала.</p>
-  <p>Але він не зробить це сам. Він відповідає на те, що ти питаєш.</p>
-  <p>Тому завдання цього уроку — навчитись питати так, щоб отримувати не підтвердження свого, а <span class="highlight">зустріч з іншим.</span> Не "розкажи мені про це" — а "покажи мені як на це дивляться люди, не схожі на мене".</p>
-
-  <div class="practice-section">
-    <div class="practice-label">Практика</div>
-    <div class="practice-title">Урок 4. Розшир карту</div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 01</div>
-      <div class="prompt-name">Чотири кути</div>
-      <div class="prompt-text">"Я думаю про [тема або ситуація]. Покажи мені як на це дивляться: 1) психолог, 2) філософ, 3) хтось з іншої культури, 4) людина протилежних переконань. Без оцінки, хто правий."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> який з кутів здається найбільш чужим або дратівливим? Саме там — межа твоєї карти. І саме там є що досліджувати.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 02</div>
-      <div class="prompt-name">Що я не помічаю</div>
-      <div class="prompt-text">"Ось моя думка про [ситуація]: [твоя думка]. Що я можливо не бачу або не беру до уваги? Не сперечайся зі мною — просто покажи сліпі зони."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> де захочеться сказати "ні, це не так" — ще до того як дочитав/дочитала до кінця? Це і є сліпа зона.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-number">Промпт 03</div>
-      <div class="prompt-name">Зустріч з несхожим</div>
-      <div class="prompt-text">"Порекомендуй мені ідею, книгу, концепцію або підхід, який суперечить тому як я зазвичай думаю про [тема]. Я хочу зустріти щось справді інше — не те, що підтверджує моє."</div>
-      <div class="prompt-insight"><strong>На що дивитись:</strong> яка реакція першою — відкритість чи відторгнення? Обидві корисні. Перша показує де ти готовий/а рости. Друга — де захист найсильніший.</div>
-    </div>
-
-    <div class="final-question">
-      <div class="fq-label">Після практики — зупинись</div>
-      <div class="fq-question">Що змінилось?</div>
-      <p>Візуальний досвід — це не про те скільки ти знаєш. Це про те наскільки ти готовий/а зустрічати нове без страху що воно зруйнує тебе.</p>
-      <p>Після цієї практики закрий очі. І запитай: що нового я сьогодні зустрів/зустріла в собі через зустріч з іншим?</p>
-      <p>Запиши. Навіть одне слово.</p>
-    </div>
-  </div>
-
-  <div class="cta-blocks">
-    <div class="cta-card cta-site">
-      <div class="cta-icon">🌿</div>
-      <div class="cta-body">
-        <strong>Всі продукти AB Psychology</strong>
-        <p>Групова терапія, міні-курси, емоційний журнал, діагностичні сесії та індивідуальна робота — все в одному місці.</p>
-        <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/" class="cta-link" target="_blank">Перейти на сайт →</a>
-      </div>
-    </div>
-    <div class="cta-card cta-ai">
-      <div class="cta-icon">🤖</div>
-      <div class="cta-body">
-        <strong>AI-асистент AB Psychology</strong>
-        <p>Хочеш проходити практики з асистентом, якого я навчила обходити опір і ставити точні питання? Він доступний у закритому каналі "Живий кабінет".</p>
-        <a href="https://t.me/AB_Psychology_bot" class="cta-link cta-link-dark" target="_blank">Підписатись на канал →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="lesson-nav">
-    <a href="lesson_03.html" class="nav-btn nav-prev">← Урок 3</a>
-    <a href="lesson_05.html" class="nav-btn nav-next">Урок 5 →</a>
-  </div>
-
 </main>
 </body>
 </html>
