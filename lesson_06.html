@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок 6 — Я + ШІ: про себе глибше</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bordo: #6B1520;
+    --bordo-light: #8B2535;
+    --cream: #F5EFE6;
+    --cream-dark: #EDE4D8;
+    --warm-white: #FDFAF6;
+    --text: #2A2220;
+    --muted: #8A7A74;
+    --line: #DDD4C8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--cream); color: var(--text); font-family: 'Manrope', sans-serif; font-weight: 400; line-height: 1.8; font-size: 17px; }
+
+  .course-header { background: var(--bordo); color: var(--cream); padding: 56px 48px 48px; position: relative; overflow: hidden; }
+  .course-header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.04); }
+  .course-header-tag { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.6); margin-bottom: 20px; }
+  .course-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 46px); font-weight: 400; line-height: 1.18; margin-bottom: 20px; position: relative; z-index: 1; }
+  .lesson-number { font-size: 13px; color: rgba(245,239,230,0.4); font-weight: 300; letter-spacing: 0.08em; }
+
+  .container { max-width: 740px; margin: 0 auto; padding: 60px 48px 88px; }
+
+  .lesson-intro { margin-bottom: 56px; }
+  .lesson-intro .lead { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--bordo); line-height: 1.65; margin-bottom: 24px; }
+  .lesson-intro p { margin-bottom: 18px; }
+
+  .divider { display: flex; align-items: center; gap: 16px; margin: 44px 0; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .divider-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bordo); opacity: 0.4; }
+
+  .section-title { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 600; color: var(--bordo); margin-bottom: 22px; }
+  p { margin-bottom: 18px; }
+  .highlight { font-weight: 600; color: var(--bordo); }
+
+  .definition { background: var(--bordo); color: var(--cream); border-radius: 12px; padding: 32px 36px; margin: 36px 0; }
+  .definition p { font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; line-height: 1.6; color: var(--cream); margin: 0; }
+  .definition p span { color: #C9A84C; }
+
+  /* SUMMARY BLOCK */
+  .summary-block { margin: 36px 0; display: flex; flex-direction: column; gap: 10px; }
+  .summary-row { display: flex; gap: 16px; align-items: flex-start; padding: 16px 22px; border-radius: 8px; background: var(--warm-white); border: 1px solid var(--line); }
+  .summary-num { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: var(--bordo); opacity: 0.5; flex-shrink: 0; width: 20px; margin-top: 2px; }
+  .summary-text { font-size: 15px; color: var(--text); line-height: 1.6; }
+  .summary-text strong { color: var(--bordo); }
+
+  /* LIMIT BLOCK */
+  .limit-block { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 36px 0; }
+  .limit-card { border-radius: 10px; padding: 24px 26px; }
+  .limit-card.can { background: var(--cream-dark); border-left: 3px solid var(--bordo); }
+  .limit-card.cannot { background: var(--warm-white); border-left: 3px solid var(--muted); border: 1px solid var(--line); border-left: 3px solid var(--muted); }
+  .limit-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+  .limit-card.can .limit-label { color: var(--bordo); }
+  .limit-card.cannot .limit-label { color: var(--muted); }
+  .limit-item { font-size: 14px; color: var(--text); line-height: 1.7; padding-left: 14px; position: relative; margin-bottom: 6px; }
+  .limit-item::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+
+  .infographic-wrap { margin: 48px 0; background: var(--warm-white); border-radius: 12px; padding: 8px; border: 1px solid var(--line); }
+
+  .practice-section { background: var(--warm-white); border-radius: 16px; padding: 44px; margin-top: 56px; border-top: 3px solid var(--bordo); }
+  .practice-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .practice-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--bordo); margin-bottom: 36px; }
+  .prompt-card { background: var(--cream); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .prompt-number { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .prompt-name { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--bordo); margin-bottom: 16px; }
+  .prompt-text { background: var(--warm-white); border-radius: 8px; padding: 16px 20px; font-style: italic; font-size: 15.5px; color: var(--text); border-left: 3px solid var(--bordo); margin-bottom: 16px; line-height: 1.7; }
+  .prompt-insight { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .prompt-insight strong { color: var(--text); font-weight: 600; }
+
+  /* FINAL LETTER BLOCK */
+  .letter-block { background: var(--bordo); border-radius: 12px; padding: 40px 44px; margin-top: 36px; }
+  .letter-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,239,230,0.5); margin-bottom: 14px; }
+  .letter-title { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; color: var(--cream); margin-bottom: 22px; line-height: 1.3; }
+  .letter-block p { font-size: 15px; color: rgba(245,239,230,0.82); line-height: 1.75; margin-bottom: 14px; }
+  .letter-block p:last-child { margin-bottom: 0; }
+  .letter-block .letter-sign { font-family: 'Playfair Display', serif; font-style: italic; color: #C9A84C; font-size: 17px; margin-top: 24px; }
+
+  /* FINAL QUESTION */
+  .final-question { background: var(--cream-dark); border-radius: 12px; padding: 36px 44px; margin-top: 24px; border: 1px solid var(--line); }
+  .fq-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .fq-question { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; color: var(--bordo); margin-bottom: 18px; line-height: 1.3; }
+  .final-question p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+  .final-question p:last-child { margin-bottom: 0; }
+
+  .cta-blocks { margin-top: 44px; display: flex; flex-direction: column; gap: 16px; }
+  .cta-card { display: flex; gap: 18px; align-items: flex-start; padding: 24px 28px; border-radius: 10px; }
+  .cta-site { background: var(--cream-dark); border: 1px solid var(--line); }
+  .cta-ai { background: var(--bordo); }
+  .cta-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .cta-body { display: flex; flex-direction: column; gap: 6px; }
+  .cta-site .cta-body strong { color: var(--text); font-size: 15px; font-weight: 600; }
+  .cta-site .cta-body p { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0; }
+  .cta-ai .cta-body strong { color: var(--cream); font-size: 15px; font-weight: 600; display: block; }
+  .cta-ai .cta-body p { font-size: 14px; color: rgba(245,239,230,0.75); line-height: 1.65; margin: 0; }
+  .cta-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--bordo); text-decoration: none; }
+  .cta-link:hover { opacity: 0.75; }
+  .cta-link-dark { color: #C9A84C; }
+
+  .lesson-nav { display: flex; justify-content: flex-start; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .nav-btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s; }
+  .nav-prev { background: var(--cream-dark); color: var(--text); border: 1px solid var(--line); }
+  .nav-prev:hover { background: var(--line); }
+
+  @media (max-width: 600px) {
+    .course-header { padding: 40px 28px 36px; }
+    .container { padding: 40px 24px 64px; }
+    .limit-block { grid-template-columns: 1fr; }
+    .practice-section { padding: 28px 24px; }
+    .prompt-card { padding: 22px 20px; }
+    .letter-block { padding: 28px 24px; }
+    .final-question { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="course-header">
+  <div class="course-header-tag">Я + ШІ: про себе глибше</div>
+  <h1 class="course-title">Урок 6.<br>Самоактуалізація: не мета, а напрямок</h1>
+  <div class="lesson-number">Урок 6 із 6 — фінальний</div>
+</header>
+
+<main class="container">
+
+  <div class="lesson-intro">
+    <p class="lead">Більшість людей чула слово "самоактуалізація" — і більшість уявляє її як пункт призначення.</p>
+    <p>Досяг — і все. Став собою. Реалізувався. Можна видихнути.</p>
+    <p>Але Маслоу, коли говорив про самоактуалізацію, мав на увазі інше. Не вершину піраміди, яку треба підкорити. А <span class="highlight">спосіб жити.</span> Постійний рух у напрямку себе справжнього.</p>
+    <p>Стати собою — це не подія. Це вибір, який робиш щодня.</p>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <h2 class="section-title">Що ти пройшов/пройшла за цей курс</h2>
+
+  <p>Шість уроків — шість інструментів. Не теорій. Інструментів, які ти вже тримаєш в руках.</p>
+
+  <div class="summary-block">
+    <div class="summary-row">
+      <div class="summary-num">1</div>
+      <div class="summary-text"><strong>Побачив/побачила як думаєш.</strong> Не що думаєш — а як. Це вже інший рівень.</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-num">2</div>
+      <div class="summary-text"><strong>Навчився/навчилась питати інакше.</strong> Питання, що відкривають — замість тих, що закривають.</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-num">3</div>
+      <div class="summary-text"><strong>Зустрів/зустріла свої упередження.</strong> М'яко. Без самозасудження. З цікавістю.</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-num">4</div>
+      <div class="summary-text"><strong>Розширив/розширила карту.</strong> Побачив/побачила себе через зустріч з іншим.</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-num">5</div>
+      <div class="summary-text"><strong>Повернув/повернула увагу до себе.</strong> Хоча б на кілька хвилин — але навмисно.</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-num">6</div>
+      <div class="summary-text"><strong>Тут і зараз.</strong> Ти читаєш фінальний урок — і ти вже не такий/така як на початку.</div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <h2 class="section-title">Де тут ШІ — і де його межа</h2>
+
+  <p>ШІ допоміг тобі в цьому курсі як дзеркало. Він відображав. Ставив питання назад. Показував інші кути.</p>
+  <p>Але є те, чого він не може — і важливо це знати чесно.</p>
+
+  <div class="limit-block">
+    <div class="limit-card can">
+      <div class="limit-label">ШІ може</div>
+      <div class="limit-item">Відображати твої думки</div>
+      <div class="limit-item">Показувати інші кути</div>
+      <div class="limit-item">Ставити точні питання</div>
+      <div class="limit-item">Бути поруч о 3-й ночі</div>
+      <div class="limit-item">Допомогти сформулювати</div>
+    </div>
+    <div class="limit-card cannot">
+      <div class="limit-label">ШІ не може</div>
+      <div class="limit-item">Відчувати разом з тобою</div>
+      <div class="limit-item">Пройти твій шлях за тебе</div>
+      <div class="limit-item">Замінити живу людину поруч</div>
+      <div class="limit-item">Інтегрувати досвід у тіло</div>
+      <div class="limit-item">Бути свідком твого зростання</div>
+    </div>
+  </div>
+
+  <div class="definition">
+    <p>Справжня робота над собою відбувається <span>між сесіями, між уроками, між розмовами.</span> У тиші. У рішеннях. У тому — як ти поводишся коли ніхто не дивиться.</p>
+  </div>
+
+  <!-- INFOGRAPHIC -->
+  <div class="infographic-wrap">
+    <svg width="100%" viewBox="0 0 680 760" role="img">
+      <title>Самоактуалізація — інфографіка до Уроку 6</title>
+      <desc>Фінальна колаж-схема з підсумком курсу і напрямком самоактуалізації</desc>
+      <defs>
+        <marker id="arr7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <rect x="0" y="0" width="680" height="760" fill="#FDFAF6"/>
+
+      <!-- Tape -->
+      <rect x="216" y="97" width="82" height="11" rx="2" fill="#C9A84C" opacity="0.35" transform="rotate(-2 216 97)"/>
+      <rect x="374" y="94" width="70" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(2.5 374 94)"/>
+      <rect x="36" y="307" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.32" transform="rotate(-1.5 36 307)"/>
+      <rect x="542" y="304" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.32" transform="rotate(2 542 304)"/>
+      <rect x="58" y="534" width="74" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(-2 58 534)"/>
+      <rect x="514" y="531" width="78" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(1.5 514 531)"/>
+      <rect x="260" y="639" width="76" height="11" rx="2" fill="#C9A84C" opacity="0.3" transform="rotate(-1 260 639)"/>
+
+      <!-- CENTER -->
+      <rect x="200" y="272" width="280" height="196" rx="4" fill="#6B1520"/>
+      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.8" x="340" y="300" text-anchor="middle" letter-spacing="3">УРОК 6</text>
+      <text font-family="Georgia,serif" font-size="18" font-weight="700" fill="#FAF7F2" x="340" y="334" text-anchor="middle">САМОАКТУАЛІЗАЦІЯ</text>
+      <line x1="245" y1="348" x2="435" y2="348" stroke="#C9A84C" stroke-width="1" opacity="0.4"/>
+      <text font-family="Georgia,serif" font-size="14" font-style="italic" fill="#C9A84C" x="340" y="374" text-anchor="middle">не мета</text>
+      <text font-family="Georgia,serif" font-size="14" font-style="italic" fill="#FAF7F2" opacity="0.7" x="340" y="394" text-anchor="middle">а напрямок</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.5" x="340" y="422" text-anchor="middle">стати собою — це вибір</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.4" x="340" y="440" text-anchor="middle">який робиш щодня</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="#C9A84C" opacity="0.6" x="340" y="458" text-anchor="middle">✦</text>
+
+      <!-- Arrows -->
+      <line x1="248" y1="302" x2="168" y2="209" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="432" y1="302" x2="516" y2="209" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="207" y1="370" x2="140" y2="383" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="473" y1="370" x2="542" y2="383" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="258" y1="464" x2="168" y2="546" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="422" y1="464" x2="514" y2="546" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+      <line x1="340" y1="468" x2="340" y2="632" stroke="#6B1520" stroke-width="1.2" opacity="0.38" marker-end="url(#arr7)"/>
+
+      <!-- Note 1 top-left: не вершина -->
+      <rect x="20" y="86" width="208" height="114" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 20 86)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="124" y="112" text-anchor="middle" transform="rotate(-2 124 112)">не вершина</text>
+      <line x1="34" y1="122" x2="218" y2="122" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 124 122)"/>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="32" y="140" transform="rotate(-2 32 140)">Самоактуалізація —</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="32" y="156" transform="rotate(-2 32 156)">це не пункт</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="32" y="172" transform="rotate(-2 32 172)">призначення</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="32" y="188" transform="rotate(-2 32 188)">це спосіб жити</text>
+
+      <!-- Note 2 top-right: 6 уроків -->
+      <rect x="452" y="84" width="208" height="114" rx="3" fill="#6B1520" transform="rotate(2 452 84)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#C9A84C" x="556" y="110" text-anchor="middle" transform="rotate(2 556 110)">6 інструментів</text>
+      <line x1="462" y1="120" x2="642" y2="120" stroke="#C9A84C" stroke-width="0.5" opacity="0.3" transform="rotate(2 556 120)"/>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="rgba(245,239,230,0.8)" x="460" y="138" transform="rotate(2 460 138)">як думаєш · як питаєш</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="rgba(245,239,230,0.8)" x="460" y="154" transform="rotate(2 460 154)">упередження · широта</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="rgba(245,239,230,0.8)" x="460" y="170" transform="rotate(2 460 170)">присутність</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="#C9A84C" x="460" y="186" transform="rotate(2 460 186)">і ти вже інший/інша</text>
+
+      <!-- Note 3 left: межа ШІ -->
+      <rect x="12" y="342" width="190" height="104" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-1.5 12 342)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="107" y="367" text-anchor="middle" transform="rotate(-1.5 107 367)">межа ШІ</text>
+      <line x1="26" y1="377" x2="194" y2="377" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-1.5 107 377)"/>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="24" y="394" transform="rotate(-1.5 24 394)">Дзеркало — так</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="24" y="410" transform="rotate(-1.5 24 410)">Свідок зростання</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="24" y="426" transform="rotate(-1.5 24 426)">— лише жива людина</text>
+
+      <!-- Note 4 right: справжня робота -->
+      <rect x="478" y="340" width="190" height="104" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(1.5 478 340)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="573" y="365" text-anchor="middle" transform="rotate(1.5 573 365)">справжня робота</text>
+      <line x1="488" y1="375" x2="658" y2="375" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(1.5 573 375)"/>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="484" y="392" transform="rotate(1.5 484 392)">Між сесіями</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="484" y="408" transform="rotate(1.5 484 408)">між уроками</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="484" y="424" transform="rotate(1.5 484 424)">у тиші рішень</text>
+
+      <!-- Note 5 bottom-left: щодня -->
+      <rect x="26" y="516" width="200" height="108" rx="3" fill="#FDFAF6" stroke="#DDD4C8" stroke-width="0.8" transform="rotate(-2 26 516)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#6B1520" x="126" y="542" text-anchor="middle" transform="rotate(-2 126 542)">вибір щодня</text>
+      <line x1="40" y1="552" x2="218" y2="552" stroke="#6B1520" stroke-width="0.5" opacity="0.2" transform="rotate(-2 126 552)"/>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="38" y="570" transform="rotate(-2 38 570)">Не "досяг і все"</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="38" y="586" transform="rotate(-2 38 586)">а кожен день</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#4A3A3A" x="38" y="602" transform="rotate(-2 38 602)">трохи ближче</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#6B1520" x="38" y="618" transform="rotate(-2 38 618)">до себе справжнього</text>
+
+      <!-- Note 6 bottom-right: наступний крок -->
+      <rect x="454" y="514" width="200" height="108" rx="3" fill="#6B1520" transform="rotate(2 454 514)"/>
+      <text font-family="Georgia,serif" font-size="13" font-weight="700" fill="#C9A84C" x="554" y="540" text-anchor="middle" transform="rotate(2 554 540)">наступний крок</text>
+      <line x1="462" y1="550" x2="638" y2="550" stroke="#C9A84C" stroke-width="0.5" opacity="0.3" transform="rotate(2 554 550)"/>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="462" y="568" transform="rotate(2 462 568)">Курс закінчився</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="rgba(245,239,230,0.8)" x="462" y="584" transform="rotate(2 462 584)">робота — ні</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#C9A84C" x="462" y="600" transform="rotate(2 462 600)">жива людина поруч</text>
+      <text font-family="Manrope,sans-serif" font-size="12" fill="#C9A84C" x="462" y="616" transform="rotate(2 462 616)">прискорює все</text>
+
+      <!-- Note 7 bottom-center: фінальне питання -->
+      <rect x="232" y="636" width="216" height="92" rx="3" fill="#6B1520" transform="rotate(-1 232 636)"/>
+      <text font-family="Georgia,serif" font-size="11" fill="#C9A84C" opacity="0.85" x="340" y="660" text-anchor="middle" transform="rotate(-1 340 660)" letter-spacing="2">ФІНАЛЬНЕ ПИТАННЯ</text>
+      <text font-family="Georgia,serif" font-size="16" font-style="italic" fill="#FAF7F2" x="340" y="688" text-anchor="middle" transform="rotate(-1 340 688)">Що вже змінилось в тобі?</text>
+      <text font-family="Manrope,sans-serif" font-size="11" fill="#FAF7F2" opacity="0.6" x="340" y="712" text-anchor="middle" transform="rotate(-1 340 712)">з початку курсу</text>
+
+      <circle cx="340" cy="266" r="3" fill="#6B1520" opacity="0.28"/>
+      <circle cx="340" cy="472" r="3" fill="#6B1520" opacity="0.28"/>
+    </svg>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <h2 class="section-title">Де тут живий психолог</h2>
+  <p>ШІ — це хороший старт. Він допомагає побачити, сформулювати, зупинитись.</p>
+  <p>Але є речі, які не відбуваються поодинці. Є досвід, який потребує свідка. Є зміни, які прискорюються лише в живому контакті — де є тепло, реакція, і людина, яка дійсно бачить тебе.</p>
+  <p><span class="highlight">Курс закінчився. Робота — ні.</span> І якщо ти відчуваєш що хочеш рухатись глибше — наступний крок вже є.</p>
+
+  <!-- PRACTICE -->
+  <div class="practice-section">
+    <div class="practice-label">Фінальна практика</div>
+    <div class="practice-title">Урок 6. Лист собі</div>
+
+    <div class="prompt-card">
+      <div class="prompt-number">Промпт 01</div>
+      <div class="prompt-name">Що змінилось</div>
+      <div class="prompt-text">"Допоможи мені підбити підсумок: я пройшов/пройшла курс про самопізнання і ШІ. Ось що я помітив/помітила про себе за цей час: [твої спостереження]. Що це говорить про мій напрямок розвитку?"</div>
+      <div class="prompt-insight"><strong>На що дивитись:</strong> не шукай правильної відповіді. Шукай ту, що резонує. Де відчуєш "так, це про мене" — там твоє.</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-number">Промпт 02</div>
+      <div class="prompt-name">Наступний крок</div>
+      <div class="prompt-text">"Виходячи з того, що я дізнався/дізналась про себе за цей курс, яке одне питання мені варто тримати в голові наступні 30 днів? Не завдання — саме питання."</div>
+      <div class="prompt-insight"><strong>На що дивитись:</strong> одне питання — не список. Якщо ШІ дає кілька — вибери те, від якого трохи некомфортно. Саме воно буде найкориснішим.</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-number">Промпт 03</div>
+      <div class="prompt-name">Лист собі через рік</div>
+      <div class="prompt-text">"Допоможи мені написати короткий лист собі через рік. Я хочу описати — яким/якою я бачу себе, якщо продовжу рухатись у напрямку, який відчув/відчула під час курсу."</div>
+      <div class="prompt-insight"><strong>На що дивитись:</strong> що в цьому листі викликає найбільше тепло? Що хочеться підкреслити? Це і є твій справжній напрямок.</div>
+    </div>
+
+    <div class="letter-block">
+      <div class="letter-label">Від мене — тобі</div>
+      <div class="letter-title">Ти дійшов/дійшла до кінця.</div>
+      <p>Це більше ніж здається. Більшість людей починають — і не доходять. Ти дійшов/дійшла.</p>
+      <p>За ці шість уроків ти зупинявся/зупинялась. Питав/питала. Дивився/дивилась на себе збоку. Це і є робота над собою — не гучна, не помітна зовні, але справжня.</p>
+      <p>ШІ був дзеркалом. Але дивився в нього — ти. І те, що ти побачив/побачила — це твоє.</p>
+      <p>Якщо хочеш рухатись далі — я поруч. Не як бот. Як психолог, який вірить що кожна людина здатна стати собою — коли є простір, підтримка і правильні питання.</p>
+      <div class="letter-sign">З повагою, Альона Браславська</div>
+    </div>
+
+    <div class="final-question">
+      <div class="fq-label">Фінальне питання курсу</div>
+      <div class="fq-question">Що вже змінилось в тобі — з першого уроку?</div>
+      <p>Не що має змінитись. Не що ти плануєш. А що вже — зараз — інакше.</p>
+      <p>Закрий очі. Згадай себе на початку. І подивись на себе зараз.</p>
+      <p>Запиши. Це важливіше за будь-який сертифікат.</p>
+    </div>
+  </div>
+
+  <div class="cta-blocks">
+    <div class="cta-card cta-site">
+      <div class="cta-icon">🌿</div>
+      <div class="cta-body">
+        <strong>Хочеш рухатись глибше?</strong>
+        <p>Групова терапія, індивідуальні сесії, діагностика — обери свій формат роботи на сайті AB Psychology.</p>
+        <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/" class="cta-link" target="_blank">Перейти на сайт →</a>
+      </div>
+    </div>
+    <div class="cta-card cta-ai">
+      <div class="cta-icon">🤖</div>
+      <div class="cta-body">
+        <strong>AI-асистент AB Psychology</strong>
+        <p>Продовжуй практику щодня з асистентом, навченим обходити опір. Доступний у закритому каналі "Живий кабінет".</p>
+        <a href="https://t.me/AB_Psychology_bot" class="cta-link cta-link-dark" target="_blank">Підписатись на канал →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a href="lesson_05.html" class="nav-btn nav-prev">← Урок 5</a>
+  </div>
+
+</main>
+</body>
+</html>
