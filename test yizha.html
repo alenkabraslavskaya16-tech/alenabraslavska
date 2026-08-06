@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Твої стосунки з їжею — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A; --burgundy-light: #A63D4A;
+  --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --cream: #FAF7F2; --cream-border: #E4DAD0;
+  --gold: #C9A84C; --gold-light: #E8D5A3; --gold-pale: #FBF6EC;
+  --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 20px 80px; }
+.wrap { width: 100%; max-width: 640px; }
+.header { text-align: center; margin-bottom: 48px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; display: inline-block; margin-bottom: 32px; }
+.header-logo span { color: var(--burgundy); }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.title em { font-style: italic; color: var(--burgundy); }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin: 0 auto; }
+.progress-wrap { margin-bottom: 36px; }
+.progress-bar-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; background: var(--burgundy); border-radius: 100px; transition: width 0.4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; padding: 6px 14px; background: var(--gold-pale); border-radius: 100px; display: inline-block; }
+.step { display: none; }
+.step.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.card { background: var(--white); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
+.q-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.6; margin-bottom: 10px; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(17px, 3vw, 21px); font-weight: 400; line-height: 1.4; color: var(--text-dark); margin-bottom: 24px; }
+.scale { display: flex; flex-direction: column; gap: 8px; }
+.scale-option { padding: 13px 18px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.5; transition: all 0.2s; background: var(--cream); display: flex; align-items: center; gap: 12px; }
+.scale-option:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); color: var(--text-dark); }
+.scale-option.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
+.scale-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cream-border); flex-shrink: 0; transition: background 0.2s; }
+.scale-option.selected .scale-dot { background: var(--burgundy); }
+.btn-row { display: flex; gap: 12px; }
+.btn-next { flex: 1; background: var(--burgundy); color: var(--gold-light); border: none; padding: 15px 32px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+.btn-next:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-next:disabled { background: var(--cream-border); color: var(--text-light); cursor: not-allowed; transform: none; }
+.btn-back { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); padding: 15px 24px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-back:hover { border-color: var(--text-mid); }
+
+/* RESULT */
+.result { display: none; }
+.result.active { display: block; animation: fadeIn 0.4s ease; }
+.result-intro { text-align: center; margin-bottom: 32px; }
+.result-intro-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 8px; }
+.result-intro-title em { font-style: italic; color: var(--burgundy); }
+.result-intro-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
+
+.profile-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.profile-card { background: var(--white); border-radius: 20px; padding: 24px; border: 1px solid var(--cream-border); }
+.profile-card.high { border-color: var(--burgundy-mid); background: var(--burgundy-pale); }
+.profile-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); opacity: 0.7; margin-bottom: 8px; }
+.profile-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; margin-bottom: 8px; line-height: 1.3; }
+.profile-bar-bg { height: 6px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 10px; }
+.profile-bar-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
+.profile-text { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+
+/* HOOK */
+.hook { background: var(--burgundy); border-radius: 24px; padding: 36px 32px; text-align: center; margin-bottom: 20px; }
+.hook-icon { font-size: 36px; margin-bottom: 16px; }
+.hook-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: white; margin-bottom: 12px; line-height: 1.3; }
+.hook-title em { font-style: italic; color: var(--gold-light); }
+.hook-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 24px; }
+.hook-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; text-align: left; }
+.hook-step { display: flex; gap: 12px; align-items: flex-start; }
+.hook-step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; margin-top: 1px; }
+.hook-step-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; padding-top: 3px; }
+.hook-step-text strong { color: white; font-weight: 500; }
+.btn-hook { display: block; background: var(--gold); color: white; padding: 16px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; text-align: center; transition: all 0.2s; margin-bottom: 10px; }
+.btn-hook:hover { background: #B8943C; transform: translateY(-1px); }
+.hook-note { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+.btn-retry { display: block; text-align: center; font-size: 13px; color: var(--text-light); cursor: pointer; text-decoration: underline; margin-top: 16px; }
+.page-footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-light); }
+.page-footer a { color: var(--burgundy); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <a href="https://t.me/Psikholog_Braslavskaya" class="header-logo">AB <span>Psychology</span></a>
+    <div class="eyebrow">Авторський тест</div>
+    <h1 class="title">Твої стосунки<br><em>з їжею</em></h1>
+    <p class="subtitle">15 питань — і ти побачиш свій профіль по трьох вимірах. Не діагноз — дзеркало. Щоб зрозуміти що за цим стоїть.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Питання 1 з 15</div>
+  </div>
+
+  <!-- БЛОК 1: ЕМОЦІЙНЕ ХАРЧУВАННЯ (1-5) -->
+  <div class="step active" id="step-1">
+    <div class="section-label">Блок 1 — Емоції та їжа</div>
+    <div class="card">
+      <div class="q-num">Питання 1 / 15</div>
+      <div class="q-text">Коли тобі сумно або самотньо — ти тягнешся до їжі?</div>
+      <div class="scale" id="opts-1">
+        <div class="scale-option" onclick="sel(1,1)"><div class="scale-dot"></div>Майже ніколи</div>
+        <div class="scale-option" onclick="sel(1,2)"><div class="scale-dot"></div>Іноді — але не завжди</div>
+        <div class="scale-option" onclick="sel(1,3)"><div class="scale-dot"></div>Досить часто</div>
+        <div class="scale-option" onclick="sel(1,4)"><div class="scale-dot"></div>Майже завжди — їжа заспокоює</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-next" id="btn-1" onclick="go(1,2)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-2">
+    <div class="section-label">Блок 1 — Емоції та їжа</div>
+    <div class="card">
+      <div class="q-num">Питання 2 / 15</div>
+      <div class="q-text">Коли ти тривожишся або нервуєш — бажання поїсти зростає?</div>
+      <div class="scale" id="opts-2">
+        <div class="scale-option" onclick="sel(2,1)"><div class="scale-dot"></div>Ні — тривога скоріше відбиває апетит</div>
+        <div class="scale-option" onclick="sel(2,2)"><div class="scale-dot"></div>По-різному</div>
+        <div class="scale-option" onclick="sel(2,3)"><div class="scale-dot"></div>Так — починаю їсти більше</div>
+        <div class="scale-option" onclick="sel(2,4)"><div class="scale-dot"></div>Завжди — їжа знімає напругу</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(2,1)">← Назад</button><button class="btn-next" id="btn-2" onclick="go(2,3)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-3">
+    <div class="section-label">Блок 1 — Емоції та їжа</div>
+    <div class="card">
+      <div class="q-num">Питання 3 / 15</div>
+      <div class="q-text">Після важкого дня ти нагороджуєш себе їжею?</div>
+      <div class="scale" id="opts-3">
+        <div class="scale-option" onclick="sel(3,1)"><div class="scale-dot"></div>Рідко — шукаю інші способи</div>
+        <div class="scale-option" onclick="sel(3,2)"><div class="scale-dot"></div>Іноді — нічого страшного в цьому</div>
+        <div class="scale-option" onclick="sel(3,3)"><div class="scale-dot"></div>Часто — це мій спосіб розслабитись</div>
+        <div class="scale-option" onclick="sel(3,4)"><div class="scale-dot"></div>Завжди — це головна нагорода</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(3,2)">← Назад</button><button class="btn-next" id="btn-3" onclick="go(3,4)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-4">
+    <div class="section-label">Блок 1 — Емоції та їжа</div>
+    <div class="card">
+      <div class="q-num">Питання 4 / 15</div>
+      <div class="q-text">Коли тобі нудно — ти їси просто щоб зайняти себе?</div>
+      <div class="scale" id="opts-4">
+        <div class="scale-option" onclick="sel(4,1)"><div class="scale-dot"></div>Ні — нудьга не впливає на їжу</div>
+        <div class="scale-option" onclick="sel(4,2)"><div class="scale-dot"></div>Іноді помічаю це за собою</div>
+        <div class="scale-option" onclick="sel(4,3)"><div class="scale-dot"></div>Досить часто</div>
+        <div class="scale-option" onclick="sel(4,4)"><div class="scale-dot"></div>Майже завжди — холодильник перший до кого йду</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(4,3)">← Назад</button><button class="btn-next" id="btn-4" onclick="go(4,5)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-5">
+    <div class="section-label">Блок 1 — Емоції та їжа</div>
+    <div class="card">
+      <div class="q-num">Питання 5 / 15</div>
+      <div class="q-text">Після їжі «не з голоду» ти відчуваєш провину або сором?</div>
+      <div class="scale" id="opts-5">
+        <div class="scale-option" onclick="sel(5,1)"><div class="scale-dot"></div>Ні — ставлюсь до цього спокійно</div>
+        <div class="scale-option" onclick="sel(5,2)"><div class="scale-dot"></div>Іноді — але швидко відпускаю</div>
+        <div class="scale-option" onclick="sel(5,3)"><div class="scale-dot"></div>Часто — картаю себе</div>
+        <div class="scale-option" onclick="sel(5,4)"><div class="scale-dot"></div>Завжди — провина стала звичною</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(5,4)">← Назад</button><button class="btn-next" id="btn-5" onclick="go(5,6)" disabled>Далі →</button></div>
+  </div>
+
+  <!-- БЛОК 2: ЗОВНІШНЄ ХАРЧУВАННЯ (6-10) -->
+  <div class="step" id="step-6">
+    <div class="section-label">Блок 2 — Зовнішні тригери</div>
+    <div class="card">
+      <div class="q-num">Питання 6 / 15</div>
+      <div class="q-text">Якщо поруч є смачна їжа — ти їси навіть якщо не голодний/на?</div>
+      <div class="scale" id="opts-6">
+        <div class="scale-option" onclick="sel(6,1)"><div class="scale-dot"></div>Ні — їм тільки коли голодний/на</div>
+        <div class="scale-option" onclick="sel(6,2)"><div class="scale-dot"></div>Іноді — важко встояти</div>
+        <div class="scale-option" onclick="sel(6,3)"><div class="scale-dot"></div>Часто — вигляд і запах вмикають апетит</div>
+        <div class="scale-option" onclick="sel(6,4)"><div class="scale-dot"></div>Майже завжди — якщо є, треба з'їсти</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(6,5)">← Назад</button><button class="btn-next" id="btn-6" onclick="go(6,7)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-7">
+    <div class="section-label">Блок 2 — Зовнішні тригери</div>
+    <div class="card">
+      <div class="q-num">Питання 7 / 15</div>
+      <div class="q-text">В компанії ти їси більше ніж коли один/одна?</div>
+      <div class="scale" id="opts-7">
+        <div class="scale-option" onclick="sel(7,1)"><div class="scale-dot"></div>Ні — кількість не залежить від компанії</div>
+        <div class="scale-option" onclick="sel(7,2)"><div class="scale-dot"></div>Трохи більше — це нормально</div>
+        <div class="scale-option" onclick="sel(7,3)"><div class="scale-dot"></div>Так — компанія вмикає апетит</div>
+        <div class="scale-option" onclick="sel(7,4)"><div class="scale-dot"></div>Значно більше — зупинитись складно</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(7,6)">← Назад</button><button class="btn-next" id="btn-7" onclick="go(7,8)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-8">
+    <div class="section-label">Блок 2 — Зовнішні тригери</div>
+    <div class="card">
+      <div class="q-num">Питання 8 / 15</div>
+      <div class="q-text">Реклама їжі або фото в соцмережах викликають бажання поїсти?</div>
+      <div class="scale" id="opts-8">
+        <div class="scale-option" onclick="sel(8,1)"><div class="scale-dot"></div>Рідко — не реагую на це</div>
+        <div class="scale-option" onclick="sel(8,2)"><div class="scale-dot"></div>Іноді — якщо вже трохи голодний/на</div>
+        <div class="scale-option" onclick="sel(8,3)"><div class="scale-dot"></div>Часто — одразу хочеться щось з'їсти</div>
+        <div class="scale-option" onclick="sel(8,4)"><div class="scale-dot"></div>Майже завжди — дуже реагую на їжу візуально</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(8,7)">← Назад</button><button class="btn-next" id="btn-8" onclick="go(8,9)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-9">
+    <div class="section-label">Блок 2 — Зовнішні тригери</div>
+    <div class="card">
+      <div class="q-num">Питання 9 / 15</div>
+      <div class="q-text">Ти доїдаєш тарілку навіть коли вже ситий/а?</div>
+      <div class="scale" id="opts-9">
+        <div class="scale-option" onclick="sel(9,1)"><div class="scale-dot"></div>Ні — зупиняюсь коли наївся/наїлась</div>
+        <div class="scale-option" onclick="sel(9,2)"><div class="scale-dot"></div>Іноді — якщо дуже смачно</div>
+        <div class="scale-option" onclick="sel(9,3)"><div class="scale-dot"></div>Часто — шкода лишати</div>
+        <div class="scale-option" onclick="sel(9,4)"><div class="scale-dot"></div>Завжди — доїдаю незалежно від насичення</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(9,8)">← Назад</button><button class="btn-next" id="btn-9" onclick="go(9,10)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-10">
+    <div class="section-label">Блок 2 — Зовнішні тригери</div>
+    <div class="card">
+      <div class="q-num">Питання 10 / 15</div>
+      <div class="q-text">Чи можеш ти відмовитись від їжі яку пропонують з ввічливості?</div>
+      <div class="scale" id="opts-10">
+        <div class="scale-option" onclick="sel(10,1)"><div class="scale-dot"></div>Легко — спокійно кажу «ні дякую»</div>
+        <div class="scale-option" onclick="sel(10,2)"><div class="scale-dot"></div>Іноді важко — але можу</div>
+        <div class="scale-option" onclick="sel(10,3)"><div class="scale-dot"></div>Важко — не хочу образити</div>
+        <div class="scale-option" onclick="sel(10,4)"><div class="scale-dot"></div>Не можу — завжди їм щоб не відмовляти</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(10,9)">← Назад</button><button class="btn-next" id="btn-10" onclick="go(10,11)" disabled>Далі →</button></div>
+  </div>
+
+  <!-- БЛОК 3: КОНТРОЛЬ (11-15) -->
+  <div class="step" id="step-11">
+    <div class="section-label">Блок 3 — Контроль та обмеження</div>
+    <div class="card">
+      <div class="q-num">Питання 11 / 15</div>
+      <div class="q-text">Ти маєш список «заборонених» продуктів яких намагаєшся уникати?</div>
+      <div class="scale" id="opts-11">
+        <div class="scale-option" onclick="sel(11,1)"><div class="scale-dot"></div>Ні — їм все в міру</div>
+        <div class="scale-option" onclick="sel(11,2)"><div class="scale-dot"></div>Є кілька продуктів — але без фанатизму</div>
+        <div class="scale-option" onclick="sel(11,3)"><div class="scale-dot"></div>Так — досить чіткий список</div>
+        <div class="scale-option" onclick="sel(11,4)"><div class="scale-dot"></div>Так — і порушення списку викликає стрес</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(11,10)">← Назад</button><button class="btn-next" id="btn-11" onclick="go(11,12)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-12">
+    <div class="section-label">Блок 3 — Контроль та обмеження</div>
+    <div class="card">
+      <div class="q-num">Питання 12 / 15</div>
+      <div class="q-text">Ти відстежуєш калорії або склад їжі?</div>
+      <div class="scale" id="opts-12">
+        <div class="scale-option" onclick="sel(12,1)"><div class="scale-dot"></div>Ні — не рахую</div>
+        <div class="scale-option" onclick="sel(12,2)"><div class="scale-dot"></div>Іноді — орієнтовно</div>
+        <div class="scale-option" onclick="sel(12,3)"><div class="scale-dot"></div>Регулярно — це важливо для мене</div>
+        <div class="scale-option" onclick="sel(12,4)"><div class="scale-dot"></div>Постійно — без цього дискомфортно</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(12,11)">← Назад</button><button class="btn-next" id="btn-12" onclick="go(12,13)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-13">
+    <div class="section-label">Блок 3 — Контроль та обмеження</div>
+    <div class="card">
+      <div class="q-num">Питання 13 / 15</div>
+      <div class="q-text">Якщо ти «порушив/ла» свій план харчування — що відбувається далі?</div>
+      <div class="scale" id="opts-13">
+        <div class="scale-option" onclick="sel(13,1)"><div class="scale-dot"></div>Нічого — продовжую як зазвичай</div>
+        <div class="scale-option" onclick="sel(13,2)"><div class="scale-dot"></div>Трохи засмучуюсь але відпускаю</div>
+        <div class="scale-option" onclick="sel(13,3)"><div class="scale-dot"></div>Картаю себе і намагаюсь компенсувати</div>
+        <div class="scale-option" onclick="sel(13,4)"><div class="scale-dot"></div>«Все одно вже все» — і їм без зупину</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(13,12)">← Назад</button><button class="btn-next" id="btn-13" onclick="go(13,14)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-14">
+    <div class="section-label">Блок 3 — Контроль та обмеження</div>
+    <div class="card">
+      <div class="q-num">Питання 14 / 15</div>
+      <div class="q-text">Думки про їжу займають багато місця в твоїй голові протягом дня?</div>
+      <div class="scale" id="opts-14">
+        <div class="scale-option" onclick="sel(14,1)"><div class="scale-dot"></div>Ні — думаю про їжу тільки коли голодний/на</div>
+        <div class="scale-option" onclick="sel(14,2)"><div class="scale-dot"></div>Іноді — як у всіх</div>
+        <div class="scale-option" onclick="sel(14,3)"><div class="scale-dot"></div>Досить часто — займають помітне місце</div>
+        <div class="scale-option" onclick="sel(14,4)"><div class="scale-dot"></div>Дуже багато — це фоновий шум у голові</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(14,13)">← Назад</button><button class="btn-next" id="btn-14" onclick="go(14,15)" disabled>Далі →</button></div>
+  </div>
+
+  <div class="step" id="step-15">
+    <div class="section-label">Блок 3 — Контроль та обмеження</div>
+    <div class="card">
+      <div class="q-num">Питання 15 / 15</div>
+      <div class="q-text">Ти відчуваєш контакт зі своїм голодом і насиченням — розумієш коли справді хочеш їсти?</div>
+      <div class="scale" id="opts-15">
+        <div class="scale-option" onclick="sel(15,1)"><div class="scale-dot"></div>Так — добре відчуваю своє тіло</div>
+        <div class="scale-option" onclick="sel(15,2)"><div class="scale-dot"></div>Іноді гублю цей контакт</div>
+        <div class="scale-option" onclick="sel(15,3)"><div class="scale-dot"></div>Часто не розумію — голод це чи щось інше</div>
+        <div class="scale-option" onclick="sel(15,4)"><div class="scale-dot"></div>Майже не відчуваю — зв'язок з тілом втрачений</div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn-back" onclick="go(15,14)">← Назад</button><button class="btn-next" id="btn-15" onclick="showResult()" disabled>Побачити результат →</button></div>
+  </div>
+
+  <div class="result" id="result"></div>
+  <div class="page-footer"><a href="https://t.me/Psikholog_Braslavskaya">AB Psychology · Альона Браславська</a></div>
+</div>
+
+<script>
+const answers = {};
+
+function sel(q, val) {
+  answers[q] = val;
+  document.querySelectorAll(`#opts-${q} .scale-option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('btn-' + q).disabled = false;
+}
+
+function go(from, to) {
+  document.getElementById('step-'+from).classList.remove('active');
+  if(to <= 15) {
+    document.getElementById('step-'+to).classList.add('active');
+    const pct = ((to-1)/15)*100;
+    document.getElementById('progress-fill').style.width = pct+'%';
+    document.getElementById('progress-text').textContent = `Питання ${to} з 15`;
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function getScore(qs) {
+  return qs.reduce((s,q) => s + (answers[q] || 1), 0);
+}
+
+function getLevel(score, max) {
+  const pct = score/max;
+  if(pct < 0.4) return 'low';
+  if(pct < 0.65) return 'mid';
+  return 'high';
+}
+
+function getLevelLabel(l) {
+  return {low:'Низький', mid:'Середній', high:'Високий'}[l];
+}
+
+function getLevelColor(l) {
+  return {low:'#7A9E7E', mid:'#C9A84C', high:'#7B1C2A'}[l];
+}
+
+function showResult() {
+  document.getElementById('step-15').classList.remove('active');
+  document.getElementById('progress-fill').style.width = '100%';
+  document.getElementById('progress-fill').style.background = '#C9A84C';
+  document.getElementById('progress-text').textContent = 'Результат ✓';
+
+  const e = getScore([1,2,3,4,5]);
+  const z = getScore([6,7,8,9,10]);
+  const k = getScore([11,12,13,14,15]);
+
+  const eL = getLevel(e, 20);
+  const zL = getLevel(z, 20);
+  const kL = getLevel(k, 20);
+
+  const profiles = {
+    e: {
+      title: 'Емоційне харчування',
+      texts: {
+        low: 'Ти рідко заїдаєш почуття — маєш інші способи справлятись з емоціями. Це добрий знак.',
+        mid: 'Іноді їжа стає способом впоратись з емоціями. Це нормально — але варто помічати коли це відбувається.',
+        high: 'Їжа часто виконує функцію заспокоєння або нагороди. За цим зазвичай стоїть потреба яка шукає інший вихід.'
+      }
+    },
+    z: {
+      title: 'Зовнішні тригери',
+      texts: {
+        low: 'Ти добре відчуваєш свій голод і мало реагуєш на зовнішні подразники. Їси тому що хочеш а не тому що є.',
+        mid: 'Зовнішні тригери — запах, вигляд, компанія — іноді впливають на тебе. Це є у більшості людей.',
+        high: 'Ти дуже чутливий/чутлива до зовнішніх сигналів їжі. Апетит часто запускається ззовні а не зсередини.'
+      }
+    },
+    k: {
+      title: 'Контроль та обмеження',
+      texts: {
+        low: 'Ти ставишся до їжі спокійно — без жорстких правил і провини. Є здоровий контакт з тілом.',
+        mid: 'Є певний контроль над їжею — це не завжди погано. Головне щоб правила не ставали тягарем.',
+        high: 'Думки про контроль їжі займають багато місця. Це може бути виснажливо — і зазвичай сигналізує про щось глибше.'
+      }
+    }
+  };
+
+  const scores = {e, z, k};
+  const levels = {e: eL, z: zL, k: kL};
+
+  let cardsHtml = '';
+  ['e','z','k'].forEach(key => {
+    const p = profiles[key];
+    const l = levels[key];
+    const s = scores[key];
+    const pct = Math.round((s/20)*100);
+    const color = getLevelColor(l);
+    const isHigh = l === 'high';
+    cardsHtml += `
+      <div class="profile-card ${isHigh ? 'high' : ''}">
+        <div class="profile-label">${getLevelLabel(l)} рівень</div>
+        <div class="profile-title">${p.title}</div>
+        <div class="profile-bar-bg">
+          <div class="profile-bar-fill" style="width:0%; background:${color}; transition: width 1s ease;" data-width="${pct}"></div>
+        </div>
+        <div class="profile-text">${p.texts[l]}</div>
+      </div>`;
+  });
+
+  const msg = encodeURIComponent(`Альоно, я пройшла/пройшов твій тест «Твої стосунки з їжею» 🌿\n\nМій результат:\n• Емоційне харчування: ${getLevelLabel(eL)}\n• Зовнішні тригери: ${getLevelLabel(zL)}\n• Контроль та обмеження: ${getLevelLabel(kL)}\n\nНадсилаю скрін результату 👇`);
+
+  const r = document.getElementById('result');
+  r.classList.add('active');
+  r.innerHTML = `
+    <div class="result-intro">
+      <div class="result-intro-title">Твій профіль<br><em>готовий</em></div>
+      <div class="result-intro-text">Три виміри — три різні історії про тебе і їжу.</div>
+    </div>
+    <div class="profile-grid">${cardsHtml}</div>
+    <div class="hook">
+      <div class="hook-icon">📸</div>
+      <div class="hook-title">Надішли мені скрін —<br><em>і я поясню що за цим стоїть</em></div>
+      <div class="hook-text">Результат тесту — це дзеркало. Але що саме в ньому відображається і з чого починати — це вже розмова.</div>
+      <div class="hook-steps">
+        <div class="hook-step"><div class="hook-step-num">1</div><div class="hook-step-text"><strong>Зроби скрін</strong> цього результату</div></div>
+        <div class="hook-step"><div class="hook-step-num">2</div><div class="hook-step-text"><strong>Надішли мені</strong> в Telegram</div></div>
+        <div class="hook-step"><div class="hook-step-num">3</div><div class="hook-step-text"><strong>Я скажу</strong> що саме за цим стоїть і що можна зробити — безкоштовно</div></div>
+      </div>
+      <a href="https://t.me/Psikholog_Braslavskaya?text=${msg}" class="btn-hook">Надіслати скрін Альоні →</a>
+      <div class="hook-note">Відкриється Telegram з готовим повідомленням</div>
+    </div>
+    <span class="btn-retry" onclick="location.reload()">Пройти ще раз</span>`;
+
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  setTimeout(() => {
+    document.querySelectorAll('.profile-bar-fill').forEach(el => {
+      el.style.width = el.dataset.width + '%';
+    });
+  }, 200);
+}
+</script>
+</body>
+</html>
