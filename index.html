@@ -290,6 +290,20 @@ nav {
 .test-preview-text span { font-size: 12px; color: var(--text-light); line-height: 1.5; }
 .tests-coming { background: var(--white); border-radius: 14px; padding: 14px 20px; border: 1.5px dashed var(--cream-border); font-size: 12px; color: var(--text-light); text-align: center; }
 
+/* LIBRARY SHELF */
+.library-section { padding: 80px 6vw; background: var(--cream); }
+.library-intro { font-size: 15px; color: var(--text-mid); line-height: 1.85; max-width: 620px; margin-top: 16px; }
+.library-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+@media (max-width:700px){ .library-grid{ grid-template-columns:1fr; } }
+.library-col-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--burgundy); margin-bottom: 20px; }
+.library-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.library-item { padding-bottom: 18px; border-bottom: 1px solid var(--cream-border); }
+.library-item:last-child { border-bottom: none; padding-bottom: 0; }
+.library-item-title { font-weight: 600; font-size: 14.5px; color: var(--text-dark); margin-bottom: 4px; }
+.library-item-note { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+.library-cta { display: inline-block; margin-top: 40px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--burgundy); text-decoration: none; border-bottom: 1px solid var(--burgundy-mid); padding-bottom: 2px; }
+.library-cta:hover { color: var(--burgundy-light); border-color: var(--burgundy-light); }
+
 /* ARTICLES */
 .articles-section { padding: 80px 6vw; background: var(--white); }
 .articles-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -307,6 +321,7 @@ nav {
 
 /* TOPICS */
 .topics { background: var(--burgundy); padding: 64px 6vw; text-align: center; }
+.topics-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; opacity: 0.8; }
 .topics-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 400; color: white; margin-bottom: 32px; font-style: italic; }
 .topics-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .topic-pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 100px; font-size: 13px; letter-spacing: 0.02em; transition: background 0.2s; }
@@ -480,15 +495,16 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
 <!-- DECRET -->
 <section class="decret">
   <div class="decret-inner">
-    <div class="section-eyebrow">Чому зараз</div>
-    <h2 class="section-title" style="margin-bottom:28px;">Через кілька тижнів<br><em>я йду в декрет</em></h2>
+    <div class="section-eyebrow">Мій принцип</div>
+    <h2 class="section-title" style="margin-bottom:28px;">Я поруч —<br><em>навіть коли мене немає за екраном</em></h2>
     <div class="decret-text">
-      <p>Не в традиційному сенсі — я не зникаю.</p>
-      <p>Я зупинилась і зібрала все що є: канал, курси, групи, сесії. Не для того щоб продати якомога більше до пологів. А тому що мої клієнти не хочуть мене відпускати — і я знайшла спосіб залишитись поруч навіть коли буду поруч з немовлям.</p>
-      <p>Це не компроміс. Це моя гармонія.</p>
+      <p>Життя психолога теж міняється. Декрет, звичайний вихідний, день коли просто не до екрану.</p>
+      <p>Тому я будую все так, щоб підтримка не залежала від того, де я особисто зараз. Канал живе за розкладом. Бот відповідає одразу. Курси проходяться в своєму темпі. А коли потрібен живий контакт — я на зв'язку.</p>
+      <p>Це не заміна мені. Це те, що тримає простір, поки мене немає поруч.</p>
     </div>
   </div>
 </section>
+
 
 <!-- PRODUCTS -->
 <section class="products" id="products">
@@ -528,6 +544,23 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
       </div>
       <div class="product-price"><span class="product-price-main">17€</span><span class="product-price-period">/ місяць</span></div>
       <a href="https://t.me/AB_Psychology_bot" class="product-link">Приєднатися →</a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge badge-sub">Включено в підписку</div>
+      <div class="product-title">«Психолог в кармані»</div>
+      <div class="product-pain">Ситуація стається не в час сесії — а підтримка потрібна прямо зараз</div>
+      <p class="product-desc">AI-бот для підписників «Живого кабінету». Підтримка між сесіями — структурує ситуацію, пояснює, допомагає не застрягти. Не замінює психолога — доповнює.</p>
+      <div class="product-gets">
+        <div class="product-gets-label">Що отримаєш</div>
+        <ul class="product-gets-list">
+          <li>Підтримку 24/7 між сесіями</li>
+          <li>Структуроване бачення своєї ситуації</li>
+          <li>Доступ одразу після підписки на канал</li>
+        </ul>
+      </div>
+      <div class="product-price"><span class="product-price-main">В підписці</span><span class="product-price-period">17€/міс</span></div>
+      <a href="https://t.me/ab_psychology_ai_bot" class="product-link">Відкрити бот →</a>
     </div>
 
     <div class="product-card gold-card">
@@ -629,7 +662,7 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
           <li>Живу присутність психолога щотижня</li>
         </ul>
       </div>
-      <div class="product-price"><span class="product-price-main">600 грн</span><span class="product-price-period">/ зустріч</span></div>
+      <div class="product-price"><span class="product-price-main">750 грн</span><span class="product-price-period">/ зустріч</span></div>
       <a href="https://t.me/Psikholog_Braslavskaya" class="product-link">Записатися →</a>
     </div>
 
@@ -637,7 +670,7 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
       <div class="product-badge badge-therapy">Особиста терапія</div>
       <div class="product-title">Пакети сесій</div>
       <div class="product-pain">Хочеш працювати особисто — з повною увагою тільки на тебе</div>
-      <p class="product-desc">Розова сесія — 2 000 грн. Пакет 4 сесії — 7 500 грн. Пакет 8 сесій — 14 000 грн. Доступ до закритого каналу включено.</p>
+      <p class="product-desc">Разова сесія — 2 000 грн. Пакетами — вдвічі вигідніше в перерахунку на сесію. Доступ до закритого каналу включено.</p>
       <div class="product-gets">
         <div class="product-gets-label">Що отримаєш</div>
         <ul class="product-gets-list">
@@ -646,12 +679,26 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
           <li>Доступ до закритого каналу в подарунок</li>
         </ul>
       </div>
-      <div class="product-price"><span class="product-price-main">від 2 000 грн</span></div>
-      <a href="https://t.me/Psikholog_Braslavskaya" class="product-link gold">Записатися →</a>
+      <div class="product-price"><span class="product-price-main">2 000 грн</span><span class="product-price-period">/ сесія</span></div>
+      <p style="font-size:11.5px; color:var(--text-light); margin:2px 0 10px; line-height:1.5;">Готовий(а) — обирай слот нижче. Є питання перед записом — просто напиши.</p>
+      <a href="https://calendar.app.google/ghu1Qj26J21BUYcTA" class="product-link gold">Обрати слот →</a>
+      <a href="https://t.me/Psikholog_Braslavskaya" class="product-link outline" style="margin-top:8px;">Є питання? Написати →</a>
     </div>
 
   </div>
 </section>
+
+<!-- TOPICS -->
+<div class="topics">
+  <div class="topics-eyebrow">З чим ми працюємо в цих форматах</div>
+  <div class="topics-title">Теми, які ми проходимо разом</div>
+  <div class="topics-grid">
+    <div class="topic-pill">Тривога</div><div class="topic-pill">Межі</div><div class="topic-pill">Відносини</div>
+    <div class="topic-pill">Фінанси</div><div class="topic-pill">Вигорання</div><div class="topic-pill">Ідентичність</div>
+    <div class="topic-pill">Материнство</div><div class="topic-pill">Залежність</div><div class="topic-pill">Самооцінка</div>
+    <div class="topic-pill">Кризи</div><div class="topic-pill">Сепарація</div><div class="topic-pill">Жити добре без вини</div>
+  </div>
+</div>
 
 <!-- SOON -->
 <section class="soon-section">
@@ -675,13 +722,6 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
       <div class="soon-title">Курс «Мистецтво переговорів»</div>
       <div class="soon-desc">Запис групової терапії. Самостійне проходження. Бонус: книга «Як говорити ні» включена.</div>
       <a href="https://t.me/Psikholog_Braslavskaya" class="soon-link">Хочу першим →</a>
-    </div>
-
-    <div class="soon-card">
-      <div class="soon-tag">Після пологів</div>
-      <div class="soon-title">«Психолог в кармані»</div>
-      <div class="soon-desc">Бот для підписників закритого каналу. Підтримка між сесіями — структурує ситуацію, пояснює, допомагає не застрягти. Не замінює психолога — доповнює.</div>
-      <a href="https://t.me/AB_Psychology_bot" class="soon-link">Дізнатись першим →</a>
     </div>
 
     <div class="soon-card">
@@ -709,6 +749,7 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
       <div class="test-preview"><div class="test-preview-icon">⚡</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_vygorannya.html" target="_blank" style="color:inherit;text-decoration:none;">Рівень вигорання прямо зараз</a></strong><span>Чесна діагностика за 3 хвилини</span></div></div>
       <div class="test-preview"><div class="test-preview-icon">🍽️</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_yizha.html" target="_blank" style="color:inherit;text-decoration:none;">Твої стосунки з їжею</a></strong><span>Три виміри — емоції, тригери, контроль</span></div></div>
       <div class="test-preview"><div class="test-preview-icon">🌡️</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_tryvoga_nastrii.html" target="_blank" style="color:inherit;text-decoration:none;">Тривога і настрій</a></strong><span>Два виміри — повна картина як тобі зараз</span></div></div>
+      <div class="test-preview"><div class="test-preview-icon">🧩</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_dzherela.html" target="_blank" style="color:inherit;text-decoration:none;">7 прихованих джерел твоїх проблем</a></strong><span>Не симптоми, а коріння — звідки насправді росте те, що повторюється</span></div></div>
       <div class="tests-coming">Більше тестів — скоро</div>
     </div>
   </div>
@@ -737,16 +778,64 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
   </div>
 </section>
 
-<!-- TOPICS -->
-<div class="topics">
-  <div class="topics-title">Теми, які ми проходимо разом</div>
-  <div class="topics-grid">
-    <div class="topic-pill">Тривога</div><div class="topic-pill">Межі</div><div class="topic-pill">Відносини</div>
-    <div class="topic-pill">Фінанси</div><div class="topic-pill">Вигорання</div><div class="topic-pill">Ідентичність</div>
-    <div class="topic-pill">Материнство</div><div class="topic-pill">Залежність</div><div class="topic-pill">Самооцінка</div>
-    <div class="topic-pill">Кризи</div><div class="topic-pill">Сепарація</div><div class="topic-pill">Жити добре без вини</div>
+<!-- LIBRARY SHELF -->
+<section class="library-section">
+  <div class="section-eyebrow">Бібліотека психолога</div>
+  <h2 class="section-title">Що подивитись<br><em>і що почитати</em></h2>
+  <p class="library-intro">Я часто розбираю фільми з психологічного погляду — іноді в статтях, іноді в групах, де ми дивимось на історію і персонажів трохи іншими очима. А з книг тримаю під рукою ті, які раджу найчастіше.</p>
+
+  <div class="library-grid">
+    <div>
+      <div class="library-col-title">Фільми</div>
+      <ul class="library-list">
+        <li class="library-item">
+          <div class="library-item-title">«12 розгніваних чоловіків»</div>
+          <div class="library-item-note">Мій особистий фаворит. Класика, яку варто подивитись абсолютно кожному — про упередження, тиск групи і те, як важко залишатись собою під натиском більшості.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">«Матеріалісти»</div>
+          <div class="library-item-note">Про те, як легко переплутати вигідний вибір з правильним — і що з цим робити.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">«Блондинка за рогом»</div>
+          <div class="library-item-note">Радянська класика про зіткнення двох світів — і про те, наскільки крихким буває наше уявлення про «нормальність».</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">«Удивительная миссис Мэй»</div>
+          <div class="library-item-note">Про суддю, яка мусить вирішити долю підлітка — і про ціну, яку ми платимо, коли професійний обов'язок стикається з людським.</div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="library-col-title">Книги</div>
+      <ul class="library-list">
+        <li class="library-item">
+          <div class="library-item-title">Джінін Рот — «Жінки, їжа і Бог»</div>
+          <div class="library-item-note">Про переїдання не як про слабку волю, а як про спосіб заглушити те, що насправді болить.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">Роберт Лихи — «Свобода від тривоги»</div>
+          <div class="library-item-note">Практична робота з тривогою — без езотерики, з розумінням як влаштований механізм.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">Девід Бернс — «Терапія настрою»</div>
+          <div class="library-item-note">Класика роботи з депресивними станами через власні думки.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">Емілі та Амелія Нагоскі — «Вигорання»</div>
+          <div class="library-item-note">Про «успішний успіх» і те, чому досягнення не рятують від виснаження.</div>
+        </li>
+        <li class="library-item">
+          <div class="library-item-title">Сью Джонсон — «Обійми мене міцніше»</div>
+          <div class="library-item-note">Про потребу в близькості у стосунках — звідки вона і як з нею бути.</div>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+
+  <a href="articles.html" class="library-cta">Читати огляди фільмів →</a>
+</section>
 
 <!-- REVIEWS -->
 <section class="reviews-stories" id="reviews">
@@ -856,8 +945,8 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
   <div class="anketa">
     <div class="anketa-item">
       <div class="anketa-q">Хто я окрім психолога</div>
-      <div class="anketa-a">Майбутня мама. Ландшафтний дизайнер. Тренер. Організаційний психолог і кризовий менеджер. Авторка статей і книги про ОКР. Козеріг.
-        <div style="margin-top:10px;"><span class="anketa-tag">майбутня мама</span><span class="anketa-tag">ландшафтний дизайн</span><span class="anketa-tag">книга про ОКР</span><span class="anketa-tag">козеріг</span></div>
+      <div class="anketa-a">Мама. Ландшафтний дизайнер. Тренер. Організаційний психолог і кризовий менеджер. Авторка статей і книги про ОКР. Козеріг.
+        <div style="margin-top:10px;"><span class="anketa-tag">мама</span><span class="anketa-tag">ландшафтний дизайн</span><span class="anketa-tag">книга про ОКР</span><span class="anketa-tag">козеріг</span></div>
       </div>
     </div>
     <div class="anketa-item">
@@ -878,7 +967,7 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
     </div>
     <div class="anketa-item">
       <div class="anketa-q">Зараз у моєму житті</div>
-      <div class="anketa-a">Вагітність яку я чекала 10 років. Нове життя в Києві з нуля. Книга. І відчуття що все це — саме те що треба.</div>
+      <div class="anketa-a">Дитина, яку я чекала 10 років. Нове життя в Києві з нуля. Книга. І відчуття що все це — саме те що треба.</div>
     </div>
     <div class="anketa-item">
       <div class="anketa-q">Завжди знаю</div>

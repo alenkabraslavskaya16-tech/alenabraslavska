@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чекап: 7 джерел — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --burgundy: #7B1C2A;
+  --burgundy-dark: #5C1520;
+  --gold: #C9A84C;
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE3;
+  --dark: #2C1A1D;
+  --muted: #8B6E72;
+  --line: #E8D9DC;
+  --purple: #534AB7;
+  --purple-bg: #F0EDF8;
+  --green: #2A7B4F;
+  --green-bg: #EBF5EE;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--burgundy);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-logo { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 17px; }
+.header-tag { font-size: 10px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+
+.hero {
+  background: var(--burgundy);
+  padding: 52px 24px 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.15);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 44px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 6vw, 40px);
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.hero-sub {
+  font-size: 14px;
+  color: rgba(250,247,242,0.65);
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+/* Intro */
+.intro-block {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+.intro-block p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.intro-block p + p { margin-top: 10px; }
+.intro-block strong { color: var(--dark); font-weight: 600; }
+
+/* Progress */
+.progress-wrap { margin-bottom: 28px; }
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.progress-bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--burgundy), var(--gold));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* Source cards */
+.source-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+.source-card.answered { border-color: var(--gold); }
+
+.source-header {
+  padding: 18px 20px 14px;
+  border-left: 4px solid var(--burgundy);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.source-num {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.source-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--burgundy);
+  line-height: 1.35;
+}
+.source-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.source-card.open .source-toggle { background: var(--burgundy); color: white; border-color: var(--burgundy); transform: rotate(180deg); }
+
+.source-body {
+  display: none;
+  padding: 0 20px 20px;
+}
+.source-card.open .source-body { display: block; }
+
+.source-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-bottom: 16px;
+  padding: 14px;
+  background: var(--cream);
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+}
+
+.reflex-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--burgundy);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option input { display: none; }
+.option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+  transition: all 0.15s;
+  color: var(--dark);
+}
+.option label:hover { border-color: var(--burgundy); background: var(--cream); }
+.option input:checked + label {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: white;
+  font-weight: 500;
+}
+.option-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  flex-shrink: 0;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.option input:checked + label .option-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.option input:checked + label .option-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.reflex-q {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: var(--purple-bg);
+  border-radius: 6px;
+  line-height: 1.6;
+}
+
+/* Submit */
+.btn-wrap { text-align: center; margin-top: 32px; }
+.btn {
+  background: var(--burgundy);
+  color: var(--cream);
+  border: none;
+  padding: 16px 52px;
+  border-radius: 50px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+/* Result */
+.result { display: none; }
+
+.result-hero {
+  background: var(--burgundy);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.result-top {
+  padding: 32px 28px;
+  text-align: center;
+}
+.result-label { font-size: 10px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.result-score { font-family: 'Playfair Display', serif; font-size: 58px; color: white; line-height: 1; }
+.result-score-max { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+.result-body { background: white; padding: 28px; }
+.result-level { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--burgundy); margin-bottom: 12px; }
+.result-desc { font-size: 14px; line-height: 1.75; color: var(--dark); margin-bottom: 20px; }
+
+/* Active sources in result */
+.active-sources { margin-bottom: 24px; }
+.active-label { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.active-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.active-item.high { background: #FBEAED; color: var(--burgundy); border-left: 3px solid var(--burgundy); }
+.active-item.medium { background: var(--purple-bg); color: var(--purple); border-left: 3px solid var(--purple); }
+.active-item.low { background: var(--green-bg); color: var(--green); border-left: 3px solid var(--green); }
+.active-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.high .active-dot { background: var(--burgundy); }
+.medium .active-dot { background: var(--purple); }
+.low .active-dot { background: var(--green); }
+
+.result-note {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.65;
+  padding: 16px;
+  background: var(--cream);
+  border-radius: 8px;
+}
+
+.cta-card {
+  background: var(--cream-dark);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.cta-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--burgundy); margin-bottom: 8px; }
+.cta-text { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.cta-link {
+  display: inline-block;
+  background: var(--burgundy);
+  color: var(--cream);
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.cta-link:hover { background: var(--burgundy-dark); }
+
+.retry-btn {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.retry-btn:hover { border-color: var(--burgundy); color: var(--burgundy); }
+
+.footer {
+  background: var(--burgundy);
+  padding: 24px;
+  text-align: center;
+}
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--cream); margin-bottom: 4px; }
+.footer-text { font-size: 11px; color: rgba(250,247,242,0.45); letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-logo">AB Psychology</span>
+  <span class="header-tag">Чекап · 7 джерел</span>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Чекап · Саморефлексія</div>
+  <h1 class="hero-title">7 прихованих джерел<br>твоїх проблем</h1>
+  <p class="hero-sub">Не симптоми — а коріння. Пройди чекап і зрозумій що насправді стоїть за тим що повторюється в твоєму житті.</p>
+</div>
+
+<div class="main">
+
+  <div id="test-section">
+    <div class="intro-block">
+      <p>За кожним із 7 джерел стоять <strong>несвідомі програми</strong> — ті що закладаються ще до народження або в ранньому дитинстві. Вони керують твоїми реакціями, вибором і стосунками — без твого відома.</p>
+      <p>Для кожного джерела — коротке пояснення і питання саморефлексії. Відповідай чесно. Тільки для себе.</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progress-label">0 з 7 джерел</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div id="sources"></div>
+
+    <div class="btn-wrap">
+      <button class="btn" id="submit-btn" disabled onclick="showResult()">Отримати результат</button>
+    </div>
+  </div>
+
+  <div class="result" id="result-section">
+    <div class="result-hero">
+      <div class="result-top">
+        <div class="result-label">Загальний рівень активності</div>
+        <div class="result-score" id="score-num">0</div>
+        <div class="result-score-max">з 21 балу</div>
+      </div>
+      <div class="result-body">
+        <div class="result-level" id="result-level"></div>
+        <div class="result-desc" id="result-desc"></div>
+        <div class="active-sources" id="active-sources"></div>
+        <div class="result-note">Це не вирок — це карта. Тепер ти знаєш де шукати коріння того що повторюється. А значить — знаєш з чого починати.</div>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <div class="cta-title">Хочеш розібрати це глибше?</div>
+      <div class="cta-text">Напиши анонімно — я читаю все і відповідаю щоп'ятниці в «Живому кабінеті».</div>
+      <a class="cta-link" href="https://forms.gle/ni5apUb3L9xKtgwY8" target="_blank">Написати анонімно</a>
+    </div>
+
+    <button class="retry-btn" onclick="resetTest()">Пройти ще раз</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">AB Psychology</div>
+  <div class="footer-text">@Psikholog_Braslavskaya · @sam_sobi_psycholo_g_ab</div>
+</div>
+
+<script>
+const sources = [
+  {
+    num: '01',
+    title: 'Ми не дозволяємо собі бути щасливими',
+    desc: 'Щастя відчувається як щось що треба заслужити. Або небезпечне — бо після нього обов\'язково станеться щось погане. Якщо мама під час вагітності жила в дефіциті — грошей, уваги, безпеки — дитина засвоює: радість небезпечна, достатку не буває. Це несвідома програма заборони на успіх. Людина може бути безмежно талановитою — але щоразу зупиняється на порозі свого ж щастя.',
+    question: 'Коли тобі добре — чи чекаєш підвоху? Чи є відчуття що ти недостатньо зробив щоб заслужити це?',
+    options: [
+      { val: 3, text: 'Так, завжди. Щойно стає добре — чекаю що щось піде не так' },
+      { val: 2, text: 'Іноді ловлю себе на тому що не дозволяю собі насолоджуватися' },
+      { val: 1, text: 'Рідко, але буває таке відчуття' },
+      { val: 0, text: 'Ні, я вмію бути щасливим без відчуття провини' },
+    ]
+  },
+  {
+    num: '02',
+    title: 'Немає любові і близькості',
+    desc: 'Людина роками намагається заслужити любов — від батьків, партнера, колег. Або навпаки — закривається і ховається в самотності, бо близькість колись боліла. Любов в дитинстві була умовною — тебе любили коли ти відповідав очікуванням. І тепер ти або постійно доводиш свою цінність, або взагалі не підпускаєш нікого близько. Замість справжньої близькості — ін\'єкції радості: їжа, серіали, соцмережі.',
+    question: 'Чи відчуваєш що тебе люблять такого яким ти є — без умов? Чи є у твоєму житті людина якій ти можеш сказати правду?',
+    options: [
+      { val: 3, text: 'Ні. Я весь час намагаюся відповідати або ховаюся від близькості' },
+      { val: 2, text: 'Є труднощі — або хочу більше ніж маю, або боюся підпускати' },
+      { val: 1, text: 'Загалом є близькість, але іноді відчуваю самотність поруч з людьми' },
+      { val: 0, text: 'Так, є люди з якими я можу бути справжнім' },
+    ]
+  },
+  {
+    num: '03',
+    title: 'Перевантажений графік',
+    desc: 'Зайнятість стала способом не думати. Якщо весь час щось робиш — не треба зустрічатися з тим що відчуваєш. Або зайнятість — це спроба довести свою цінність через діяльність. Ти зупинився — і одразу відчуття провини. Немає часу на себе не тому що справді немає часу. А тому що ти несвідомо заповнюєш кожну паузу — щоб не залишатися сам на сам із собою.',
+    question: 'Коли ти востаннє нічого не робив — і не відчував при цьому провини? Чи є у тебе час який справді твій?',
+    options: [
+      { val: 3, text: 'Я не пам\'ятаю коли останній раз відпочивав без відчуття що марную час' },
+      { val: 2, text: 'Є час для себе, але рідко і з почуттям провини' },
+      { val: 1, text: 'Іноді важко зупинитися, але загалом справляюся' },
+      { val: 0, text: 'Маю баланс — і відпочинок і справи' },
+    ]
+  },
+  {
+    num: '04',
+    title: 'Страшно зізнатися собі в правді',
+    desc: 'Є речі які ти знаєш але не дозволяєш собі знати. Що ця робота — не твоя. Що в цих стосунках тобі погано. Що ти давно живеш не те і не так. Правда вимагає дії — а дія страшить. Тому легше не помічати. Не питати себе. Жити в тумані «ну якось воно є». Несвідомо це захист. Але він коштує дуже дорого — роками.',
+    question: 'Є щось у твоєму житті про що ти намагаєшся не думати? Що ти точно знаєш але боїшся визнати?',
+    options: [
+      { val: 3, text: 'Так. Є речі які я знаю але свідомо не дивлюся на них' },
+      { val: 2, text: 'Іноді здогадуюся але уникаю думати про це глибше' },
+      { val: 1, text: 'Намагаюся бути чесним із собою, хоча іноді це важко' },
+      { val: 0, text: 'Я можу дивитися на правду навіть коли вона незручна' },
+    ]
+  },
+  {
+    num: '05',
+    title: 'Складно зрозуміти чого я насправді хочу',
+    desc: 'Питання «чого ти хочеш» викликає розгубленість або тривогу. Ти знаєш чого хочуть від тебе. Знаєш що правильно. Але своє — не чуєш. Бажання як м\'яз — якщо його довго не використовувати він атрофується. Якщо роками жити для інших, за чужим сценарієм, в режимі «треба» — мозок перестає генерувати власні бажання. Не тому що їх немає. А тому що навчився їх ігнорувати.',
+    question: 'Що ти хочеш — прямо зараз? Не що треба, не що правильно. А що хочеш ти?',
+    options: [
+      { val: 3, text: 'Не знаю. Це питання викликає розгубленість або тривогу' },
+      { val: 2, text: 'Маю якісь бажання, але не впевнений чи вони мої' },
+      { val: 1, text: 'Загалом чую себе, але іноді важко відрізнити своє від нав\'язаного' },
+      { val: 0, text: 'Добре чую свої бажання і вмію їм довіряти' },
+    ]
+  },
+  {
+    num: '06',
+    title: 'Результати даються дуже важко',
+    desc: 'Ти докладаєш зусиль — але результат не приходить або приходить з великими втратами. Або приходить — але не радує. Це не про брак таланту чи старань. Це про несвідомий саботаж. Якщо в дитинстві успіх не вітався, або був небезпечним — психіка засвоює: краще не висуватися. І тепер ти або прокрастинуєш, або руйнуєш вже створене, або зупиняєшся на порозі результату.',
+    question: 'Чи є у твоєму житті сфера де ти давно намагаєшся щось змінити — але воно не змінюється? Що тебе зупиняє?',
+    options: [
+      { val: 3, text: 'Так. Є сфери де я завмираю або руйную те що вже побудував' },
+      { val: 2, text: 'Результати даються важко і не завжди приносять задоволення' },
+      { val: 1, text: 'Іноді гальмую, але загалом рухаюся вперед' },
+      { val: 0, text: 'Дію без зайвого саботажу і результати мене задовольняють' },
+    ]
+  },
+  {
+    num: '07',
+    title: 'Живу чуже життя',
+    desc: 'Є відчуття що дивишся на своє життя збоку. Що ти в ньому присутній — але не живеш його по-справжньому. Плани роками стоять на місці. Мрії здаються чужими. Ти виконуєш функції — роботи, ролі, очікування — але де ти сам? Це результат довгого проживання за чужим сценарієм. Мозок поступово відключає зв\'язок із власним «я» — і людина втрачає нитку яка веде до себе.',
+    question: 'Якби завтра зникли всі очікування навколо тебе — як би виглядало твоє життя? Воно б сильно відрізнялося від теперішнього?',
+    options: [
+      { val: 3, text: 'Дуже сильно. Я живу переважно для і заради інших' },
+      { val: 2, text: 'Частково. Є речі які роблю не для себе, але є й своє' },
+      { val: 1, text: 'Загалом живу своїм, хоча іноді відчуваю що не все моє' },
+      { val: 0, text: 'Моє життя — моє. Я живу відповідно до своїх цінностей' },
+    ]
+  }
+];
+
+const levels = [
+  { max: 5,  level: 'Низька активність джерел', desc: 'Здається ти добре чуєш себе і маєш ресурс для змін. Але уважно подивися на джерела які відзначив — навіть одне активне джерело може непомітно впливати на твоє життя.' },
+  { max: 11, level: 'Помірна активність', desc: 'Кілька джерел активні і впливають на твоє повсякденне життя. Ти вже відчуваєш це — у втомі, у стосунках, у відчутті що щось не так. Це не вирок — це точка входу.' },
+  { max: 17, level: 'Висока активність', desc: 'Більшість джерел активні і суттєво формують твою реальність. Ти, можливо, давно відчуваєш що крутишся по колу — і тепер знаєш чому. Ця усвідомленість вже змінює все.' },
+  { max: 21, level: 'Дуже висока активність', desc: 'Майже всі джерела активні. Це означає що несвідомі програми зараз керують більшою частиною твого життя. Але сам факт що ти тут і пройшов цей чекап — вже крок у іншому напрямку.' }
+];
+
+const answers = new Array(sources.length).fill(null);
+
+function buildSources() {
+  const container = document.getElementById('sources');
+  sources.forEach((src, si) => {
+    const card = document.createElement('div');
+    card.className = 'source-card';
+    card.id = `card-${si}`;
+
+    const optionsHTML = src.options.map((o, oi) => `
+      <div class="option">
+        <input type="radio" name="s${si}" id="s${si}_${oi}" value="${o.val}" onchange="selectAnswer(${si}, ${o.val})">
+        <label for="s${si}_${oi}">
+          <div class="option-dot"></div>
+          ${o.text}
+        </label>
+      </div>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="source-header" onclick="toggleCard(${si})">
+        <div>
+          <div class="source-num">ДЖЕРЕЛО ${src.num}</div>
+          <div class="source-title">${src.title}</div>
+        </div>
+        <div class="source-toggle">▾</div>
+      </div>
+      <div class="source-body">
+        <div class="source-desc">${src.desc}</div>
+        <div class="reflex-label">Питання саморефлексії</div>
+        <p style="font-size:13px;color:var(--muted);font-style:italic;margin-bottom:12px;line-height:1.6">${src.question}</p>
+        <div class="options">${optionsHTML}</div>
+        <div class="reflex-q">💡 Немає правильних відповідей. Є тільки чесні.</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  // Open first card
+  toggleCard(0);
+}
+
+function toggleCard(si) {
+  const card = document.getElementById(`card-${si}`);
+  card.classList.toggle('open');
+}
+
+function selectAnswer(si, val) {
+  answers[si] = val;
+  const card = document.getElementById(`card-${si}`);
+  card.classList.add('answered');
+  updateProgress();
+  // Auto open next
+  setTimeout(() => {
+    if (si < sources.length - 1) {
+      const currentCard = document.getElementById(`card-${si}`);
+      if (currentCard.classList.contains('open')) currentCard.classList.remove('open');
+      const nextCard = document.getElementById(`card-${si+1}`);
+      if (!nextCard.classList.contains('open')) nextCard.classList.add('open');
+      nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 300);
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round((answered / sources.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${answered} з ${sources.length} джерел`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('submit-btn').disabled = answered < sources.length;
+}
+
+function showResult() {
+  const total = answers.reduce((s, a) => s + a, 0);
+  const level = levels.find(l => total <= l.max);
+
+  document.getElementById('score-num').textContent = total;
+  document.getElementById('result-level').textContent = level.level;
+  document.getElementById('result-desc').textContent = level.desc;
+
+  // Active sources
+  const activeSources = sources.map((src, i) => ({ title: src.title, val: answers[i] }))
+    .sort((a, b) => b.val - a.val);
+
+  const activeContainer = document.getElementById('active-sources');
+  activeContainer.innerHTML = '<div class="active-label">Твої найактивніші джерела</div>';
+
+  activeSources.forEach(item => {
+    const div = document.createElement('div');
+    let cls = 'low';
+    if (item.val === 3) cls = 'high';
+    else if (item.val === 2) cls = 'medium';
+    div.className = `active-item ${cls}`;
+    div.innerHTML = `<div class="active-dot"></div><span>${item.title}</span>`;
+    activeContainer.appendChild(div);
+  });
+
+  document.getElementById('test-section').style.display = 'none';
+  const resultEl = document.getElementById('result-section');
+  resultEl.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetTest() {
+  answers.fill(null);
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.querySelectorAll('.source-card').forEach(c => {
+    c.classList.remove('answered', 'open');
+  });
+  updateProgress();
+  document.getElementById('test-section').style.display = 'block';
+  document.getElementById('result-section').style.display = 'none';
+  toggleCard(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildSources();
+</script>
+</body>
+</html>
