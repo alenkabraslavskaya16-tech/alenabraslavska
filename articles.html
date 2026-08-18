@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статті — AB Psychology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A;
+  --burgundy-light: #A63D4A;
+  --burgundy-pale: #F5EAEC;
+  --burgundy-mid: #C4737E;
+  --cream: #FAF7F2;
+  --cream-dark: #F0EAE0;
+  --cream-border: #E4DAD0;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-pale: #FBF6EC;
+  --text-dark: #1E1410;
+  --text-mid: #5A4A44;
+  --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); font-size: 16px; line-height: 1.7; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(253,250,246,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cream-border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; height: 64px;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; }
+.nav-logo span { color: var(--burgundy); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-decoration: none; color: var(--text-mid); text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--burgundy); }
+.nav-links a.active { color: var(--burgundy); }
+.nav-cta { background: var(--burgundy); color: var(--gold-light); border: none; padding: 10px 22px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--burgundy-light); }
+
+/* HEADER */
+.page-header { padding: 150px 6vw 60px; max-width: 900px; }
+.section-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.page-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4.5vw, 54px); font-weight: 400; line-height: 1.15; margin-bottom: 18px; }
+.page-title em { font-style: italic; color: var(--burgundy); }
+.page-body { font-size: 15px; color: var(--text-mid); line-height: 1.85; max-width: 520px; }
+
+/* GRID */
+.articles-wrap { padding: 0 6vw 100px; }
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; max-width: 1100px; }
+.article-card { background: var(--white); border-radius: 20px; padding: 30px 26px; border: 1px solid var(--cream-border); display: flex; flex-direction: column; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(123,28,42,0.08); }
+.article-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: var(--gold-pale); color: #7A5A10; border: 1px solid var(--gold-light); padding: 4px 12px; border-radius: 100px; margin-bottom: 18px; align-self: flex-start; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 400; color: var(--text-dark); line-height: 1.3; margin-bottom: 10px; }
+.article-excerpt { font-size: 13.5px; color: var(--text-mid); line-height: 1.8; flex: 1; }
+.article-read { margin-top: 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--burgundy); }
+.article-card.soon { border-style: dashed; justify-content: center; align-items: center; text-align: center; color: var(--text-light); }
+.article-card.soon .article-title { color: var(--text-light); }
+
+/* FOOTER */
+footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36px 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: white; letter-spacing: 0.08em; text-decoration: none; }
+.footer-logo span { color: var(--gold-light); }
+.footer-text { font-size: 12px; }
+.footer-link { color: var(--gold-light); text-decoration: none; opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">AB <span>Psychology</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Про мене</a></li>
+    <li><a href="index.html#products">Продукти</a></li>
+    <li><a href="articles.html" class="active">Статті</a></li>
+    <li><a href="index.html#reviews">Відгуки</a></li>
+  </ul>
+  <a href="https://t.me/Psikholog_Braslavskaya" class="nav-cta">Написати →</a>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="section-eyebrow">Статті</div>
+  <h1 class="page-title">Читати, коли<br><em>потрібні слова</em></h1>
+  <p class="page-body">Тексти про те, що відбувається всередині — без термінів заради термінів і без порад, які не просили.</p>
+</div>
+
+<!-- GRID -->
+<div class="articles-wrap">
+  <div class="articles-grid">
+    <a href="article-100-hobbi.html" class="article-card">
+      <div class="article-tag">Ресурс</div>
+      <div class="article-title">100 хобі, які лікують психіку</div>
+      <div class="article-excerpt">Чому одні захоплення просто дають відпочити, а інші — повертають тебе собі. Путівник по 100 хобі з поясненням, що саме отримує психіка від кожного.</div>
+      <div class="article-read">Читати →</div>
+    </a>
+    <div class="article-card soon">
+      <div class="article-title">Скоро — нові статті</div>
+      <div class="article-excerpt">Тут з'являтимуться нові тексти щотижня</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">AB <span>Psychology</span></a>
+  <div class="footer-text">© Альона Браславська, 2026 · <a href="https://t.me/Psikholog_Braslavskaya" class="footer-link">Telegram</a></div>
+</footer>
+
+</body>
+</html>

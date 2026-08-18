@@ -290,6 +290,21 @@ nav {
 .test-preview-text span { font-size: 12px; color: var(--text-light); line-height: 1.5; }
 .tests-coming { background: var(--white); border-radius: 14px; padding: 14px 20px; border: 1.5px dashed var(--cream-border); font-size: 12px; color: var(--text-light); text-align: center; }
 
+/* ARTICLES */
+.articles-section { padding: 80px 6vw; background: var(--white); }
+.articles-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.articles-all-link { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--burgundy); text-decoration: none; border-bottom: 1px solid var(--burgundy-mid); padding-bottom: 2px; white-space: nowrap; }
+.articles-all-link:hover { color: var(--burgundy-light); border-color: var(--burgundy-light); }
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 44px; }
+.article-card { background: var(--cream); border-radius: 20px; padding: 28px 26px; border: 1px solid var(--cream-border); display: flex; flex-direction: column; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(123,28,42,0.08); }
+.article-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: var(--gold-pale); color: #7A5A10; border: 1px solid var(--gold-light); padding: 4px 12px; border-radius: 100px; margin-bottom: 18px; align-self: flex-start; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--text-dark); line-height: 1.3; margin-bottom: 10px; }
+.article-excerpt { font-size: 13px; color: var(--text-mid); line-height: 1.75; flex: 1; }
+.article-read { margin-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--burgundy); }
+.article-card.soon { border-style: dashed; justify-content: center; align-items: center; text-align: center; color: var(--text-light); }
+.article-card.soon .article-title { color: var(--text-light); }
+
 /* TOPICS */
 .topics { background: var(--burgundy); padding: 64px 6vw; text-align: center; }
 .topics-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 400; color: white; margin-bottom: 32px; font-style: italic; }
@@ -365,6 +380,7 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
   <ul class="nav-links">
     <li><a href="#about">Про мене</a></li>
     <li><a href="#products">Продукти</a></li>
+    <li><a href="articles.html">Статті</a></li>
     <li><a href="#reviews">Відгуки</a></li>
   </ul>
   <a href="https://t.me/Psikholog_Braslavskaya" class="nav-cta">Написати →</a>
@@ -694,6 +710,29 @@ footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 36
       <div class="test-preview"><div class="test-preview-icon">🍽️</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_yizha.html" target="_blank" style="color:inherit;text-decoration:none;">Твої стосунки з їжею</a></strong><span>Три виміри — емоції, тригери, контроль</span></div></div>
       <div class="test-preview"><div class="test-preview-icon">🌡️</div><div class="test-preview-text"><strong><a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_tryvoga_nastrii.html" target="_blank" style="color:inherit;text-decoration:none;">Тривога і настрій</a></strong><span>Два виміри — повна картина як тобі зараз</span></div></div>
       <div class="tests-coming">Більше тестів — скоро</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="articles-section" id="articles">
+  <div class="articles-head">
+    <div>
+      <div class="section-eyebrow">Статті</div>
+      <h2 class="section-title">Читати, коли<br><em>потрібні слова</em></h2>
+    </div>
+    <a href="articles.html" class="articles-all-link">Усі статті →</a>
+  </div>
+  <div class="articles-grid">
+    <a href="article-100-hobbi.html" class="article-card">
+      <div class="article-tag">Ресурс</div>
+      <div class="article-title">100 хобі, які лікують психіку</div>
+      <div class="article-excerpt">Чому одні захоплення просто дають відпочити, а інші — повертають тебе собі. Путівник по 100 хобі з поясненням, що саме отримує психіка від кожного.</div>
+      <div class="article-read">Читати →</div>
+    </a>
+    <div class="article-card soon">
+      <div class="article-title">Скоро — нові статті</div>
+      <div class="article-excerpt">Тут з'являтимуться нові тексти щотижня</div>
     </div>
   </div>
 </section>

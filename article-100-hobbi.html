@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 хобі, які лікують психіку — AB Psychology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#7B1C2A;
+    --burgundy-light:#A63D4A;
+    --burgundy-pale:#F5EAEC;
+    --burgundy-mid:#C4737E;
+    --gold:#C9A84C;
+    --gold-light:#E8D5A3;
+    --gold-pale:#FBF6EC;
+    --cream:#FAF7F2;
+    --cream-border:#E4DAD0;
+    --dark:#1E1410;
+    --text-mid:#5A4A44;
+    --text-light:#9A8A84;
+    --white:#FDFAF6;
+    --hairline: rgba(123,28,42,0.16);
+    --card: #F3EAE4;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--dark);
+    font-family:'Manrope', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(253,250,246,0.95); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--cream-border);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 6vw; height:64px;
+  }
+  .nav-logo{ font-family:'Playfair Display', serif; font-size:20px; color:var(--dark); letter-spacing:0.08em; text-decoration:none; }
+  .nav-logo span{ color:var(--burgundy); }
+  .nav-links{ display:flex; gap:28px; list-style:none; }
+  .nav-links a{ font-size:12px; font-weight:500; letter-spacing:0.12em; text-decoration:none; color:var(--text-mid); text-transform:uppercase; transition:color 0.2s; }
+  .nav-links a:hover{ color:var(--burgundy); }
+  .nav-cta{ background:var(--burgundy); color:var(--gold-light); border:none; padding:10px 22px; border-radius:100px; font-family:'Manrope', sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; cursor:pointer; text-decoration:none; transition:background 0.2s; }
+  .nav-cta:hover{ background:var(--burgundy-light); }
+
+  /* FOOTER */
+  footer{ background:var(--dark); color:rgba(255,255,255,0.4); padding:36px 6vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:0; }
+  .footer-logo{ font-family:'Playfair Display', serif; font-size:18px; color:white; letter-spacing:0.08em; text-decoration:none; }
+  .footer-logo span{ color:var(--gold-light); }
+  .footer-text{ font-size:12px; }
+  .footer-link{ color:var(--gold-light); text-decoration:none; opacity:0.7; }
+
+  .back-link{
+    display:inline-block; margin:96px 0 0; font-size:12px; font-weight:600;
+    letter-spacing:0.06em; color:var(--burgundy); text-decoration:none;
+    border-bottom:1px solid var(--burgundy-mid); padding-bottom:2px;
+  }
+  .back-link:hover{ color:var(--burgundy-light); border-color:var(--burgundy-light); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:56px 0 64px;
+    text-align:center;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    display:block;
+    width:56px;
+    height:2px;
+    background:var(--gold);
+    margin:32px auto 0;
+  }
+  .eyebrow{
+    font-family:'Manrope', sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:700;
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size:clamp(34px, 5.4vw, 54px);
+    line-height:1.12;
+    margin:0;
+    color:var(--dark);
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--burgundy);
+    font-weight:500;
+  }
+  .lede{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:19px;
+    color:#5c4247;
+    max-width:520px;
+    margin:26px auto 0;
+    font-weight:400;
+  }
+
+  /* ---------- INTRO PROSE ---------- */
+  .intro{
+    padding:8px 0 56px;
+    font-size:17px;
+  }
+  .intro p{margin:0 0 20px;}
+  .intro p:first-child::first-letter{
+    font-family:'Playfair Display', serif;
+    font-size:58px;
+    font-weight:600;
+    color:var(--burgundy);
+    float:left;
+    line-height:0.8;
+    padding:8px 8px 0 0;
+  }
+
+  h2.section-title{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:27px;
+    color:var(--burgundy);
+    margin:0 0 24px;
+    text-align:left;
+  }
+
+  /* ---------- MASS VS NICHE ---------- */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin:36px 0 8px;
+  }
+  @media (max-width:600px){ .compare{grid-template-columns:1fr;} }
+  .compare .card{
+    background:var(--card);
+    border-radius:2px;
+    padding:26px 24px;
+    border-top:2px solid var(--gold);
+  }
+  .compare .card.niche{
+    background:var(--burgundy);
+    color:var(--cream);
+    border-top:2px solid var(--gold);
+  }
+  .compare .card h3{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size:18px;
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+  }
+  .compare .card.niche h3{color:var(--gold);}
+  .compare .card p{margin:0; font-size:14.5px; opacity:0.92;}
+
+  .traits{
+    margin:44px 0 0;
+    padding:0;
+    list-style:none;
+  }
+  .traits li{
+    padding:20px 0;
+    border-top:1px solid var(--hairline);
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    font-size:15.5px;
+  }
+  .traits li:last-child{border-bottom:1px solid var(--hairline);}
+  .traits .label{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    color:var(--burgundy);
+    font-size:15.5px;
+  }
+  @media (max-width:560px){
+    .traits li{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---------- CATALOG / CATEGORY SECTIONS ---------- */
+  .catalog{
+    margin-top:76px;
+  }
+  .cat-block{
+    margin-bottom:64px;
+  }
+  .cat-header{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+    border-bottom:2px solid var(--dark);
+    padding-bottom:14px;
+  }
+  .cat-index{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--gold);
+    background:var(--dark);
+    padding:3px 9px;
+    letter-spacing:0.04em;
+  }
+  .cat-name{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size:24px;
+    color:var(--dark);
+  }
+  .cat-sub{
+    font-size:13px;
+    color:#8a6a6f;
+    margin:8px 0 0;
+    font-style:italic;
+    font-family:'Playfair Display', serif;
+  }
+
+  .entry{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:16px;
+    padding:20px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry-num{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size:13px;
+    color:var(--burgundy);
+    border:1px solid var(--burgundy);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:2px;
+  }
+  .entry-name{
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--dark);
+    display:block;
+    margin-bottom:4px;
+  }
+  .entry-desc{
+    font-size:14.5px;
+    color:#4a3438;
+    line-height:1.65;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    margin:80px 0 100px;
+    text-align:center;
+    padding-top:56px;
+    border-top:1px solid var(--hairline);
+  }
+  .closing p.q{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:26px;
+    color:var(--burgundy);
+    max-width:480px;
+    margin:0 auto 22px;
+    line-height:1.4;
+  }
+  .closing p.final{
+    font-size:16px;
+    color:#5c4247;
+    max-width:440px;
+    margin:0 auto;
+  }
+  .closing .mark{
+    width:32px;height:32px;
+    margin:0 auto 28px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display', serif;
+    color:var(--gold);
+    font-style:italic;
+    font-size:15px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">AB <span>Psychology</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Про мене</a></li>
+    <li><a href="index.html#products">Продукти</a></li>
+    <li><a href="articles.html">Статті</a></li>
+    <li><a href="index.html#reviews">Відгуки</a></li>
+  </ul>
+  <a href="https://t.me/Psikholog_Braslavskaya" class="nav-cta">Написати →</a>
+</nav>
+
+<div class="wrap">
+
+  <a href="articles.html" class="back-link">← Усі статті</a>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">AB Psychology · Стаття</div>
+    <h1>100 хобі, які <em>лікують</em><br>психіку</h1>
+    <p class="lede">Путівник по захопленнях, які повертають ресурс — і поясненням, чому саме вони, а не «просто відпочинок», працюють.</p>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <p>Привіт! Як психолог, я часто бачу, як до мене приходять люди із запитом: «Я втомилась, у мене вигоряння, нічого не радує». І знаєте, що найчастіше стає першим кроком до повернення ресурсу? Правильно обране хобі. Але не «просто поскролити стрічку» чи «подивитися серіал», а щось, що зачіпає глибинні струни нашої психіки.</p>
+    <p>Давайте розберемося, чому одні захоплення просто дають відпочинок, а інші — перевертають наш внутрішній світ, і як обрати те, що потрібно саме вашій психіці.</p>
+  </section>
+
+  <!-- MASS VS NICHE -->
+  <section>
+    <h2 class="section-title">Масове й нішеве хобі — не одне й те саме</h2>
+    <p style="font-size:15.5px; color:#4a3438; margin:0 0 8px;">Масове хобі (кіно, прогулянки, читання, велосипед) чудово знижує кортизол і дає віддушину — поріг входу низький, і психіка отримує просту паузу. Нішеве хобі влаштоване інакше: воно вимагає занурення, своєї мови й навичок — і саме тому працює глибше.</p>
+
+    <div class="compare">
+      <div class="card">
+        <h3>Масове хобі</h3>
+        <p>Ви — споживач або учасник. Швидке зниження напруги, соціалізація «на рівних», низький поріг входу.</p>
+      </div>
+      <div class="card niche">
+        <h3>Нішеве хобі</h3>
+        <p>Ви — досліджувач, майстер, творець. Глибоке занурення, формування ідентичності, пошук «своїх».</p>
+      </div>
+    </div>
+
+    <ul class="traits">
+      <li>
+        <span class="label">Ідентичність</span>
+        <span>«Я збираю кастомні клавіатури» чи «я займаюся астрофотографією» — формує унікальний Я-концепт і задовольняє потребу у винятковості.</span>
+      </li>
+      <li>
+        <span class="label">Стан потоку</span>
+        <span>Через складність нішевого хобі легше досягти потокового стану за Чиксентмихаї — коли час зупиняється, а тривога відступає перед фокусом на деталях.</span>
+      </li>
+      <li>
+        <span class="label">Якість контакту</span>
+        <span>У масових хобі зв'язки поверхневі. У нішевих — ви потрапляєте у спільноту однодумців, де є прийняття без конкуренції.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CATALOG -->
+  <div class="catalog">
+
+    <h2 class="section-title" style="margin-bottom:8px;">Путівник по хобі — за категоріями</h2>
+    <p class="cat-sub" style="margin-bottom:40px;">Для кожного — те, що саме отримує ваша психіка в процесі.</p>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">I</span><span class="cat-name">Робота руками, крафт і ремесло</span></div>
+
+      <div class="entry"><span class="entry-num">1</span><div><span class="entry-name">Книжковий перепліт</span><span class="entry-desc">Відчуття структурованості й контролю; заземлення через занурення в матеріальну форму і збереження історії.</span></div></div>
+      <div class="entry"><span class="entry-num">2</span><div><span class="entry-name">Кастомізація клавіатур</span><span class="entry-desc">Почуття ідеального порядку; задоволення потреби в тактильному й акустичному перфекціонізмі.</span></div></div>
+      <div class="entry"><span class="entry-num">3</span><div><span class="entry-name">Реставрація вінтажних меблів</span><span class="entry-desc">Почуття зцілення й відродження — проживання досвіду «зламане можна зробити прекрасним».</span></div></div>
+      <div class="entry"><span class="entry-num">4</span><div><span class="entry-name">Різьблення по кістці або рогу</span><span class="entry-desc">Глибокий фокус і сміливість; відчуття подолання опору та стійкості.</span></div></div>
+      <div class="entry"><span class="entry-num">5</span><div><span class="entry-name">Лемпворк (робота зі склом)</span><span class="entry-desc">Відчуття трансформації й стихійності; вчить гнучкості й баченню краси в моменті.</span></div></div>
+      <div class="entry"><span class="entry-num">6</span><div><span class="entry-name">Мікровишивка</span><span class="entry-desc">Медитативний спокій; розвиває надтерпіння й знижує імпульсивність.</span></div></div>
+      <div class="entry"><span class="entry-num">7</span><div><span class="entry-name">Виготовлення авторських ножів</span><span class="entry-desc">Відчуття сили та опори; проживання внутрішньої архетипової сили.</span></div></div>
+      <div class="entry"><span class="entry-num">8</span><div><span class="entry-name">Пірографія (вижигання)</span><span class="entry-desc">Відчуття теплоти й точності; вчить приймати незворотність дій — помилку не стирають, а інтегрують.</span></div></div>
+      <div class="entry"><span class="entry-num">9</span><div><span class="entry-name">Епоксидна смола та заливка</span><span class="entry-desc">Почуття закарбування моменту; збереження краси від ув'ядання.</span></div></div>
+      <div class="entry"><span class="entry-num">10</span><div><span class="entry-name">Плетіння з лози</span><span class="entry-desc">Вкоріненість і зв'язок із природою; ритмічні рухи заспокоюють тривожні думки.</span></div></div>
+      <div class="entry"><span class="entry-num">11</span><div><span class="entry-name">Виготовлення аромасвічок</span><span class="entry-desc">Почуття затишку й безпеки; активація нюхової пам'яті для розслаблення.</span></div></div>
+      <div class="entry"><span class="entry-num">12</span><div><span class="entry-name">Робота зі шкірою</span><span class="entry-desc">Відчуття добротності та відчутного результату праці.</span></div></div>
+      <div class="entry"><span class="entry-num">13</span><div><span class="entry-name">Литво домашнього паперу</span><span class="entry-desc">Відчуття очищення, переробки й створення чистого аркуша у своєму житті.</span></div></div>
+      <div class="entry"><span class="entry-num">14</span><div><span class="entry-name">Створення вінілових наклейок</span><span class="entry-desc">Легкість і гра; можливість маркувати свій простір під власний настрій.</span></div></div>
+      <div class="entry"><span class="entry-num">15</span><div><span class="entry-name">Гончарна справа</span><span class="entry-desc">Глибокий контакт із собою через заземлення; тілесна терапія й прийняття недосконалостей.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">II</span><span class="cat-name">Мистецтво, колекціонування, мініатюри</span></div>
+
+      <div class="entry"><span class="entry-num">16</span><div><span class="entry-name">Розпис мініатюр (варгейми)</span><span class="entry-desc">Почуття повного контролю над мікровсесвітом; медитативний відхід від тривожного великого світу.</span></div></div>
+      <div class="entry"><span class="entry-num">17</span><div><span class="entry-name">Румбокси</span><span class="entry-desc">Дитячий захват і безпека; відновлення внутрішньої дитини через створення затишного сховища.</span></div></div>
+      <div class="entry"><span class="entry-num">18</span><div><span class="entry-name">Колекціонування вінтажних ляльок</span><span class="entry-desc">Зв'язок із минулим, турбота й естетична ностальгія.</span></div></div>
+      <div class="entry"><span class="entry-num">19</span><div><span class="entry-name">Створення шарнірних ляльок (BJD)</span><span class="entry-desc">Відчуття деміурга; дослідження анатомії й емоцій через пластику.</span></div></div>
+      <div class="entry"><span class="entry-num">20</span><div><span class="entry-name">Концептуальна парфумерія</span><span class="entry-desc">Розширення емоційного діапазону; проживання різних ролей і станів через аромати.</span></div></div>
+      <div class="entry"><span class="entry-num">21</span><div><span class="entry-name">Джанк-журналінг</span><span class="entry-desc">Прийняття хаосу; психіка вчиться збирати цінне з уламків і спогадів.</span></div></div>
+      <div class="entry"><span class="entry-num">22</span><div><span class="entry-name">Papercraft (3D-папір)</span><span class="entry-desc">Почуття збирання цілісності з пласких шматочків; розвиток просторового мислення.</span></div></div>
+      <div class="entry"><span class="entry-num">23</span><div><span class="entry-name">Вітражі Тіффані</span><span class="entry-desc">Захват від гри світла; проживання поєднання крихкості й міцності.</span></div></div>
+      <div class="entry"><span class="entry-num">24</span><div><span class="entry-name">Алмазна мозаїка</span><span class="entry-desc">Зниження тривожності через монотонну структуровану діяльність.</span></div></div>
+      <div class="entry"><span class="entry-num">25</span><div><span class="entry-name">Колекціонування мінералів</span><span class="entry-desc">Почуття вічності; заземлення через контакт із каменем.</span></div></div>
+      <div class="entry"><span class="entry-num">26</span><div><span class="entry-name">Кастомізація кросівок</span><span class="entry-desc">Яскрава самопрезентація; свобода від стандартів.</span></div></div>
+      <div class="entry"><span class="entry-num">27</span><div><span class="entry-name">Маркетрі (дерев'яна мозаїка)</span><span class="entry-desc">Гармонія та тонка стиковка деталей; бачення прихованого потенціалу.</span></div></div>
+      <div class="entry"><span class="entry-num">28</span><div><span class="entry-name">Кастом ляльок Блайз</span><span class="entry-desc">Переживання трансформації; надання індивідуальності безликому об'єкту.</span></div></div>
+      <div class="entry"><span class="entry-num">29</span><div><span class="entry-name">Квіллінг</span><span class="entry-desc">Легкість і витонченість; створення об'єму з мінімальних ресурсів.</span></div></div>
+      <div class="entry"><span class="entry-num">30</span><div><span class="entry-name">Вінтажні ялинкові іграшки</span><span class="entry-desc">Свято, казка і повернення до ресурсу дитячої віри в диво.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">III</span><span class="cat-name">Гастрономія, напої, смаки</span></div>
+
+      <div class="entry"><span class="entry-num">31</span><div><span class="entry-name">Спешелті-кава та обжарка</span><span class="entry-desc">Ритуальність та усвідомленість; чутливість до нюансів життя.</span></div></div>
+      <div class="entry"><span class="entry-num">32</span><div><span class="entry-name">Домашня ферментація</span><span class="entry-desc">Прийняття природних процесів часу; вчить чекати й довіряти дозріванню.</span></div></div>
+      <div class="entry"><span class="entry-num">33</span><div><span class="entry-name">Крафтове пивоваріння</span><span class="entry-desc">Відчуття експерименту та алхімії; потреба у створенні продуктів для частування.</span></div></div>
+      <div class="entry"><span class="entry-num">34</span><div><span class="entry-name">Хліб на дикій заквасці</span><span class="entry-desc">Відчуття материнської турботи; заземлення через заміс і запах випічки.</span></div></div>
+      <div class="entry"><span class="entry-num">35</span><div><span class="entry-name">Домашнє сироробство</span><span class="entry-desc">Почуття витримки, майстерності й шляхетності процесу.</span></div></div>
+      <div class="entry"><span class="entry-num">36</span><div><span class="entry-name">Чайні церемонії</span><span class="entry-desc">Уповільнення, медитація, «тут і зараз»; зниження суєти.</span></div></div>
+      <div class="entry"><span class="entry-num">37</span><div><span class="entry-name">Шоколад Bean-to-Bar</span><span class="entry-desc">Сенсорні відчуття, розкіш і глибина смаку.</span></div></div>
+      <div class="entry"><span class="entry-num">38</span><div><span class="entry-name">Настоянки та біттери</span><span class="entry-desc">Відчуття травництва й старовинної аптекарської магії.</span></div></div>
+      <div class="entry"><span class="entry-num">39</span><div><span class="entry-name">Карвінг (різьблення на їжі)</span><span class="entry-desc">Естетизація побуту; вміння бачити красу в повсякденному.</span></div></div>
+      <div class="entry"><span class="entry-num">40</span><div><span class="entry-name">Молекулярна кухня</span><span class="entry-desc">Гра, руйнування шаблонів; повернення дитячого дослідницького інтересу.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">IV</span><span class="cat-name">Природа, ботаніка, тваринний світ</span></div>
+
+      <div class="entry"><span class="entry-num">41</span><div><span class="entry-name">Антикіпінг (мурашки)</span><span class="entry-desc">Спостереження за гармонійним хаосом; розуміння системних процесів.</span></div></div>
+      <div class="entry"><span class="entry-num">42</span><div><span class="entry-name">Вирощування бонсай</span><span class="entry-desc">Філософське прийняття часу; терпіння й стратегічне бачення на роки вперед.</span></div></div>
+      <div class="entry"><span class="entry-num">43</span><div><span class="entry-name">Акваскейпінг</span><span class="entry-desc">Створення власного гармонійного світу; заспокоєння через споглядання води й зелені.</span></div></div>
+      <div class="entry"><span class="entry-num">44</span><div><span class="entry-name">Бердвочинг</span><span class="entry-desc">Азарт і присутність; тренування уваги до навколишнього світу.</span></div></div>
+      <div class="entry"><span class="entry-num">45</span><div><span class="entry-name">Рідкісні варієгатні рослини</span><span class="entry-desc">Володіння унікальним; турбота про тендітну красу.</span></div></div>
+      <div class="entry"><span class="entry-num">46</span><div><span class="entry-name">Флораріуми</span><span class="entry-desc">Створення захищеного мікровсесвіту, де панує автономія.</span></div></div>
+      <div class="entry"><span class="entry-num">47</span><div><span class="entry-name">Екзоти на балконі</span><span class="entry-desc">Радість подолання обмежень: «я можу виростити життя де завгодно».</span></div></div>
+      <div class="entry"><span class="entry-num">48</span><div><span class="entry-name">Грибне фермерство</span><span class="entry-desc">Спостереження за таємничим зростанням у тіні.</span></div></div>
+      <div class="entry"><span class="entry-num">49</span><div><span class="entry-name">Вермикультивація</span><span class="entry-desc">Екологічна свідомість; користь через замкнене коло життя.</span></div></div>
+      <div class="entry"><span class="entry-num">50</span><div><span class="entry-name">Міське бджільництво</span><span class="entry-desc">Співпраця з природою і солодкий результат спільної праці.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">V</span><span class="cat-name">Технології, електроніка, ретро</span></div>
+
+      <div class="entry"><span class="entry-num">51</span><div><span class="entry-name">HAM Radio</span><span class="entry-desc">Подолання відстаней; дитячий захват від виходу на зв'язок без інтернету.</span></div></div>
+      <div class="entry"><span class="entry-num">52</span><div><span class="entry-name">Ретрокомп'ютинг</span><span class="entry-desc">Ностальгічна безпека; простота старих систем проти сучасного шуму.</span></div></div>
+      <div class="entry"><span class="entry-num">53</span><div><span class="entry-name">Мікроконтролери (Arduino)</span><span class="entry-desc">Інженерна всемогутність; керування фізичним світом через код.</span></div></div>
+      <div class="entry"><span class="entry-num">54</span><div><span class="entry-name">3D-друк</span><span class="entry-desc">Швидка матеріалізація думки: «я вигадала — воно з'явилося».</span></div></div>
+      <div class="entry"><span class="entry-num">55</span><div><span class="entry-name">Вінілове аудіо</span><span class="entry-desc">Теплота й справжність звуку; ритуал слухання альбому від початку до кінця.</span></div></div>
+      <div class="entry"><span class="entry-num">56</span><div><span class="entry-name">FPV-дрони</span><span class="entry-desc">Вільний політ і вихід за межі власного тіла; гострий адреналін.</span></div></div>
+      <div class="entry"><span class="entry-num">57</span><div><span class="entry-name">Чиптюн (8-біт музика)</span><span class="entry-desc">Творчість у суворих обмеженнях; вивільнення дитячого азарту.</span></div></div>
+      <div class="entry"><span class="entry-num">58</span><div><span class="entry-name">Оцифровка аналогових носіїв</span><span class="entry-desc">Реставратор пам'яті; порятунок цінних моментів від забуття.</span></div></div>
+      <div class="entry"><span class="entry-num">59</span><div><span class="entry-name">Модифікація консолей</span><span class="entry-desc">Покращення реальності; друге життя речам.</span></div></div>
+      <div class="entry"><span class="entry-num">60</span><div><span class="entry-name">Астрофотографія</span><span class="entry-desc">Велич космосу; зниження побутового стресу через масштаб Всесвіту.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">VI</span><span class="cat-name">Фотографія, оптика, візуальне мистецтво</span></div>
+
+      <div class="entry"><span class="entry-num">61</span><div><span class="entry-name">Плівкова фотографія</span><span class="entry-desc">Прийняття очікування й обмеженості ресурсів (36 кадрів); цінування моменту.</span></div></div>
+      <div class="entry"><span class="entry-num">62</span><div><span class="entry-name">Альтернативна фотографія (ціанотипія)</span><span class="entry-desc">Магія хімії й сонця; неповторність кожного відбитку.</span></div></div>
+      <div class="entry"><span class="entry-num">63</span><div><span class="entry-name">Астрономія (телескопи)</span><span class="entry-desc">Тихе захоплення й споглядання; розширення внутрішніх меж.</span></div></div>
+      <div class="entry"><span class="entry-num">64</span><div><span class="entry-name">Мікрофотографія</span><span class="entry-desc">Відкриття прихованих світів; краса в кожній деталі.</span></div></div>
+      <div class="entry"><span class="entry-num">65</span><div><span class="entry-name">Мануальна оптика</span><span class="entry-desc">М'якість і малюнок життя; відмова від ідеальної різкості на користь душі.</span></div></div>
+      <div class="entry"><span class="entry-num">66</span><div><span class="entry-name">Інфрачервона фотографія</span><span class="entry-desc">Бачення невидимого; вихід за межі звичайного сприйняття.</span></div></div>
+      <div class="entry"><span class="entry-num">67</span><div><span class="entry-name">Ломографія</span><span class="entry-desc">Свобода від перфекціонізму; радість від випадковостей і яскравих плям.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">VII</span><span class="cat-name">Ігри, моделізм, ментальні хобі</span></div>
+
+      <div class="entry"><span class="entry-num">68</span><div><span class="entry-name">Настільні рольові ігри (D&D)</span><span class="entry-desc">Безпечна примірка різних ролей; проживання пригод і емоцій у колі друзів.</span></div></div>
+      <div class="entry"><span class="entry-num">69</span><div><span class="entry-name">Стендовий моделізм</span><span class="entry-desc">Реконструкція історії; акуратність, системність, зосередженість.</span></div></div>
+      <div class="entry"><span class="entry-num">70</span><div><span class="entry-name">Спідкубінг</span><span class="entry-desc">Заряд дофаміну від швидкого успіху; моторика й алгоритмічне мислення.</span></div></div>
+      <div class="entry"><span class="entry-num">71</span><div><span class="entry-name">Гігантські пазли</span><span class="entry-desc">Медитативне збирання картини світу з хаосу; задоволення від завершеності.</span></div></div>
+      <div class="entry"><span class="entry-num">72</span><div><span class="entry-name">Дерев'яні вітрильники</span><span class="entry-desc">Тривала мандрівка; терпіння й дрібна моторика.</span></div></div>
+      <div class="entry"><span class="entry-num">73</span><div><span class="entry-name">Соло-настілки</span><span class="entry-desc">Глибокий контакт із собою; безпечний простір для складних задач.</span></div></div>
+      <div class="entry"><span class="entry-num">74</span><div><span class="entry-name">Історична реконструкція</span><span class="entry-desc">Занурення в іншу епоху; вихід з побутової реальності й тілесна пам'ять.</span></div></div>
+      <div class="entry"><span class="entry-num">75</span><div><span class="entry-name">Варгейми (Warhammer)</span><span class="entry-desc">Тактичний азарт, стратегічне мислення й соціальна гра.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">VIII</span><span class="cat-name">Активний відпочинок, пошук, дослідження</span></div>
+
+      <div class="entry"><span class="entry-num">76</span><div><span class="entry-name">Геокешинг</span><span class="entry-desc">Шукач скарбів; будь-яка прогулянка стає пригодою.</span></div></div>
+      <div class="entry"><span class="entry-num">77</span><div><span class="entry-name">Металопошук</span><span class="entry-desc">Азарт передчуття знахідки; зв'язок із землею й історією людських доль.</span></div></div>
+      <div class="entry"><span class="entry-num">78</span><div><span class="entry-name">Спелеологія та урбекс</span><span class="entry-desc">Подолання страхів, перевірка стійкості, адреналін від досліджень.</span></div></div>
+      <div class="entry"><span class="entry-num">79</span><div><span class="entry-name">Бушкрафт</span><span class="entry-desc">Автономія й впевненість у власних силах: «я виживу за будь-яких умов».</span></div></div>
+      <div class="entry"><span class="entry-num">80</span><div><span class="entry-name">Магнітопошук</span><span class="entry-desc">Дитячий азарт «а що там на дні?»; чистка водойм і відчуття користі.</span></div></div>
+      <div class="entry"><span class="entry-num">81</span><div><span class="entry-name">САП-бординг дикими річками</span><span class="entry-desc">Медитативний баланс, злиття з водою, спокійне навантаження на тіло.</span></div></div>
+      <div class="entry"><span class="entry-num">82</span><div><span class="entry-name">Плоггінг (біг зі збором сміття)</span><span class="entry-desc">Подвійний дофамін: фізична розрядка плюс відчуття важливої місії.</span></div></div>
+      <div class="entry"><span class="entry-num">83</span><div><span class="entry-name">Форажинг (збирання дикоросів)</span><span class="entry-desc">Повернення до архаїчних коренів заготовок; щедрість природи.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">IX</span><span class="cat-name">Стиль, текстиль, дбайливість про дім</span></div>
+
+      <div class="entry"><span class="entry-num">84</span><div><span class="entry-name">Історичний костюм</span><span class="entry-desc">Величі, примірка іншого соціального статусу й часового шару.</span></div></div>
+      <div class="entry"><span class="entry-num">85</span><div><span class="entry-name">Ткацтво</span><span class="entry-desc">Ритмічне заспокоєння; створення цілісної тканини життя з окремих ниток.</span></div></div>
+      <div class="entry"><span class="entry-num">86</span><div><span class="entry-name">Валяння з шерсті (фельтінг)</span><span class="entry-desc">Вивільнення напруги через тактильний контакт і формування об'єму.</span></div></div>
+      <div class="entry"><span class="entry-num">87</span><div><span class="entry-name">Тафтинг (килими)</span><span class="entry-desc">Психологічна розрядка через ритмічні клацання; створення затишку руками.</span></div></div>
+      <div class="entry"><span class="entry-num">88</span><div><span class="entry-name">Прядіння пряжі</span><span class="entry-desc">Глибока медитативна трансовість; нитка зв'язку з простого волокна.</span></div></div>
+      <div class="entry"><span class="entry-num">89</span><div><span class="entry-name">Макраме</span><span class="entry-desc">Структурування думок через плетіння вузлів; створення міцної форми.</span></div></div>
+      <div class="entry"><span class="entry-num">90</span><div><span class="entry-name">Вишивка Сашико / Боро</span><span class="entry-desc">Прийняття старіння речей; перетворення дефектів на мистецтво.</span></div></div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-header"><span class="cat-index">X</span><span class="cat-name">Слово, історія, голос</span></div>
+
+      <div class="entry"><span class="entry-num">91</span><div><span class="entry-name">Каліграфія</span><span class="entry-desc">Гармонізація півкуль мозку; красиве вираження й плавна концентрованість.</span></div></div>
+      <div class="entry"><span class="entry-num">92</span><div><span class="entry-name">Генеалогічні дослідження</span><span class="entry-desc">Пошук коріння й сімейних опор: «я не одна, за мною стоїть рід».</span></div></div>
+      <div class="entry"><span class="entry-num">93</span><div><span class="entry-name">Озвучка та аудіоспектаклі</span><span class="entry-desc">Вивільнення затиснутого голосу й прихованих емоцій через гру ролей.</span></div></div>
+      <div class="entry"><span class="entry-num">94</span><div><span class="entry-name">Леттеринг</span><span class="entry-desc">Свобода вираження думки через форму; візуалізація важливих смислів.</span></div></div>
+      <div class="entry"><span class="entry-num">95</span><div><span class="entry-name">Криптографія та шифри</span><span class="entry-desc">Задоволення від розгадування таємниць; володіння секретним знанням.</span></div></div>
+      <div class="entry"><span class="entry-num">96</span><div><span class="entry-name">Вивчення штучних мов (конланги)</span><span class="entry-desc">Гнучкість мислення; розширення меж сприйняття через нові структури.</span></div></div>
+      <div class="entry"><span class="entry-num">97</span><div><span class="entry-name">Вирізання штампів (ліногравюра)</span><span class="entry-desc">Залишення власного слідку; швидке розмноження створеного образу.</span></div></div>
+      <div class="entry"><span class="entry-num">98</span><div><span class="entry-name">Bullet Journal</span><span class="entry-desc">Упорядкування внутрішнього хаосу; дбайливе проєктування часу й ресурсів.</span></div></div>
+      <div class="entry"><span class="entry-num">99</span><div><span class="entry-name">Геральдика</span><span class="entry-desc">Пошук символів і сенсів; власний код цінностей та ідентичності.</span></div></div>
+      <div class="entry"><span class="entry-num">100</span><div><span class="entry-name">Реставрація друкарських машинок</span><span class="entry-desc">Тактильний зв'язок зі словом; чіткий відбиток і фізичний звук літери.</span></div></div>
+    </div>
+
+  </div>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="mark">*</div>
+    <p class="q">«Якого саме стану мені зараз бракує?»</p>
+    <p class="final">Слухайте себе, обирайте не те, що «модно», а те, від чого всередині тріпоче або стає тихо й тепло. Запитайте себе прямо зараз — і відповідь підкаже ваше ідеальне хобі.</p>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">AB <span>Psychology</span></a>
+  <div class="footer-text">© Альона Браславська, 2026 · <a href="https://t.me/Psikholog_Braslavskaya" class="footer-link">Telegram</a></div>
+</footer>
+
+</body>
+</html>
