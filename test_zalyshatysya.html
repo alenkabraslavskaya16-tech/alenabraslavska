@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Залишатися чи йти — тест AB Psychology</title>
+<meta name="description" content="4 ознаки того, що стосунки варто зберегти, навіть якщо хочеться розійтися. Тест для тих, хто щойно посварився і думає «все, досить».">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A; --burgundy-light: #A63D4A;
+  --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --cream: #FAF7F2; --cream-border: #E4DAD0;
+  --gold: #C9A84C; --gold-light: #E8D5A3; --gold-pale: #FBF6EC;
+  --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 20px 80px; }
+.wrap { width: 100%; max-width: 620px; }
+.header { text-align: center; margin-bottom: 48px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; display: inline-block; margin-bottom: 32px; }
+.header-logo span { color: var(--burgundy); }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.title em { font-style: italic; color: var(--burgundy); }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+.progress-wrap { margin-bottom: 36px; }
+.progress-bar-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; background: var(--burgundy); border-radius: 100px; transition: width 0.4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; }
+.step { display: none; }
+.step.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.card { background: var(--white); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
+.q-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.6; margin-bottom: 10px; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(17px, 3vw, 21px); font-weight: 400; line-height: 1.4; color: var(--text-dark); margin-bottom: 24px; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option { padding: 14px 18px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.6; transition: all 0.2s; background: var(--cream); }
+.option:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); color: var(--text-dark); }
+.option.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
+.btn-row { display: flex; gap: 12px; }
+.btn-next { flex: 1; background: var(--burgundy); color: var(--gold-light); border: none; padding: 15px 32px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+.btn-next:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-next:disabled { background: var(--cream-border); color: var(--text-light); cursor: not-allowed; transform: none; }
+.btn-back { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); padding: 15px 24px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-back:hover { border-color: var(--text-mid); }
+.result { display: none; }
+.result.active { display: block; animation: fadeIn 0.4s ease; }
+.result-card { background: var(--burgundy-pale); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--burgundy-mid); margin-bottom: 24px; }
+.result-type { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.7; margin-bottom: 12px; }
+.result-title { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 400; line-height: 1.3; margin-bottom: 16px; }
+.result-title em { font-style: italic; color: var(--burgundy); }
+.result-text { font-size: 15px; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
+.result-insights { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.insight { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+.insight::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.result-cta { background: var(--white); border-radius: 20px; padding: 24px; border: 1px solid var(--cream-border); margin-bottom: 20px; text-align: center; }
+.result-cta-text { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+.btn-tg { display: block; background: var(--burgundy); color: var(--gold-light); padding: 14px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; text-align: center; transition: all 0.2s; margin-bottom: 10px; }
+.btn-tg:hover { background: var(--burgundy-light); transform: translateY(-1px); }
+.btn-retry { display: block; text-align: center; font-size: 13px; color: var(--text-light); cursor: pointer; text-decoration: underline; }
+.page-footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-light); }
+.page-footer a { color: var(--burgundy); text-decoration: none; }
+</style>
+<style>
+.safety { background: var(--white); border: 1.5px solid var(--burgundy); border-radius: 24px; padding: 32px 28px; margin-bottom: 24px; }
+.safety h2 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(22px,4vw,28px); margin-bottom: 14px; }
+.safety h3 { font-size: 13px; font-weight: 700; letter-spacing: .04em; margin: 20px 0 8px; color: var(--burgundy); }
+.safety p, .safety li { font-size: 14px; color: var(--text-mid); line-height: 1.75; }
+.safety ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.say { background: var(--gold-pale); border-radius: 14px; padding: 12px 14px; font-size: 14px; color: var(--text-dark); line-height: 1.7; margin-bottom: 8px; }
+.tbl { overflow-x: auto; margin-top: 6px; }
+.tbl table { border-collapse: collapse; width: 100%; min-width: 460px; font-size: 13px; }
+.tbl th, .tbl td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--cream-border); vertical-align: top; color: var(--text-mid); line-height: 1.5; }
+.tbl th { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dark); }
+.tbl a { color: var(--burgundy); }
+.btn-ghost { display: block; border: 1.5px solid var(--burgundy); color: var(--burgundy); padding: 13px; border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; text-align: center; margin-bottom: 10px; }
+.btn-ghost:hover { background: var(--burgundy-pale); }
+.subhead { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin: 8px 0 12px; text-align: center; }
+.option:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+@media (max-width: 480px) { body { padding: 32px 16px 64px; } .card, .result-card, .safety { padding: 26px 20px; } }
+@media (prefers-reduced-motion: reduce) { .step.active, .result.active { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <a href="https://t.me/Psikholog_Braslavskaya" class="header-logo">AB <span>Psychology</span></a>
+    <div class="eyebrow">Тест · 7 питань</div>
+    <h1 class="title">4 ознаки того, що стосунки варто <em>зберегти</em>, навіть якщо хочеться розійтися</h1>
+    <p class="subtitle">Для тих, хто щойно посварився і думає «все, досить». Тест допоможе побачити, де сварка з людиною, а де з власними очікуваннями.</p>
+  </div>
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Питання 1 з 7</div>
+  </div>
+
+  <div id="steps"></div>
+  <div class="result" id="result" aria-live="polite"></div>
+  <div class="page-footer"><a href="https://t.me/Psikholog_Braslavskaya">AB Psychology · Альона Браславська</a></div>
+</div>
+
+<script>
+// Посилання. ARTICLE_URL — публічне посилання на статтю «Анатомія парного конфлікту».
+const ARTICLE_URL = "";
+const LINKS = {
+  channel: "https://t.me/sam_sobi_psycholo_g_ab",
+  cabinet: "https://t.me/AB_Psychology_bot",
+  book: "https://t.me/Psikholog_Braslavskaya"
+};
+
+// O — «Закоханість в очікування», Z — «Знайомство триває», P — «Є стіл переговорів», S — безпека
+const QUESTIONS = [
+  { q: "Ваша людина зробила не так, як ви чекали. Що ви думаєте першим?",
+    o: [["«Мене не цінують»","O"],["«Цікаво, чому так вийшло»","P"],["«Скільки можна пояснювати»","Z"],["Мовчу, але запам'ятовую","O"]] },
+  { q: "Ви знаєте, як вашій людині приємно, щоб про неї піклувались?",
+    o: [["Так, ми про це говорили","P"],["Я знаю, як має бути","O"],["Ніколи не питали","Z"]] },
+  { q: "Як ви розумієте, що вас люблять?",
+    o: [["Дарують те, що видно всім","O"],["Вгадують без слів","O"],["Питають, чого мені хочеться","P"],["Поважають моє «ні»","P"]] },
+  { q: "Чи змінилася ваша людина з початку стосунків?",
+    o: [["Так, стала іншою","O"],["Я бачу те, чого раніше не помічали","Z"],["Ні, і це втомлює","O"],["Я досі дізнаюся про неї нове","P"]] },
+  { q: "Вам щось не подобається. Що ви робите?",
+    o: [["Сваримось через конкретну річ","Z"],["Хтось поступається","O"],["Кажемо, що потрібно кожному","P"],["Мовчимо","O"]] },
+  { q: "Ви хочете різного. Що далі?",
+    o: [["Я переконую","Z"],["Я поступаюся, але ображаюся","O"],["Шукаємо те, що підходить обом","P"],["Думаю, що ми не пара","O"]] },
+  { q: "Чи буває вам страшно під час сварок? Наприклад, крик, погрози, контроль, сила.",
+    o: [["Ні","-"],["Іноді","S"],["Часто","S"],["Не хочу відповідати","-"]] }
+];
+const N = QUESTIONS.length;
+
+const RESULTS = {
+  O: { label: "Ваш результат", title: "Закоханість <em>в очікування</em>",
+    text: ["Сварка починається з дрібниці: не написали, не помітили, зробили по-своєму. А образа велика. Бо болить не дрібниця, а те, що ви чекали іншого.",
+      "Пари на моїх терапевтичних сесіях майже завжди починають з одного: «не зробив», «зробила не так». Але інша людина часто навіть не знала, чого від неї чекали.",
+      "Ми закохуємось у людину і в те, якою її собі уявили. А справжня людина інша: у неї свої звички і свій спосіб піклуватися. Стосунки варто берегти, коли вам цікаво її пізнавати. Якщо цікавості немає навіть тоді, коли ви заспокоїлись, це теж відповідь."],
+    article: "Чому в сварці одна людина мовчить, а інша не може зупинитися, читайте в статті «Анатомія парного конфлікту».",
+    cta: [["article","Читати статтю →"],["channel","Безкоштовний Telegram-канал","ghost"]] },
+  Z: { label: "Ваш результат", title: "Знайомство <em>триває</em>",
+    text: ["Ви вже бачите людину такою, якою вона є. Але під час сварки образа все одно повертається. Голова розуміє, а всередині болить.",
+      "Прийняти людину означає пізнавати її і дозволяти їй робити по-своєму. А якщо щось вам не підходить, про це варто домовлятися. Так, щоб було добре обом."],
+    article: "Чому одній людині в сварці треба побути наодинці, а іншій поговорити одразу, читайте в статті «Анатомія парного конфлікту». Якщо хочеться розібратися разом із психологом, я працюю з парами.",
+    cta: [["book","Записатися на консультацію →"],["article","Читати статтю","ghost"],["channel","Безкоштовний Telegram-канал","ghost"]] },
+  P: { label: "Ваш результат", title: "Є стіл <em>переговорів</em>",
+    text: ["У вас є всі чотири ознаки. Вам цікаво, якою є ваша людина. Ви знаєте, що їй потрібно. Ви прямо кажете, що потрібно вам. І ви вмієте домовлятися.",
+      "Після сильної сварки хотіти піти — нормально. Так буває і в добрих стосунках: коли боляче, хочеться, щоб це швидше закінчилось. Не вирішуйте одразу. Дайте собі час. Якщо бажання піти не минає і потім, це теж відповідь."],
+    article: "Як спиратися на себе і в стосунках, і поза ними, говоримо цього місяця в «Живому кабінеті».",
+    cta: [["cabinet","Дізнатися про «Живий кабінет» →"],["channel","Безкоштовний Telegram-канал","ghost"]] }
+};
+
+const SAFETY = `
+  <div class="safety">
+    <div class="result-type">Безпека насамперед</div>
+    <h2>Вам буває страшно під час сварок</h2>
+    <p>Ви відповіли, що під час сварок вам буває страшно. Це важливіше за все інше в цьому тесті.</p>
+    <h3>Куди звертатися</h3>
+    <ul>
+      <li><strong>Небезпека прямо зараз</strong> (б'ють, погрожують убити, не випускають з дому) — екстрена служба вашої країни.</li>
+      <li><strong>Прямої небезпеки зараз немає</strong>, але є крик, погрози, контроль, страх — гаряча лінія. Там вислухають і підкажуть, що робити саме у вашій ситуації.</li>
+    </ul>
+    <h3>Що можна сказати</h3>
+    <div class="say">На гарячу лінію: «Добрий день. Мені потрібна порада. Під час сварок мій партнер кричить / погрожує / контролює мене. Мені страшно. Підкажіть, як мені діяти».</div>
+    <div class="say">На екстрену лінію: «Мені загрожує небезпека. Моя адреса: … Людина, від якої загроза, зараз поруч». За кордоном можна англійською: «I need help. I am in danger. My address is …»</div>
+    <h3>Контакти</h3>
+    <div class="tbl"><table>
+      <tr><th>Де ви</th><th>Небезпека зараз</th><th>Гаряча лінія</th></tr>
+      <tr><td>Україна</td><td>112 або поліція 102</td><td>15 47 (цілодобово); La Strada 116 123 або 0 800 500 335, Telegram @NHL116123</td></tr>
+      <tr><td>Польща</td><td>112</td><td>Niebieska Linia 800 120 002</td></tr>
+      <tr><td>Німеччина</td><td>112</td><td>Для жінок 116 016 (є українська мова); для чоловіків 0800 123 99 00</td></tr>
+      <tr><td>Чехія</td><td>112 або поліція 158</td><td>116 006 (цілодобово)</td></tr>
+      <tr><td>Велика Британія</td><td>999; якщо не можете говорити, з мобільного після підказки натисніть 55</td><td>Для жінок 0808 2000 247; для чоловіків 0808 801 0327</td></tr>
+      <tr><td>США</td><td>911</td><td>1-800-799-7233 або SMS «START» на 88788</td></tr>
+      <tr><td>Інша країна</td><td>Місцевий номер екстреної служби</td><td><a href="https://findahelpline.com/topics/abuse-domestic-violence" target="_blank" rel="noopener">findahelpline.com</a>: оберіть країну і тему «Abuse &amp; domestic violence»</td></tr>
+    </table></div>
+    <p style="margin-top:18px">Коли ви будете в безпеці, з психологом можна спокійно розібратися, що відбувається у стосунках. Я працюю онлайн.</p>
+  </div>`;
+
+const answers = new Array(N).fill(null);
+const stepsEl = document.getElementById("steps");
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+QUESTIONS.forEach((item, i) => {
+  const last = i === N - 1;
+  const opts = item.o.map((o, j) =>
+    `<div class="option" role="radio" aria-checked="false" tabindex="0" data-q="${i}" data-j="${j}">${esc(o[0])}</div>`).join("");
+  stepsEl.insertAdjacentHTML("beforeend", `
+    <div class="step${i === 0 ? " active" : ""}" id="step-${i}">
+      <div class="card">
+        <div class="q-num">Питання ${i + 1} / ${N}</div>
+        <div class="q-text" id="q-${i}">${esc(item.q)}</div>
+        <div class="options" role="radiogroup" aria-labelledby="q-${i}">${opts}</div>
+      </div>
+      <div class="btn-row">
+        ${i > 0 ? `<button class="btn-back" data-back="${i}">← Назад</button>` : ""}
+        <button class="btn-next" id="btn-${i}" data-next="${i}" disabled>${last ? "Дізнатися результат →" : "Далі →"}</button>
+      </div>
+    </div>`);
+});
+
+function choose(el){
+  const i = +el.dataset.q, j = +el.dataset.j;
+  answers[i] = j;
+  el.parentElement.querySelectorAll(".option").forEach(o => { o.classList.remove("selected"); o.setAttribute("aria-checked","false"); });
+  el.classList.add("selected"); el.setAttribute("aria-checked","true");
+  document.getElementById("btn-" + i).disabled = false;
+}
+stepsEl.addEventListener("click", e => {
+  const opt = e.target.closest(".option"); if (opt) return choose(opt);
+  const nx = e.target.closest("[data-next]"); if (nx) { const i = +nx.dataset.next; return i === N - 1 ? showResult() : go(i, i + 1); }
+  const bk = e.target.closest("[data-back]"); if (bk) { const i = +bk.dataset.back; go(i, i - 1); }
+});
+stepsEl.addEventListener("keydown", e => {
+  const opt = e.target.closest(".option");
+  if (opt && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); choose(opt); }
+});
+
+function setProgress(i){
+  document.getElementById("progress-fill").style.width = (i / N * 100) + "%";
+  document.getElementById("progress-text").textContent = `Питання ${i + 1} з ${N}`;
+}
+function go(from, to){
+  document.getElementById("step-" + from).classList.remove("active");
+  document.getElementById("step-" + to).classList.add("active");
+  setProgress(to);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function scoreKey(){
+  const c = { O: 0, Z: 0, P: 0 };
+  answers.forEach((j, i) => { const k = QUESTIONS[i].o[j][1]; if (k in c) c[k]++; });
+  const max = Math.max(c.O, c.Z, c.P);
+  const leaders = Object.keys(c).filter(k => c[k] === max);
+  return leaders.length > 1 ? "Z" : leaders[0];
+}
+
+function ctaButtons(list){
+  return list.map(([kind, label, style]) => {
+    const href = kind === "article" ? ARTICLE_URL : LINKS[kind];
+    if (!href) return "";
+    return `<a href="${href}" target="_blank" rel="noopener" class="${style === "ghost" ? "btn-ghost" : "btn-tg"}">${label}</a>`;
+  }).join("");
+}
+
+function resultCard(r, withCta){
+  return `
+    <div class="result-card">
+      <div class="result-type">${r.label}</div>
+      <div class="result-title">${r.title}</div>
+      ${r.text.map(p => `<p class="result-text">${p}</p>`).join("")}
+    </div>
+    ${withCta ? `<div class="result-cta">
+      <div class="result-cta-text">${r.article}</div>
+      ${ctaButtons(r.cta)}
+      <span class="btn-retry" role="button" tabindex="0" onclick="location.reload()">Пройти ще раз</span>
+    </div>` : ""}`;
+}
+
+function showResult(){
+  const r = RESULTS[scoreKey()];
+  const unsafe = QUESTIONS[N - 1].o[answers[N - 1]][1] === "S";
+  document.getElementById("step-" + (N - 1)).classList.remove("active");
+  document.getElementById("progress-wrap").hidden = true;
+  const out = document.getElementById("result");
+  out.innerHTML = unsafe
+    ? SAFETY + `<div class="subhead">Решта ваших відповідей</div>` + resultCard(r, false)
+    : resultCard(r, true);
+  out.classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+</body>
+</html>
