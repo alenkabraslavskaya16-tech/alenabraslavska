@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Що стоїть за їжею — AB Psychology</title>
+<meta name="description" content="Авторський тест AB Psychology: звичка, тривога чи знесилення — що насправді стоїть за вашими стосунками з їжею.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --burgundy: #7B1C2A; --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --cream: #FAF7F2; --cream-border: #E4DAD0;
+  --gold: #C9A84C; --gold-pale: #FBF6EC;
+  --green: #7A9E7E;
+  --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
+  --white: #FDFAF6;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 16px 40px; }
+.wrap { width: 100%; max-width: 640px; }
+.header { text-align: center; margin-bottom: 40px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: .08em; text-decoration: none; display: inline-block; margin-bottom: 28px; }
+.header-logo span { color: var(--burgundy); }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 14px; }
+.title em { font-style: italic; color: var(--burgundy); }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.75; max-width: 500px; margin: 0 auto; }
+.btn { display: inline-block; padding: 14px 30px; border-radius: 100px; border: none; background: var(--burgundy); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity .2s; }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn-ghost { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); }
+.start { text-align: center; margin-top: 28px; }
+.progress-wrap { margin-bottom: 28px; display: none; }
+.progress-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; width: 0; background: var(--burgundy); border-radius: 100px; transition: width .4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: .06em; }
+.card { background: var(--white); border-radius: 24px; padding: 32px 26px; border: 1px solid var(--cream-border); margin-bottom: 18px; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding: 6px 14px; background: var(--gold-pale); border-radius: 100px; display: inline-block; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(18px, 4.4vw, 21px); line-height: 1.4; margin-bottom: 10px; }
+.q-example { font-size: 13.5px; color: var(--text-light); line-height: 1.6; margin-bottom: 22px; font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { padding: 13px 16px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.5; background: var(--cream); display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; transition: all .2s; }
+.opt:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); }
+.opt.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cream-border); flex-shrink: 0; }
+.opt.selected .dot { background: var(--burgundy); }
+.nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 22px; }
+.result-main { border-top: 4px solid var(--burgundy); }
+.result-main.flag { border-top-color: var(--gold); }
+.r-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 10px; }
+.r-title { font-family: 'Playfair Display', serif; font-size: clamp(22px, 5.4vw, 28px); line-height: 1.25; margin-bottom: 16px; }
+.r-text p { font-size: 15px; line-height: 1.8; color: var(--text-mid); margin-bottom: 12px; }
+.bars h3 { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 18px; }
+.bar { margin-bottom: 18px; }
+.bar-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.bar-top b { font-weight: 600; }
+.bar-top span { font-size: 12px; color: var(--text-light); }
+.bar-bg { height: 6px; background: var(--cream-border); border-radius: 100px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; border-radius: 100px; transition: width .8s ease; }
+.bar-note { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-top: 6px; }
+.philosophy { background: var(--gold-pale); border-color: #EFE3C6; }
+.philosophy p { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+.philosophy p + p { margin-top: 10px; }
+.links a { display: block; padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--cream-border); margin-bottom: 8px; color: var(--text-dark); text-decoration: none; font-size: 14px; line-height: 1.5; background: var(--cream); }
+.links a span { display: block; font-size: 12.5px; color: var(--text-light); }
+.links h3 { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; }
+.restart { text-align: center; margin-top: 8px; }
+.safety { max-width: 640px; margin: 32px auto 0; padding: 0 4px; font-size: 12.5px; line-height: 1.6; color: var(--text-light); text-align: center; }
+@media (max-width: 420px) { .card { padding: 26px 18px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <a class="header-logo" href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/">AB <span>Psychology</span></a>
+    <div class="eyebrow">Авторський тест</div>
+    <h1 class="title">Що насправді стоїть <em>за їжею</em></h1>
+    <p class="subtitle" id="intro">Звичка, тривога, знесилення чи щось, із чим варто йти до фахівця. 17 питань про останні кілька тижнів. Це не діагноз: тест допомагає назвати першу причину, з якої варто починати.</p>
+    <div class="start" id="start"><button class="btn" onclick="begin()">Почати</button></div>
+  </div>
+
+  <div class="progress-wrap" id="progress">
+    <div class="progress-bg"><div class="progress-fill" id="pfill"></div></div>
+    <div class="progress-text" id="ptext"></div>
+  </div>
+
+  <div id="stage"></div>
+</div>
+
+<div class="safety">Тест не є діагнозом і не замінює консультацію. Якщо зараз так тяжко, що страшно за себе чи за когось поруч, телефонуй 112 або на лінію психологічної допомоги (Lifeline Ukraine: 7333). Це про безпеку тут і зараз, а не про запис до мене.</div>
+
+<script>
+const BLOCKS = {
+  rhp:   'Їжа, вага і контроль',
+  habit: 'Звички',
+  anx:   'Напруга',
+  mood:  'Сили і настрій'
+};
+const FREQ = ['Ні, такого немає', 'Буває інколи', 'Часто', 'Майже постійно'];
+
+const Q = [
+  { b:'rhp', t:'Бувають епізоди, коли ти з’їдаєш дуже багато за короткий час і не можеш зупинитися.', e:'Наприклад: почалося з одного печива, а отямлюєшся біля порожньої пачки й не розумієш, як так вийшло.',
+    o:['Ні, такого не буває', 'Рідко, раз на кілька тижнів', 'Приблизно щотижня', 'Кілька разів на тиждень'] },
+  { b:'rhp', t:'Після такої їжі ти намагаєшся «позбутися» з’їденого.', e:'Наприклад: наступного дня голодуєш, тренуєшся до знесилення, викликаєш блювання або п’єш проносне.',
+    o:['Ні', 'Буває, що пропускаю їжу або «відпрацьовую» в залі', 'Так, роблю це часто', 'Так, це став мій спосіб упоратися'] },
+  { b:'rhp', t:'Думки про їжу, вагу й калорії займають більшу частину дня.', e:'Наприклад: ще снідаєш, а вже рахуєш, що можна буде ввечері, і через це важко зосередитися на чомусь іншому.', o:FREQ },
+  { b:'rhp', t:'Те, як ти оцінюєш себе як людину, залежить від цифри на вагах.', e:'Наприклад: ваги показали на кілограм більше, і весь день почуваєшся невдахою, хоча більше нічого не змінилося.', o:FREQ },
+  { b:'rhp', t:'Ти уникаєш їсти при інших або приховуєш, що і скільки з’їдаєш.', e:'Наприклад: у гостях їси кілька ложок, а вдома добираєш, поки ніхто не бачить.', o:FREQ },
+
+  { b:'habit', t:'Ти їси на автоматі, не помічаючи смаку й кількості.', e:'Наприклад: перед серіалом, у телефоні, доїдаєш за дитиною просто тому, що лишилося.', o:FREQ },
+  { b:'habit', t:'У дні є свої «ритуали» з їжею, навіть без голоду.', e:'Наприклад: щось солодке до кави, перекус одразу після роботи, вечірній чай із печивом.', o:FREQ },
+  { b:'habit', t:'Режим харчування хаотичний.', e:'Наприклад: зранку тільки кава, вдень ніколи, а ввечері з’їдається все, на що не було часу протягом дня.', o:FREQ },
+  { b:'habit', t:'Ти починаєш «з понеділка», тримаєшся якийсь час, а потім усе повертається.', e:'Наприклад: два тижні все чітко, потім одна вечірка, і план летить шкереберть.', o:FREQ },
+
+  { b:'anx', t:'Навіть коли все гаразд, усередині тримається напруга, наче треба бути напоготові.', e:'Наприклад: вечір, вдома тихо, справи зроблено, а розслабитися все одно не виходить.', o:FREQ },
+  { b:'anx', t:'Їжа стає найшвидшим способом «вимкнути» напругу.', e:'Наприклад: після складної розмови рука сама тягнеться до шафки із солодким.', o:FREQ },
+  { b:'anx', t:'Сон не відновлює: важко заснути або прокидаєшся з думками про справи.', e:'Наприклад: о третій ночі в голові вже складається список на завтра.', o:FREQ },
+  { b:'anx', t:'Голова постійно прокручує, що не зроблено і що може піти не так.', e:'Наприклад: дивишся фільм, а думками в робочому чаті або в розмові, якої ще не було.', o:FREQ },
+
+  { b:'mood', t:'Немає сил навіть на те, що раніше давалося легко.', e:'Наприклад: приготувати вечерю, вийти на прогулянку, відповісти подрузі чи другові на повідомлення.', o:FREQ },
+  { b:'mood', t:'Те, що колись радувало, зараз проходить повз. Їжа лишається чи не єдиною приємністю дня.', e:'Наприклад: улюблена справа більше не тягне, а шоколадка ввечері — єдине, на що чекаєш.', o:FREQ },
+  { b:'mood', t:'Внутрішній голос постійно лає тебе.', e:'Наприклад: «Ніякої сили волі. Знову все зіпсовано. Інші можуть, а ти ні».', o:FREQ },
+  { b:'mood', t:'Зранку важко почати день, навіть якщо спати вдалося нормально.', e:'Наприклад: будильник уже тричі відкладено, і найбільше хочеться, щоб день просто минув.', o:FREQ }
+];
+
+const answers = new Array(Q.length).fill(null);
+let cur = 0;
+
+function begin() {
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('progress').style.display = 'block';
+  render();
+}
+
+function render() {
+  const q = Q[cur];
+  const stage = document.getElementById('stage');
+  document.getElementById('pfill').style.width = (cur / Q.length * 100) + '%';
+  document.getElementById('ptext').textContent = 'Питання ' + (cur + 1) + ' з ' + Q.length;
+  stage.innerHTML = `
+    <div class="card">
+      <div class="section-label">${BLOCKS[q.b]}</div>
+      <div class="q-text">${q.t}</div>
+      <div class="q-example">${q.e}</div>
+      <div class="opts">${q.o.map((txt, i) =>
+        `<button class="opt ${answers[cur] === i ? 'selected' : ''}" onclick="pick(${i})"><span class="dot"></span>${txt}</button>`).join('')}
+      </div>
+      <div class="nav">
+        ${cur > 0 ? '<button class="btn btn-ghost" onclick="back()">← Назад</button>' : '<span></span>'}
+        <button class="btn" id="next" onclick="next()" ${answers[cur] === null ? 'disabled' : ''}>${cur === Q.length - 1 ? 'Результат' : 'Далі →'}</button>
+      </div>
+    </div>`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function pick(i) {
+  answers[cur] = i;
+  document.querySelectorAll('.opt').forEach((el, idx) => el.classList.toggle('selected', idx === i));
+  document.getElementById('next').disabled = false;
+}
+function back() { if (cur > 0) { cur--; render(); } }
+function next() {
+  if (answers[cur] === null) return;
+  if (cur < Q.length - 1) { cur++; render(); } else { showResult(); }
+}
+
+function sum(block) { return Q.reduce((s, q, i) => s + (q.b === block ? answers[i] : 0), 0); }
+function level(score) { return score <= 3 ? 'low' : score <= 7 ? 'mid' : 'high'; }
+const LEVEL_TXT = { low: 'Низький', mid: 'Помітний', high: 'Високий' };
+const LEVEL_COLOR = { low: 'var(--green)', mid: 'var(--gold)', high: 'var(--burgundy)' };
+
+const RESULTS = {
+  flag: {
+    label: 'Головне зараз',
+    title: 'Схоже, тут більше, ніж звичка',
+    text: [
+      'Частина твоїх відповідей описує те, що зазвичай уже не пояснюється слабкою силою волі: втрату контролю над їжею, спроби «позбутися» з’їденого, думки про вагу, які займають майже весь день.',
+      'Це не вирок і не діагноз. Але з таким краще не розбиратися наодинці й тим паче не новою дієтою: обмеження зазвичай лише посилюють цикл. Варто поговорити з психологом, який працює з харчовою поведінкою, або з лікарем.',
+      'Чим раніше з цього почати, тим легше повертається спокійне ставлення до їжі.'
+    ]
+  },
+  both: {
+    label: 'Перша причина',
+    title: 'За їжею стоять і напруга, і знесилення',
+    text: [
+      'Твоє тіло довго живе в режимі «треба триматися». Тривога не відпускає, а сил дедалі менше. У такому стані їжа стає найдоступнішим способом хоч трохи відновитися, і тут не йдеться про відсутність дисципліни.',
+      'Тривога й пригнічений настрій часто йдуть разом і підсилюють одне одного. Якщо так триває вже кілька тижнів, варто показати це фахівцеві: з цим працюють, і від цього стає легше.'
+    ]
+  },
+  anx: {
+    label: 'Перша причина',
+    title: 'За їжею стоїть фонова тривога',
+    text: [
+      'Коли напруга не вимикається, тіло живе так, ніби небезпека поруч. Гормони стресу, зокрема кортизол, підштовхують до швидкої енергії: солодкого, борошняного, «чогось смачненького ввечері».',
+      'У такій ситуації нова дієта дає мало, бо працювати треба з напругою. Коли тривоги стає менше, тяга до їжі зазвичай слабшає сама.'
+    ]
+  },
+  mood: {
+    label: 'Перша причина',
+    title: 'За їжею стоїть знесилення',
+    text: [
+      'Схоже, сил зараз мало, а радощів ще менше. У такому стані їжа часто стає єдиним, що дає хоч якесь задоволення, і сварити себе за це марно.',
+      'Якщо пригніченість, втома й байдужість тримаються вже кілька тижнів, це може бути депресивний стан. Його варто перевірити з фахівцем, а не списувати на лінь.'
+    ]
+  },
+  habit: {
+    label: 'Перша причина',
+    title: 'Це звичний патерн, а не розлад',
+    text: [
+      'Твої відповіді більше схожі на звички: їсти на автоматі, перекушувати за розкладом, починати з понеділка. Розладом харчової поведінки це не є.',
+      'Звички змінюються не силою волі, а помічанням: коли й навіщо рука тягнеться до їжі. Щойно це видно, з’являється вибір.'
+    ]
+  },
+  ok: {
+    label: 'Зараз',
+    title: 'Їжа зараз не головна тема',
+    text: [
+      'Твої відповіді не показують сильної напруги ні в їжі, ні в настрої. Якщо вага все одно турбує, варто подивитися на інші чинники: сон, режим, здоров’я, гормони.',
+      'І ще одне: інколи тіло просто не збігається з картинкою в голові. Тоді працювати варто з картинкою.'
+    ]
+  }
+};
+
+const BAR_NOTES = {
+  habit: { low: 'Автоматичних звичок мало.', mid: 'Є звички, які запускають їжу без голоду.', high: 'Їжа багато в чому йде на автоматі.' },
+  anx:   { low: 'Напруга в межах звичного.', mid: 'Напруга помітна і впливає на апетит.', high: 'Напруга тримається майже постійно.' },
+  mood:  { low: 'Сили й радість є.', mid: 'Сил і радості менше, ніж зазвичай.', high: 'Сил і радості зараз дуже мало.' }
+};
+
+function showResult() {
+  const rhp = sum('rhp'), habit = sum('habit'), anx = sum('anx'), mood = sum('mood');
+  const L = { habit: level(habit), anx: level(anx), mood: level(mood) };
+  const flag = answers[0] >= 2 || answers[1] >= 2 || rhp >= 7;
+
+  let key;
+  if (flag) key = 'flag';
+  else if (L.anx === 'high' && L.mood === 'high') key = 'both';
+  else {
+    const top = [['anx', anx], ['mood', mood], ['habit', habit]].sort((a, b) => b[1] - a[1])[0];
+    key = top[1] <= 3 ? 'ok' : top[0];
+  }
+  const R = RESULTS[key];
+
+  document.getElementById('pfill').style.width = '100%';
+  document.getElementById('pfill').style.background = 'var(--gold)';
+  document.getElementById('ptext').textContent = 'Результат';
+
+  const bar = (k, name, s) => `
+    <div class="bar">
+      <div class="bar-top"><b>${name}</b><span>${LEVEL_TXT[L[k]]}</span></div>
+      <div class="bar-bg"><div class="bar-fill" data-w="${Math.round(s / 12 * 100)}" style="background:${LEVEL_COLOR[L[k]]}"></div></div>
+      <div class="bar-note">${BAR_NOTES[k][L[k]]}</div>
+    </div>`;
+
+  document.getElementById('stage').innerHTML = `
+    <div class="card result-main ${flag ? 'flag' : ''}">
+      <div class="r-label">${R.label}</div>
+      <div class="r-title">${R.title}</div>
+      <div class="r-text">${R.text.map(p => '<p>' + p + '</p>').join('')}</div>
+    </div>
+    <div class="card bars">
+      <h3>Твоя картина</h3>
+      ${bar('habit', 'Звички', habit)}
+      ${bar('anx', 'Напруга і тривога', anx)}
+      ${bar('mood', 'Сили і настрій', mood)}
+    </div>
+    <div class="card philosophy">
+      <p>Спершу варто назвати причину. Коли її видно, стає зрозуміло, що саме вирішувати і з чого почати.</p>
+      <p>А якщо причину ти бачиш, але сил братися за неї зараз немає, відпусти себе. Тільки тоді й не сварися за результат: він чесно відповідає тому, скільки в тебе зараз ресурсу.</p>
+    </div>
+    <div class="card links">
+      <h3>Що далі</h3>
+      <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_kortyzol.html" target="_blank">Тест на стрес і сон<span>Як напруга відбивається на тілі</span></a>
+      <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank">Канал «Сам собі психолог»<span>Статті про тіло, тривогу й самооцінку</span></a>
+      <a href="https://t.me/Psikholog_Braslavskaya" target="_blank">Написати Альоні<span>Якщо хочеться розібратися разом</span></a>
+    </div>
+    <div class="restart"><button class="btn btn-ghost" onclick="location.reload()">Пройти ще раз</button></div>`;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => document.querySelectorAll('.bar-fill').forEach(el => el.style.width = el.dataset.w + '%'), 100);
+}
+</script>
+</body>
+</html>
