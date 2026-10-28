@@ -4,466 +4,229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Тривога і настрій — AB Psychology</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Тривога і настрій за міжнародними опитувальниками GAD-7 і PHQ-9. Скринінг від AB Psychology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --burgundy: #7B1C2A; --burgundy-light: #A63D4A;
-  --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
+  --burgundy: #7B1C2A; --burgundy-pale: #F5EAEC; --burgundy-mid: #C4737E;
   --cream: #FAF7F2; --cream-border: #E4DAD0;
-  --gold: #C9A84C; --gold-light: #E8D5A3; --gold-pale: #FBF6EC;
+  --gold: #C9A84C; --gold-pale: #FBF6EC;
+  --green: #7A9E7E;
   --text-dark: #1E1410; --text-mid: #5A4A44; --text-light: #9A8A84;
   --white: #FDFAF6;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 20px 80px; }
+body { font-family: 'Manrope', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 48px 16px 40px; }
 .wrap { width: 100%; max-width: 640px; }
-.header { text-align: center; margin-bottom: 48px; }
-.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: 0.08em; text-decoration: none; display: inline-block; margin-bottom: 32px; }
+.header { text-align: center; margin-bottom: 40px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); letter-spacing: .08em; text-decoration: none; display: inline-block; margin-bottom: 28px; }
 .header-logo span { color: var(--burgundy); }
-.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 14px; }
 .title em { font-style: italic; color: var(--burgundy); }
-.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 500px; margin: 0 auto; }
-.progress-wrap { margin-bottom: 36px; }
-.progress-bar-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
-.progress-bar-fill { height: 100%; background: var(--burgundy); border-radius: 100px; transition: width 0.4s ease; }
-.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; }
-.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; padding: 6px 14px; background: var(--gold-pale); border-radius: 100px; display: inline-block; }
-.step { display: none; }
-.step.active { display: block; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.card { background: var(--white); border-radius: 24px; padding: 36px 32px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
-.q-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.6; margin-bottom: 10px; }
-.q-text { font-family: 'Playfair Display', serif; font-size: clamp(17px, 3vw, 21px); font-weight: 400; line-height: 1.4; color: var(--text-dark); margin-bottom: 8px; }
-.q-hint { font-size: 13px; color: var(--text-light); margin-bottom: 20px; font-style: italic; }
-.scale { display: flex; flex-direction: column; gap: 8px; }
-.scale-option { padding: 13px 18px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.5; transition: all 0.2s; background: var(--cream); display: flex; align-items: center; gap: 12px; }
-.scale-option:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); color: var(--text-dark); }
-.scale-option.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
-.scale-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cream-border); flex-shrink: 0; transition: background 0.2s; }
-.scale-option.selected .scale-dot { background: var(--burgundy); }
-.btn-row { display: flex; gap: 12px; }
-.btn-next { flex: 1; background: var(--burgundy); color: var(--gold-light); border: none; padding: 15px 32px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
-.btn-next:hover { background: var(--burgundy-light); transform: translateY(-1px); }
-.btn-next:disabled { background: var(--cream-border); color: var(--text-light); cursor: not-allowed; transform: none; }
-.btn-back { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); padding: 15px 24px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.btn-back:hover { border-color: var(--text-mid); }
-.result { display: none; }
-.result.active { display: block; animation: fadeIn 0.4s ease; }
-.result-intro { text-align: center; margin-bottom: 32px; }
-.result-intro-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 8px; }
-.result-intro-title em { font-style: italic; color: var(--burgundy); }
-.result-intro-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
-.profile-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
-.profile-card { background: var(--white); border-radius: 20px; padding: 26px; border: 1px solid var(--cream-border); }
-.profile-card.high { border-color: var(--burgundy-mid); background: var(--burgundy-pale); }
-.profile-card.mid { border-color: var(--gold); background: var(--gold-pale); }
-.profile-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; }
-.profile-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 10px; line-height: 1.3; }
-.profile-bar-bg { height: 6px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 12px; }
-.profile-bar-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
-.profile-text { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
-.combo-card { background: var(--cream); border-radius: 20px; padding: 24px; border: 1px solid var(--cream-border); margin-bottom: 20px; }
-.combo-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400; margin-bottom: 8px; color: var(--text-dark); }
-.combo-text { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
-.hook { background: var(--burgundy); border-radius: 24px; padding: 36px 32px; text-align: center; margin-bottom: 20px; }
-.hook-icon { font-size: 36px; margin-bottom: 16px; }
-.hook-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: white; margin-bottom: 12px; line-height: 1.3; }
-.hook-title em { font-style: italic; color: var(--gold-light); }
-.hook-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 24px; }
-.hook-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; text-align: left; }
-.hook-step { display: flex; gap: 12px; align-items: flex-start; }
-.hook-step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; margin-top: 1px; }
-.hook-step-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; padding-top: 3px; }
-.hook-step-text strong { color: white; font-weight: 500; }
-.btn-hook { display: block; background: var(--gold); color: white; padding: 16px; border-radius: 100px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; text-align: center; transition: all 0.2s; margin-bottom: 10px; }
-.btn-hook:hover { background: #B8943C; transform: translateY(-1px); }
-.hook-note { font-size: 12px; color: rgba(255,255,255,0.4); }
-.btn-retry { display: block; text-align: center; font-size: 13px; color: var(--text-light); cursor: pointer; text-decoration: underline; margin-top: 16px; }
-.page-footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-light); }
-.page-footer a { color: var(--burgundy); text-decoration: none; }
+.subtitle { font-size: 15px; color: var(--text-mid); line-height: 1.75; max-width: 500px; margin: 0 auto; }
+.btn { display: inline-block; padding: 14px 30px; border-radius: 100px; border: none; background: var(--burgundy); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity .2s; }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn-ghost { background: transparent; color: var(--text-mid); border: 1.5px solid var(--cream-border); }
+.start { text-align: center; margin-top: 28px; }
+.progress-wrap { margin-bottom: 28px; display: none; }
+.progress-bg { height: 3px; background: var(--cream-border); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; width: 0; background: var(--burgundy); border-radius: 100px; transition: width .4s ease; }
+.progress-text { font-size: 11px; color: var(--text-light); letter-spacing: .06em; }
+.card { background: var(--white); border-radius: 24px; padding: 32px 26px; border: 1px solid var(--cream-border); margin-bottom: 18px; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding: 6px 14px; background: var(--gold-pale); border-radius: 100px; display: inline-block; }
+.q-text { font-family: 'Playfair Display', serif; font-size: clamp(18px, 4.4vw, 21px); line-height: 1.4; margin-bottom: 10px; }
+.q-example { font-size: 13.5px; color: var(--text-light); line-height: 1.6; margin-bottom: 22px; font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { padding: 13px 16px; border: 1.5px solid var(--cream-border); border-radius: 14px; cursor: pointer; font-size: 14px; color: var(--text-mid); line-height: 1.5; background: var(--cream); display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; transition: all .2s; }
+.opt:hover { border-color: var(--burgundy-mid); background: var(--burgundy-pale); }
+.opt.selected { border-color: var(--burgundy); background: var(--burgundy-pale); color: var(--text-dark); font-weight: 500; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cream-border); flex-shrink: 0; }
+.opt.selected .dot { background: var(--burgundy); }
+.nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 22px; }
+.result-main { border-top: 4px solid var(--burgundy); }
+.result-main.flag { border-top-color: var(--gold); }
+.r-label { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 10px; }
+.r-title { font-family: 'Playfair Display', serif; font-size: clamp(22px, 5.4vw, 28px); line-height: 1.25; margin-bottom: 16px; }
+.r-text p { font-size: 15px; line-height: 1.8; color: var(--text-mid); margin-bottom: 12px; }
+.bars h3 { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 18px; }
+.bar { margin-bottom: 18px; }
+.bar-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.bar-top b { font-weight: 600; }
+.bar-top span { font-size: 12px; color: var(--text-light); }
+.bar-bg { height: 6px; background: var(--cream-border); border-radius: 100px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; border-radius: 100px; transition: width .8s ease; }
+.bar-note { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-top: 6px; }
+.philosophy { background: var(--gold-pale); border-color: #EFE3C6; }
+.philosophy p { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+.philosophy p + p { margin-top: 10px; }
+.links a { display: block; padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--cream-border); margin-bottom: 8px; color: var(--text-dark); text-decoration: none; font-size: 14px; line-height: 1.5; background: var(--cream); }
+.links a span { display: block; font-size: 12.5px; color: var(--text-light); }
+.links h3 { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; }
+.restart { text-align: center; margin-top: 8px; }
+.safety { max-width: 640px; margin: 32px auto 0; padding: 0 4px; font-size: 12.5px; line-height: 1.6; color: var(--text-light); text-align: center; }
+@media (max-width: 420px) { .card { padding: 26px 18px; } }
+
+.alert { background: var(--burgundy-pale); border: 1.5px solid var(--burgundy); }
+.alert p { font-size: 15px; line-height: 1.75; color: var(--text-dark); }
+.alert p + p { margin-top: 10px; }
+.score { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--text-light); margin-bottom: 12px; }
+.note { font-size: 12.5px; color: var(--text-light); line-height: 1.6; margin-top: 10px; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="header">
-    <a href="https://t.me/Psikholog_Braslavskaya" class="header-logo">AB <span>Psychology</span></a>
-    <div class="eyebrow">Авторський тест</div>
-    <h1 class="title">Тривога<br><em>і настрій</em></h1>
-    <p class="subtitle">14 питань — два виміри одночасно. Не діагноз — чесний зріз того як тобі зараз. Обирай відповідь яка найточніше описує останні два тижні.</p>
+    <a class="header-logo" href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/">AB <span>Psychology</span></a>
+    <div class="eyebrow">Скринінг</div>
+    <h1 class="title">Тривога <em>і настрій</em></h1>
+    <p class="subtitle" id="intro">16 питань за двома міжнародними опитувальниками: GAD-7 про тривогу і PHQ-9 про настрій. Ними користуються лікарі й психологи в усьому світі. Відповідай про останні два тижні. Це скринінг, а не діагноз.</p>
+    <div class="start" id="start"><button class="btn" onclick="begin()">Почати</button></div>
   </div>
 
-  <div class="progress-wrap">
-    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
-    <div class="progress-text" id="progress-text">Питання 1 з 14</div>
+  <div class="progress-wrap" id="progress">
+    <div class="progress-bg"><div class="progress-fill" id="pfill"></div></div>
+    <div class="progress-text" id="ptext"></div>
   </div>
 
-  <!-- БЛОК 1: ТРИВОГА (1-7) -->
-  <div class="step active" id="step-1">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 1 / 14</div>
-      <div class="q-text">Я відчуваю внутрішню напругу або тривогу</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-1">
-        <div class="scale-option" onclick="sel(1,0)"><div class="scale-dot"></div>Зовсім ні</div>
-        <div class="scale-option" onclick="sel(1,1)"><div class="scale-dot"></div>Іноді</div>
-        <div class="scale-option" onclick="sel(1,2)"><div class="scale-dot"></div>Часто</div>
-        <div class="scale-option" onclick="sel(1,3)"><div class="scale-dot"></div>Майже весь час</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-next" id="btn-1" onclick="go(1,2)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-2">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 2 / 14</div>
-      <div class="q-text">Мене охоплює страх — наче щось жахливе от-от станеться</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-2">
-        <div class="scale-option" onclick="sel(2,0)"><div class="scale-dot"></div>Ні — нічого подібного</div>
-        <div class="scale-option" onclick="sel(2,1)"><div class="scale-dot"></div>Іноді — але не дуже сильно</div>
-        <div class="scale-option" onclick="sel(2,2)"><div class="scale-dot"></div>Так — і досить сильно</div>
-        <div class="scale-option" onclick="sel(2,3)"><div class="scale-dot"></div>Дуже сильно і часто</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(2,1)">← Назад</button><button class="btn-next" id="btn-2" onclick="go(2,3)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-3">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 3 / 14</div>
-      <div class="q-text">Тривожні думки крутяться в голові і я не можу їх зупинити</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-3">
-        <div class="scale-option" onclick="sel(3,0)"><div class="scale-dot"></div>Дуже рідко</div>
-        <div class="scale-option" onclick="sel(3,1)"><div class="scale-dot"></div>Іноді</div>
-        <div class="scale-option" onclick="sel(3,2)"><div class="scale-dot"></div>Більшу частину часу</div>
-        <div class="scale-option" onclick="sel(3,3)"><div class="scale-dot"></div>Постійно — це дуже втомлює</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(3,2)">← Назад</button><button class="btn-next" id="btn-3" onclick="go(3,4)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-4">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 4 / 14</div>
-      <div class="q-text">Я можу спокійно сидіти і розслаблятись</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-4">
-        <div class="scale-option" onclick="sel(4,0)"><div class="scale-dot"></div>Так — без проблем</div>
-        <div class="scale-option" onclick="sel(4,1)"><div class="scale-dot"></div>Зазвичай так</div>
-        <div class="scale-option" onclick="sel(4,2)"><div class="scale-dot"></div>Рідко вдається</div>
-        <div class="scale-option" onclick="sel(4,3)"><div class="scale-dot"></div>Зовсім не можу — завжди в напрузі</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(4,3)">← Назад</button><button class="btn-next" id="btn-4" onclick="go(4,5)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-5">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 5 / 14</div>
-      <div class="q-text">У мене буває відчуття що щось стискає в грудях або важко дихати без фізичної причини</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-5">
-        <div class="scale-option" onclick="sel(5,0)"><div class="scale-dot"></div>Ні — такого немає</div>
-        <div class="scale-option" onclick="sel(5,1)"><div class="scale-dot"></div>Іноді буває</div>
-        <div class="scale-option" onclick="sel(5,2)"><div class="scale-dot"></div>Досить часто</div>
-        <div class="scale-option" onclick="sel(5,3)"><div class="scale-dot"></div>Дуже часто — це помітно впливає</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(5,4)">← Назад</button><button class="btn-next" id="btn-5" onclick="go(5,6)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-6">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 6 / 14</div>
-      <div class="q-text">Я уникаю ситуацій які викликають тривогу</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-6">
-        <div class="scale-option" onclick="sel(6,0)"><div class="scale-dot"></div>Ні — іду назустріч</div>
-        <div class="scale-option" onclick="sel(6,1)"><div class="scale-dot"></div>Іноді — але не завжди</div>
-        <div class="scale-option" onclick="sel(6,2)"><div class="scale-dot"></div>Часто уникаю</div>
-        <div class="scale-option" onclick="sel(6,3)"><div class="scale-dot"></div>Майже завжди — це сильно обмежує</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(6,5)">← Назад</button><button class="btn-next" id="btn-6" onclick="go(6,7)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-7">
-    <div class="section-label">Блок 1 — Тривога</div>
-    <div class="card">
-      <div class="q-num">Питання 7 / 14</div>
-      <div class="q-text">Я відчуваю неспокій — наче не можу знайти місця</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-7">
-        <div class="scale-option" onclick="sel(7,0)"><div class="scale-dot"></div>Зовсім ні</div>
-        <div class="scale-option" onclick="sel(7,1)"><div class="scale-dot"></div>Не більше ніж зазвичай</div>
-        <div class="scale-option" onclick="sel(7,2)"><div class="scale-dot"></div>Більше ніж раніше</div>
-        <div class="scale-option" onclick="sel(7,3)"><div class="scale-dot"></div>Дуже сильно — постійно</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(7,6)">← Назад</button><button class="btn-next" id="btn-7" onclick="go(7,8)" disabled>Далі →</button></div>
-  </div>
-
-  <!-- БЛОК 2: НАСТРІЙ (8-14) -->
-  <div class="step" id="step-8">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 8 / 14</div>
-      <div class="q-text">Те що раніше приносило задоволення — досі приносить</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-8">
-        <div class="scale-option" onclick="sel(8,0)"><div class="scale-dot"></div>Так — майже так само як раніше</div>
-        <div class="scale-option" onclick="sel(8,1)"><div class="scale-dot"></div>Трохи менше ніж раніше</div>
-        <div class="scale-option" onclick="sel(8,2)"><div class="scale-dot"></div>Значно менше</div>
-        <div class="scale-option" onclick="sel(8,3)"><div class="scale-dot"></div>Майже нічого не приносить задоволення</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(8,7)">← Назад</button><button class="btn-next" id="btn-8" onclick="go(8,9)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-9">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 9 / 14</div>
-      <div class="q-text">Я відчуваю що сповільнився/лась — думаю і рухаюсь повільніше ніж зазвичай</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-9">
-        <div class="scale-option" onclick="sel(9,0)"><div class="scale-dot"></div>Ні — все як зазвичай</div>
-        <div class="scale-option" onclick="sel(9,1)"><div class="scale-dot"></div>Іноді помічаю це</div>
-        <div class="scale-option" onclick="sel(9,2)"><div class="scale-dot"></div>Досить часто</div>
-        <div class="scale-option" onclick="sel(9,3)"><div class="scale-dot"></div>Майже весь час — це помітно оточуючим</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(9,8)">← Назад</button><button class="btn-next" id="btn-9" onclick="go(9,10)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-10">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 10 / 14</div>
-      <div class="q-text">Я втратив/ла інтерес до свого зовнішнього вигляду</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-10">
-        <div class="scale-option" onclick="sel(10,0)"><div class="scale-dot"></div>Ні — слідкую за собою як завжди</div>
-        <div class="scale-option" onclick="sel(10,1)"><div class="scale-dot"></div>Можливо трохи менше уваги</div>
-        <div class="scale-option" onclick="sel(10,2)"><div class="scale-dot"></div>Помітно менше — треба змушувати себе</div>
-        <div class="scale-option" onclick="sel(10,3)"><div class="scale-dot"></div>Повністю — це більше не важливо</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(10,9)">← Назад</button><button class="btn-next" id="btn-10" onclick="go(10,11)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-11">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 11 / 14</div>
-      <div class="q-text">Я відчуваю радість і легкість</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-11">
-        <div class="scale-option" onclick="sel(11,0)"><div class="scale-dot"></div>Так — досить часто</div>
-        <div class="scale-option" onclick="sel(11,1)"><div class="scale-dot"></div>Іноді</div>
-        <div class="scale-option" onclick="sel(11,2)"><div class="scale-dot"></div>Рідко</div>
-        <div class="scale-option" onclick="sel(11,3)"><div class="scale-dot"></div>Зовсім ні — важко пригадати коли</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(11,10)">← Назад</button><button class="btn-next" id="btn-11" onclick="go(11,12)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-12">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 12 / 14</div>
-      <div class="q-text">Я відчуваю себе пригніченим/ою і сумним/ою</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-12">
-        <div class="scale-option" onclick="sel(12,0)"><div class="scale-dot"></div>Зовсім ні</div>
-        <div class="scale-option" onclick="sel(12,1)"><div class="scale-dot"></div>Іноді</div>
-        <div class="scale-option" onclick="sel(12,2)"><div class="scale-dot"></div>Досить часто</div>
-        <div class="scale-option" onclick="sel(12,3)"><div class="scale-dot"></div>Майже весь час</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(12,11)">← Назад</button><button class="btn-next" id="btn-12" onclick="go(12,13)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-13">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 13 / 14</div>
-      <div class="q-text">Мені важко починати нові справи або приймати рішення</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-13">
-        <div class="scale-option" onclick="sel(13,0)"><div class="scale-dot"></div>Ні — як зазвичай</div>
-        <div class="scale-option" onclick="sel(13,1)"><div class="scale-dot"></div>Трохи важче ніж раніше</div>
-        <div class="scale-option" onclick="sel(13,2)"><div class="scale-dot"></div>Значно важче</div>
-        <div class="scale-option" onclick="sel(13,3)"><div class="scale-dot"></div>Майже не можу — все здається непосильним</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(13,12)">← Назад</button><button class="btn-next" id="btn-13" onclick="go(13,14)" disabled>Далі →</button></div>
-  </div>
-
-  <div class="step" id="step-14">
-    <div class="section-label">Блок 2 — Настрій</div>
-    <div class="card">
-      <div class="q-num">Питання 14 / 14</div>
-      <div class="q-text">Я дивлюсь у майбутнє з надією</div>
-      <div class="q-hint">Останні два тижні</div>
-      <div class="scale" id="opts-14">
-        <div class="scale-option" onclick="sel(14,0)"><div class="scale-dot"></div>Так — загалом з оптимізмом</div>
-        <div class="scale-option" onclick="sel(14,1)"><div class="scale-dot"></div>Менше ніж зазвичай</div>
-        <div class="scale-option" onclick="sel(14,2)"><div class="scale-dot"></div>Значно менше</div>
-        <div class="scale-option" onclick="sel(14,3)"><div class="scale-dot"></div>Майже без надії</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="go(14,13)">← Назад</button><button class="btn-next" id="btn-14" onclick="showResult()" disabled>Побачити результат →</button></div>
-  </div>
-
-  <div class="result" id="result"></div>
-  <div class="page-footer"><a href="https://t.me/Psikholog_Braslavskaya">AB Psychology · Альона Браславська</a></div>
+  <div id="stage"></div>
 </div>
 
+<div class="safety">Тест не є діагнозом і не замінює консультацію. Якщо зараз так тяжко, що страшно за себе чи за когось поруч, телефонуй 112 або на лінію психологічної допомоги (Lifeline Ukraine: 7333). Це про безпеку тут і зараз, а не про запис до мене.</div>
+
 <script>
-const answers = {};
+const STEM = 'Як часто за останні 2 тижні тебе турбувало таке:';
+const OPTS = ['Жодного разу', 'Кілька днів', 'Більше половини днів', 'Майже щодня'];
+const BLOCKS = { gad: 'Тривога · GAD-7', phq: 'Настрій · PHQ-9' };
 
-function sel(q, val) {
-  answers[q] = val;
-  document.querySelectorAll(`#opts-${q} .scale-option`).forEach(o => o.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
-  document.getElementById('btn-' + q).disabled = false;
+const Q = [
+  { b:'gad', t:'Нервовість, тривога або відчуття, що ти «на межі»' },
+  { b:'gad', t:'Неможливість зупинити хвилювання або впоратися з ним' },
+  { b:'gad', t:'Надмірне хвилювання через різні речі' },
+  { b:'gad', t:'Важко розслабитися' },
+  { b:'gad', t:'Такий неспокій, що важко всидіти на місці' },
+  { b:'gad', t:'Легко дратуєшся або злишся' },
+  { b:'gad', t:'Страх, ніби може статися щось жахливе' },
+  { b:'phq', t:'Мало інтересу чи задоволення від того, що робиш' },
+  { b:'phq', t:'Пригнічений настрій, смуток або безнадія' },
+  { b:'phq', t:'Важко заснути, сон уривчастий або, навпаки, спиш забагато' },
+  { b:'phq', t:'Втома або брак енергії' },
+  { b:'phq', t:'Поганий апетит або переїдання' },
+  { b:'phq', t:'Погані думки про себе: що з тобою щось не так або що ти розчаровуєш себе чи рідних' },
+  { b:'phq', t:'Важко зосередитися, наприклад на читанні чи фільмі' },
+  { b:'phq', t:'Рухи чи мова такі сповільнені, що це помічають інші. Або навпаки: такий неспокій, що рухаєшся набагато більше, ніж зазвичай' },
+  { b:'phq', t:'Думки, що краще було б померти, або думки про те, щоб завдати собі шкоди' }
+];
+
+const answers = new Array(Q.length).fill(null);
+let cur = 0;
+
+function begin() {
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('progress').style.display = 'block';
+  render();
 }
 
-function go(from, to) {
-  document.getElementById('step-'+from).classList.remove('active');
-  if(to <= 14) {
-    document.getElementById('step-'+to).classList.add('active');
-    const pct = ((to-1)/14)*100;
-    document.getElementById('progress-fill').style.width = pct+'%';
-    document.getElementById('progress-text').textContent = `Питання ${to} з 14`;
-  }
-  window.scrollTo({top:0, behavior:'smooth'});
+function render() {
+  const q = Q[cur];
+  document.getElementById('pfill').style.width = (cur / Q.length * 100) + '%';
+  document.getElementById('ptext').textContent = 'Питання ' + (cur + 1) + ' з ' + Q.length;
+  document.getElementById('stage').innerHTML = `
+    <div class="card">
+      <div class="section-label">${BLOCKS[q.b]}</div>
+      <div class="q-example">${STEM}</div>
+      <div class="q-text">${q.t}</div>
+      <div class="opts" style="margin-top:22px">${OPTS.map((txt, i) =>
+        `<button class="opt ${answers[cur] === i ? 'selected' : ''}" onclick="pick(${i})"><span class="dot"></span>${txt}</button>`).join('')}
+      </div>
+      <div class="nav">
+        ${cur > 0 ? '<button class="btn btn-ghost" onclick="back()">← Назад</button>' : '<span></span>'}
+        <button class="btn" id="next" onclick="next()" ${answers[cur] === null ? 'disabled' : ''}>${cur === Q.length - 1 ? 'Результат' : 'Далі →'}</button>
+      </div>
+    </div>`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function getScore(qs) {
-  return qs.reduce((s,q) => s + (answers[q] || 0), 0);
+function pick(i) {
+  answers[cur] = i;
+  document.querySelectorAll('.opt').forEach((el, idx) => el.classList.toggle('selected', idx === i));
+  document.getElementById('next').disabled = false;
 }
+function back() { if (cur > 0) { cur--; render(); } }
+function next() {
+  if (answers[cur] === null) return;
+  if (cur < Q.length - 1) { cur++; render(); } else { showResult(); }
+}
+function sum(block) { return Q.reduce((s, q, i) => s + (q.b === block ? answers[i] : 0), 0); }
 
-function getLevel(score) {
-  if(score <= 5) return 'low';
-  if(score <= 11) return 'mid';
-  return 'high';
+function gadLevel(s) {
+  if (s <= 4) return { k:'low',  name:'Мінімальна тривога', text:'Тривога зараз у межах звичного. Напруга буває в усіх, і твоя поки не забирає життя.' };
+  if (s <= 9) return { k:'mid',  name:'Легка тривога', text:'Тривога помітна, але ще не керує днем. Саме час звернути на неї увагу, поки вона не стала фоном.' };
+  if (s <= 14) return { k:'high', name:'Помірна тривога', text:'Тривога вже впливає на сон, апетит і сили. За таких балів фахівці радять розібратися з нею разом із психологом.' };
+  return { k:'high', name:'Виражена тривога', text:'Тривога сильна і тримається майже постійно. З таким не варто лишатися наодинці: її варто показати фахівцеві найближчим часом.' };
 }
+function phqLevel(s) {
+  if (s <= 4) return { k:'low',  name:'Настрій без ознак депресії', text:'Сили й інтерес до життя є. Якщо щось турбує, це, найімовірніше, утома чи обставини.' };
+  if (s <= 9) return { k:'mid',  name:'Легкі ознаки депресії', text:'Настрій просів, радості менше. Варто простежити, чи це минає, чи затягується.' };
+  if (s <= 14) return { k:'high', name:'Помірні ознаки депресії', text:'Знижений настрій уже впливає на щоденне життя. За таких балів фахівці радять звернутися до психолога.' };
+  if (s <= 19) return { k:'high', name:'Помірно тяжкі ознаки депресії', text:'Настрій і сили суттєво знижені. Це привід звернутися до фахівця вже зараз, а не чекати, що мине.' };
+  return { k:'high', name:'Тяжкі ознаки депресії', text:'Стан дуже важкий. Будь ласка, звернися до лікаря-психіатра або психотерапевта найближчим часом.' };
+}
+const COLOR = { low:'var(--green)', mid:'var(--gold)', high:'var(--burgundy)' };
 
 function showResult() {
-  document.getElementById('step-14').classList.remove('active');
-  document.getElementById('progress-fill').style.width = '100%';
-  document.getElementById('progress-fill').style.background = '#C9A84C';
-  document.getElementById('progress-text').textContent = 'Результат ✓';
+  const g = sum('gad'), p = sum('phq');
+  const G = gadLevel(g), P = phqLevel(p);
+  const risk = answers[Q.length - 1] > 0;
 
-  const tScore = getScore([1,2,3,4,5,6,7]);
-  const nScore = getScore([8,9,10,11,12,13,14]);
-  const tLevel = getLevel(tScore);
-  const nLevel = getLevel(nScore);
+  document.getElementById('pfill').style.width = '100%';
+  document.getElementById('pfill').style.background = 'var(--gold)';
+  document.getElementById('ptext').textContent = 'Результат';
 
-  const tData = {
-    low: { label: 'Тривога в нормі', color: '#7A9E7E', labelColor: '#3D6B42',
-      text: 'Рівень тривоги зараз не виходить за межі звичного. Є певна напруга — але це нормальна реакція на виклики життя.' },
-    mid: { label: 'Помірна тривога', color: '#C9A84C', labelColor: '#7A5A10',
-      text: 'Тривога помітна і займає певне місце в житті. Це сигнал що варто приділити увагу — поки не стало більше.' },
-    high: { label: 'Висока тривога', color: '#7B1C2A', labelColor: '#7B1C2A',
-      text: 'Рівень тривоги суттєво впливає на щоденне життя. Це не слабкість — це сигнал що потрібна підтримка.' }
-  };
+  let sense;
+  if (G.k === 'low' && P.k === 'low') sense = 'Зараз є і стабільність, і ресурс. Хороший момент, щоб братися за те, що хочеш змінити, з позиції сили.';
+  else if (G.k !== 'low' && P.k !== 'low') sense = 'Тривога й знижений настрій ідуть разом і підсилюють одне одного. Тривога виснажує, а виснаження робить світ ще загрозливішим. У такому колі легко почати звинувачувати себе в ліні чи слабкій волі. Хоча насправді це стан, з яким працюють.';
+  else if (G.k !== 'low') sense = 'Настрій тримається, але тривога забирає сили. Якщо не працювати з нею, рано чи пізно вона просаджує і настрій.';
+  else sense = 'Тривоги небагато, але настрій просів. Іноді пригніченість приходить тихо, без видимої причини. Варто розібратися, що за нею стоїть.';
 
-  const nData = {
-    low: { label: 'Настрій стабільний', color: '#7A9E7E', labelColor: '#3D6B42',
-      text: 'Настрій зараз відносно стабільний. Є ресурс і здатність радіти — це важливо.' },
-    mid: { label: 'Настрій знижений', color: '#C9A84C', labelColor: '#7A5A10',
-      text: 'Настрій помітно знизився. Радість і інтерес до життя є — але менше ніж зазвичай. Варто звернути увагу.' },
-    high: { label: 'Значне зниження настрою', color: '#7B1C2A', labelColor: '#7B1C2A',
-      text: 'Настрій суттєво знижений і це впливає на якість життя. Важливо не залишатись з цим наодинці.' }
-  };
+  const bar = (title, L, s, max) => `
+    <div class="bar">
+      <div class="bar-top"><b>${title}</b><span>${s} з ${max}</span></div>
+      <div class="bar-bg"><div class="bar-fill" data-w="${Math.round(s / max * 100)}" style="background:${COLOR[L.k]}"></div></div>
+      <div class="bar-note"><b>${L.name}.</b> ${L.text}</div>
+    </div>`;
 
-  const combos = {
-    'low-low': 'Зараз у тебе є і стабільність і ресурс. Гарний момент щоб попрацювати над тим що хочеш змінити — з позиції сили а не з позиції виживання.',
-    'low-mid': 'Тривога в нормі — але настрій просів. Іноді пригніченість приходить без видимої причини. Варто розібратись що за цим стоїть.',
-    'low-high': 'Тривоги небагато — але настрій дуже знижений. Це поєднання потребує уваги — апатія і втрата інтересу це серйозний сигнал.',
-    'mid-low': 'Є тривога — але настрій тримається. Ти справляєшся. І все ж тривога виснажує — і рано чи пізно впливає на настрій.',
-    'mid-mid': 'І тривога і настрій на середньому рівні. Це класична картина хронічного стресу. Тіло і психіка просять уваги.',
-    'mid-high': 'Тривога і знижений настрій разом — це суттєве навантаження. Дуже важливо отримати підтримку зараз.',
-    'high-low': 'Висока тривога — але є ресурс в настрої. Це дає енергію для роботи з тривогою. Хороший момент щоб почати.',
-    'high-mid': 'Висока тривога і знижений настрій. Одне посилює інше. Потрібна системна підтримка — не просто поради.',
-    'high-high': 'Обидва показники високі. Я хочу щоб ти знав/знала — це не вирок і не слабкість. Але це точно той момент коли не варто залишатись наодинці.'
-  };
-
-  const comboKey = `${tLevel}-${nLevel}`;
-  const comboText = combos[comboKey];
-
-  const tPct = Math.round((tScore/21)*100);
-  const nPct = Math.round((nScore/21)*100);
-
-  const tCardClass = tLevel === 'high' ? 'high' : tLevel === 'mid' ? 'mid' : '';
-  const nCardClass = nLevel === 'high' ? 'high' : nLevel === 'mid' ? 'mid' : '';
-
-  const msg = encodeURIComponent(`Альоно, я пройшла/пройшов твій тест «Тривога і настрій» 🌿\n\nМій результат:\n• Тривога: ${tData[tLevel].label} (${tScore}/21)\n• Настрій: ${nData[nLevel].label} (${nScore}/21)\n\nНадсилаю скрін результату 👇`);
-
-  const r = document.getElementById('result');
-  r.classList.add('active');
-  r.innerHTML = `
-    <div class="result-intro">
-      <div class="result-intro-title">Твій профіль<br><em>готовий</em></div>
-      <div class="result-intro-text">Два виміри — тривога і настрій. Разом вони дають повнішу картину.</div>
+  document.getElementById('stage').innerHTML = `
+    ${risk ? `<div class="card alert">
+      <p><b>У відповідях є думки про смерть або про те, щоб завдати собі шкоди.</b></p>
+      <p>Це важливо, і з цим не треба лишатися наодинці. Якщо зараз небезпечно, телефонуй 112 або на лінію психологічної допомоги Lifeline Ukraine: 7333. Якщо гостроти немає, розкажи про ці думки лікарю чи психотерапевту найближчим часом.</p>
+    </div>` : ''}
+    <div class="card result-main">
+      <div class="r-label">Твої результати</div>
+      ${bar('Тривога · GAD-7', G, g, 21)}
+      ${bar('Настрій · PHQ-9', P, p, 27)}
+      <div class="note">Пороги балів офіційні для GAD-7 і PHQ-9. Це скринінг: він показує, чи варто перевірити стан у фахівця, але діагноз не ставить.</div>
     </div>
-    <div class="profile-grid">
-      <div class="profile-card ${tCardClass}">
-        <div class="profile-label" style="color:${tData[tLevel].labelColor}">${tData[tLevel].label}</div>
-        <div class="profile-title">Тривога — ${tScore} з 21</div>
-        <div class="profile-bar-bg">
-          <div class="profile-bar-fill" style="width:0%; background:${tData[tLevel].color}; transition:width 1s ease;" data-width="${tPct}"></div>
-        </div>
-        <div class="profile-text">${tData[tLevel].text}</div>
-      </div>
-      <div class="profile-card ${nCardClass}">
-        <div class="profile-label" style="color:${nData[nLevel].labelColor}">${nData[nLevel].label}</div>
-        <div class="profile-title">Настрій — ${nScore} з 21</div>
-        <div class="profile-bar-bg">
-          <div class="profile-bar-fill" style="width:0%; background:${nData[nLevel].color}; transition:width 1s ease;" data-width="${nPct}"></div>
-        </div>
-        <div class="profile-text">${nData[nLevel].text}</div>
-      </div>
+    <div class="card philosophy">
+      <p>${sense}</p>
+      <p>Тривога і депресивний стан добре піддаються когнітивно-поведінковій терапії. Часто вистачає короткого курсу, щоб побачити, на чому все тримається, і повернути собі сили.</p>
     </div>
-    <div class="combo-card">
-      <div class="combo-title">Тривога + настрій разом</div>
-      <div class="combo-text">${comboText}</div>
+    <div class="card links">
+      <h3>Що далі</h3>
+      <a href="https://alenkabraslavskaya16-tech.github.io/alenabraslavska/test_shcho_za_yizheyu.html" target="_blank">Що насправді стоїть за їжею<span>Якщо тривога чи настрій відбиваються на апетиті</span></a>
+      <a href="https://t.me/sam_sobi_psycholo_g_ab" target="_blank">Канал «Сам собі психолог»<span>Статті про тривогу, тіло й самооцінку</span></a>
+      <a href="https://t.me/Psikholog_Braslavskaya" target="_blank">Написати Альоні<span>Якщо хочеться розібратися разом</span></a>
     </div>
-    <div class="hook">
-      <div class="hook-icon">📸</div>
-      <div class="hook-title">Надішли мені скрін —<br><em>і я скажу що за цим стоїть</em></div>
-      <div class="hook-text">Цифри це тільки початок розмови. Що саме відбувається і з чого починати — це вже особисто.</div>
-      <div class="hook-steps">
-        <div class="hook-step"><div class="hook-step-num">1</div><div class="hook-step-text"><strong>Зроби скрін</strong> цього результату</div></div>
-        <div class="hook-step"><div class="hook-step-num">2</div><div class="hook-step-text"><strong>Надішли мені</strong> в Telegram</div></div>
-        <div class="hook-step"><div class="hook-step-num">3</div><div class="hook-step-text"><strong>Я скажу</strong> що з цим робити — безкоштовно</div></div>
-      </div>
-      <a href="https://t.me/Psikholog_Braslavskaya?text=${msg}" class="btn-hook">Надіслати скрін Альоні →</a>
-      <div class="hook-note">Відкриється Telegram з готовим повідомленням</div>
-    </div>
-    <span class="btn-retry" onclick="location.reload()">Пройти ще раз</span>`;
+    <div class="restart"><button class="btn btn-ghost" onclick="location.reload()">Пройти ще раз</button></div>`;
 
-  setTimeout(() => {
-    document.querySelectorAll('.profile-bar-fill').forEach(el => {
-      el.style.width = el.dataset.width + '%';
-    });
-  }, 200);
-
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => document.querySelectorAll('.bar-fill').forEach(el => el.style.width = el.dataset.w + '%'), 100);
 }
 </script>
-<div style="max-width:640px;margin:32px auto;padding:0 20px 40px;font-family:Manrope,sans-serif;font-size:12.5px;line-height:1.6;color:#9A8A84;text-align:center">Тест не є діагнозом і не замінює консультацію. Якщо зараз так тяжко, що страшно за себе чи за когось поруч, телефонуй 112 або на лінію психологічної допомоги (Lifeline Ukraine: 7333). Це про безпеку тут і зараз, а не про запис до мене.</div>
+<p style="max-width:640px;margin:16px auto 0;font-size:11.5px;color:#9A8A84;text-align:center;line-height:1.6">GAD-7 і PHQ-9: R. L. Spitzer, J. B. W. Williams, K. Kroenke та колеги. Вільні для використання.</p>
 </body>
 </html>
